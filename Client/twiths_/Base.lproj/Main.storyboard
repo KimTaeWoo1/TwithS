@@ -161,13 +161,7 @@
                             <outlet property="delegate" destination="Sya-NO-PI0" id="NIz-mA-Ua4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="07C-Tt-4mo">
-                        <barButtonItem key="rightBarButtonItem" title="About" id="3hH-E6-n0c">
-                            <connections>
-                                <segue destination="Brb-3j-Oha" kind="presentation" id="ayT-3x-NIw"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="07C-Tt-4mo"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IxF-1Q-fsb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,12 +235,28 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GIc-t7-Rfs">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="439" id="GIc-t7-Rfs">
+                                <rect key="frame" x="0.0" y="72" width="375" height="439"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GIc-t7-Rfs" id="mtt-hR-R7C">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="438.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wd2-QE-cpv">
+                                            <rect key="frame" x="0.0" y="149" width="375" height="279"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="랭킹. 검색을 하면 사라짐" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uu-5z-Ip9">
+                                                    <rect key="frame" x="68" y="43" width="239" height="192"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="43"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.59520874489999998" blue="0.2471933469" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </view>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -259,7 +269,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gi4-GB-1X6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1409" y="1075"/>
+            <point key="canvasLocation" x="1408.8" y="1074.5127436281859"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QAB-Ns-s6o">

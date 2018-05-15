@@ -15,14 +15,19 @@ import Foundation
 // 투어 테이블
 class Tour {
     var Name:String // 투어 이름
-    var Location:String // 투어 지역
-    var ThemeNum:Int // 투어의 테마 번호
-    var CreatedUser:User // 투어를 만든 사용자
-    var CreatedDT = DateComponents() // 투어를 만든 날짜
-    var TimeLimit = (Hour:Int, Minute:Int, Second:Int) // 투어의 제한시간
-    var Landmarks:[Landmark] // 랜드마크 목록
+    var TourID:Int // 투어의 테마 번호
+    var Admin:User // 투어를 만든 사용자
+    var Created:Date // 투어를 만든 날짜
+    var Updated:Date // 투어 수정 날짜
+    var TimeLimit:Int // 투어의 제한시간(분단위)
     var Reviews:[Review] // 리뷰 목록
     var Jjim:[User] // 찜한 사용자 목록
+    var Image:[String] // 대표사진
+    var description:String // 투어정보
+    var MapImage:String // 지도 이미지
+    var Score:Double // 별점
+    
+    
     
     init(NAME:String, LOC:String, THEME:Int, USER:User, DT:DateComponents, TIME:(Hour:Int, Minute:Int, Second:Int), LDMS:[Landmark]) {
         self.Name = NAME
@@ -37,13 +42,19 @@ class Tour {
     }
 }
 
+// 맛집, 관광, 액티비티 ... var Tag:[Theme] = [맛집, 관광]
+// enum Theme {
+//}
+
 // 랜드마크 테이블
 class Landmark {
     var Name:String // 랜드마크 이름
+    var Tour:Tour // 투어이름
     var Location:String // 랜드마크의 위치
-    var Wido:Double // 위도
-    var Kyungdo:Double // 경도
-    var LandmarkType:Int // 랜드마크의 종류
+    var GPSAddress: // 위치정보
+    //var LandmarkType:Int // 랜드마크의 종류
+    var description:String // 랜드마크 상세 정보
+    var Image:[String] // 랜드마크 이미지
     
     init(NAME:String, LOC:String, WD:Double, KD:Double, TYPE:Int) {
         self.Name = NAME
@@ -59,8 +70,8 @@ class User {
     var UserID:String // 사용자 아이디
     var UserPWD:String // 비밀번호
     var Nickname:String // 앱에서 사용되는 별명
-    var CreatedTours:[Tour]
     var JjimTours:[Tour]
+    var ProceedingTours:[UserTour] // 투어, 시간
     
     init(ID:String, PWD:String, NICK:String) {
         self.UserID = ID
@@ -77,6 +88,7 @@ class UserTour { // 사용자가 특정 투어를 진행하는 상황 표시
     var User:User // 사용자
     var Tour:Tour // 투어
     var State:Int // 상태를 나타내는 값(성공, 실패, 투어 중 등)
+    var Stared:Date
     
     init(USER:User, TOUR:Tour, STATE:Int) {
         self.User = USER
@@ -85,12 +97,24 @@ class UserTour { // 사용자가 특정 투어를 진행하는 상황 표시
     }
 }
 
+class UserTourLandMark {
+    var userTour:UserTour // 진행중인 투어
+    var Landmark:Landmark
+    var State:Int
+    var Image:String
+    var Comment:String
+    var SuccessTime:Date
+}
+
 // 리뷰 테이블
 class Review {
-    var OnTour:Tour // 리뷰가 쓰인 투어(어떤 투어에 있는 리뷰인지)
+    var ReviewID:Int
     var WriteUser:User // 리뷰를 작성한 사용자
     var Stars:Int // 별점
     var Content:String // 리뷰의 내용
+    var ReviewImage:[String]
+    var Created:Date
+    var Updated:Date
     
     init(TOUR:Tour, USER:User, STAR:Int, CONTENT:String) {
         self.OnTour = TOUR
@@ -105,6 +129,9 @@ class Review {
    2) 각 테이블에 들어갈 항목(튜플)들을 정리한 각각의 배열
    3) 각 투어를 찜한 사용자, 투어에 있는 리뷰, 사용자가 만든 투어, 사용자가 찜한 투어를
       빈 배열로 초기화되어 있는 속성에 추가함. */
+
+
+
 
 func dummydatas() { // 더미 데이터
     
