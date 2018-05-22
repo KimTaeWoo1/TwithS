@@ -11,7 +11,7 @@ import Foundation
 /* 사용자-투어 테이블은 사용자와 투어를 연결하는 테이블로,
  사용자와 투어가 데이터베이스의 N:M 관계이기 때문에 만들었음. */
 
-class Date {
+class Date_ymd {
     var year:Int
     var month:Int
     var day:Int
@@ -28,8 +28,8 @@ class Tour {
     var Name:String // 투어 이름
     var TourID:Int // 투어의 테마 번호
     var Admin:User // 투어를 만든 사용자
-    var Created:Date // 투어를 만든 날짜
-    var Updated:Date // 투어 수정 날짜
+    var Created:Date_ymd // 투어를 만든 날짜
+    var Updated:Date_ymd // 투어 수정 날짜
     var TimeLimit:Int // 투어의 제한시간(분단위)
     var Reviews:[Review] // 리뷰 목록
     var Jjim:[User] // 찜한 사용자 목록
@@ -38,7 +38,7 @@ class Tour {
     var MapImage:String // 지도 이미지
     var Score:Double // 별점
     
-    init(NAME:String, ID:Int, User:User, Created:Date, Updated:Date, Limit:Int, Image:[String], descrip:String, MapImage:String) {
+    init(NAME:String, ID:Int, User:User, Created:Date_ymd, Updated:Date_ymd, Limit:Int, Image:[String], descrip:String, MapImage:String) {
         self.Name = NAME
         self.TourID = ID
         self.Admin = User
@@ -103,9 +103,9 @@ class UserTour { // 사용자가 특정 투어를 진행하는 상황 표시
     var User:User // 사용자
     var Tour:Tour // 투어
     var State:Int // 상태를 나타내는 값(성공, 실패, 투어 중 등)
-    var Started:Date // 투어 시작 날짜
+    var Started:Date_ymd // 투어 시작 날짜
     
-    init(USER:User, TOUR:Tour, STATE:Int, START:Date) {
+    init(USER:User, TOUR:Tour, STATE:Int, START:Date_ymd) {
         self.User = USER
         self.Tour = TOUR
         self.State = STATE
@@ -120,9 +120,9 @@ class UserTourLandMark {
     var State:Int // 랜드마크 상태
     var Image:String // 이미지
     var Comment:String // 코멘트
-    var SuccessTime:Date // 성공 시각
+    var SuccessTime:Date_ymd // 성공 시각
     
-    init(UT:UserTour, PLACE:Landmark, STATE:Int, IMAGE:String, COMMENT:String, SUCTIME:Date) {
+    init(UT:UserTour, PLACE:Landmark, STATE:Int, IMAGE:String, COMMENT:String, SUCTIME:Date_ymd) {
         self.userTour = UT
         self.Landmark = PLACE
         self.State = STATE
@@ -139,10 +139,10 @@ class Review {
     var Stars:Int // 별점
     var Content:String // 리뷰의 내용
     var ReviewImage:[String] // 리뷰에 사용되는 이미지
-    var Created:Date // 작성 날짜
-    var Updated:Date // 수정 날짜
+    var Created:Date_ymd // 작성 날짜
+    var Updated:Date_ymd // 수정 날짜
     
-    init(ID:Int, User:User, Star:Int, Cont:String, RevImg:[String], Create:Date, Update:Date) {
+    init(ID:Int, User:User, Star:Int, Cont:String, RevImg:[String], Create:Date_ymd, Update:Date_ymd) {
         self.ReviewID = ID
         self.WriteUser = User
         self.Stars = Star
@@ -167,10 +167,10 @@ var Marker:User = User(ID: "Seo yeong", PWD: "12345", NICK: "seoyeong")
 var XMAN:User = User(ID: "XX", PWD: "345678", NICK: "KimXMan")
 
 // 투어 테이블에 들어갈 항목
-var TOUR1:Tour = Tour(NAME: "TOUR1", ID: 1, User: Jimin, Created: Date(year:2018, month:5, day:12), Updated: Date(year: 2018, month:5, day:12), Limit: 210, Image: ["testimg.jpg", "testimg2.jpg"], descrip: "지민 여신의 멋진 투어, 함께해 볼까요?", MapImage: "mapimage.jpg")
-var TOUR2:Tour = Tour(NAME: "TOUR2", ID: 2, User: Umanle, Created: Date(year:2018, month:5, day:13), Updated: Date(year: 2018, month:5, day:13), Limit: 450, Image: ["testimg.jpg", "testimg2.jpg"], descrip: "역대급으로 멋진 투어, 가즈아~!", MapImage: "mapimage.jpg")
-var TOUR3:Tour = Tour(NAME: "TOUR3", ID: 3, User: Marker, Created: Date(year:2018, month:5, day:13), Updated: Date(year: 2018, month:5, day:15), Limit: 300, Image: ["testimg.jpg", "testimg2.jpg"], descrip: "이렇게 맛있는 맛집들이 있다니, 이거 실화냐?", MapImage: "mapimage.jpg")
-var NARUTOUR:Tour = Tour(NAME: "NARU", ID: 4, User: XMAN, Created: Date(year:2018, month:5, day:17), Updated: Date(year: 2018, month:5, day:18), Limit: 300, Image: ["testimg.jpg", "testimg2.jpg"], descrip: "지민 여신의 일상 투어, 함께해 볼까요?", MapImage: "mapimage.jpg")
+var TOUR1:Tour = Tour(NAME: "TOUR1", ID: 1, User: Jimin, Created: Date_ymd(year:2018, month:5, day:12), Updated: Date_ymd(year: 2018, month:5, day:12), Limit: 210, Image: ["testimg.jpg", "testimg2.jpg"], descrip: "지민 여신의 멋진 투어, 함께해 볼까요?", MapImage: "mapimage.jpg")
+var TOUR2:Tour = Tour(NAME: "TOUR2", ID: 2, User: Umanle, Created: Date_ymd(year:2018, month:5, day:13), Updated: Date_ymd(year: 2018, month:5, day:13), Limit: 450, Image: ["testimg.jpg", "testimg2.jpg"], descrip: "역대급으로 멋진 투어, 가즈아~!", MapImage: "mapimage.jpg")
+var TOUR3:Tour = Tour(NAME: "TOUR3", ID: 3, User: Marker, Created: Date_ymd(year:2018, month:5, day:13), Updated: Date_ymd(year: 2018, month:5, day:15), Limit: 300, Image: ["testimg.jpg", "testimg2.jpg"], descrip: "이렇게 맛있는 맛집들이 있다니, 이거 실화냐?", MapImage: "mapimage.jpg")
+var NARUTOUR:Tour = Tour(NAME: "NARU", ID: 4, User: XMAN, Created: Date_ymd(year:2018, month:5, day:17), Updated: Date_ymd(year: 2018, month:5, day:18), Limit: 300, Image: ["testimg.jpg", "testimg2.jpg"], descrip: "지민 여신의 일상 투어, 함께해 볼까요?", MapImage: "mapimage.jpg")
 
 // 랜드마크 테이블에 들어갈 항목(튜플)
 var HYU:Landmark = Landmark(NAME: "Hanyang University", TOUR: TOUR1, LOC: "Haengdang", GPS: (37.5, 127.5), descrip: "80년 전통의 명문 한양대학교", Image: ["testimg.jpg", "testimg2.jpg"])
@@ -193,41 +193,41 @@ var SNU_2:Landmark = Landmark(NAME: "Seoul Nat'l University", TOUR: NARUTOUR, LO
 var KHU_2:Landmark = Landmark(NAME: "KyungHee University", TOUR: NARUTOUR, LOC: "Dongdaemun", GPS: (37.5, 127.5), descrip: "누구나 인정하는 명문대 커트라인, 명문대의 문을 닫는 경희대학교", Image: ["testimg.jpg", "testimg2.jpg"])
 
 // 사용자-투어 테이블에 들어갈 항목 (0: 성공, 1: 투어 중, 2: 실패)
-var TION_Jimin1:UserTour = UserTour(USER: TION, TOUR: TOUR1, STATE: 2, START: Date(year:2018, month:5, day:29))
-var TION_Jimin2:UserTour = UserTour(USER: TION, TOUR: TOUR3, STATE: 0, START: Date(year:2018, month:5, day:26))
-var Umanle_GAZUA:UserTour = UserTour(USER: Jimin, TOUR: TOUR2, STATE: 2, START: Date(year:2018, month:5, day:25))
-var WANNABE:UserTour = UserTour(USER: Jimin, TOUR: TOUR3, STATE: 0, START: Date(year:2018, month:5, day:29))
-var XX:UserTour = UserTour(USER: XMAN, TOUR: TOUR2, STATE: 1, START: Date(year:2018, month:6, day:4))
+var TION_Jimin1:UserTour = UserTour(USER: TION, TOUR: TOUR1, STATE: 2, START: Date_ymd(year:2018, month:5, day:29))
+var TION_Jimin2:UserTour = UserTour(USER: TION, TOUR: TOUR3, STATE: 0, START: Date_ymd(year:2018, month:5, day:26))
+var Umanle_GAZUA:UserTour = UserTour(USER: Jimin, TOUR: TOUR2, STATE: 2, START: Date_ymd(year:2018, month:5, day:25))
+var WANNABE:UserTour = UserTour(USER: Jimin, TOUR: TOUR3, STATE: 0, START: Date_ymd(year:2018, month:5, day:29))
+var XX:UserTour = UserTour(USER: XMAN, TOUR: TOUR2, STATE: 1, START: Date_ymd(year:2018, month:6, day:4))
 
 // 사용자-투어-랜드마크 테이블에 들어갈 항목
-var A1:UserTourLandMark = UserTourLandMark(UT: TION_Jimin1, PLACE: HYU, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date(year: 2018, month: 5, day: 29))
-var A2:UserTourLandMark = UserTourLandMark(UT: TION_Jimin1, PLACE: ENTER6, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "ㄴㄴ", SUCTIME: Date(year: 2018, month: 5, day: 27))
-var A3:UserTourLandMark = UserTourLandMark(UT: TION_Jimin1, PLACE: CITYHALL, STATE: 1, IMAGE: "testimg2.jpg", COMMENT: "진행중임.", SUCTIME: Date(year: 2018, month: 5, day: 29))
-var B1:UserTourLandMark = UserTourLandMark(UT: TION_Jimin2, PLACE: ENTER6_2, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date(year: 2018, month: 5, day: 26))
-var B2:UserTourLandMark = UserTourLandMark(UT: TION_Jimin2, PLACE: NAMULIVE_2, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date(year: 2018, month: 5, day: 26))
-var C1:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: NAMULIVE, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "ㅇ", SUCTIME: Date(year: 2018, month: 5, day: 25))
-var C2:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: NAVER, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "코멘트를 입력하세요.", SUCTIME: Date(year: 2018, month: 5, day: 25))
-var C3:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: SNU, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "샤샷", SUCTIME: Date(year: 2018, month: 5, day: 25))
-var C4:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: NAMSAN, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "클라스 ㅋㅋㅋㅋ", SUCTIME: Date(year: 2018, month: 5, day: 25))
-var C5:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: DonggukUniv, STATE: 1, IMAGE: "testimg.jpg", COMMENT: "ㄹㅇ", SUCTIME: Date(year: 2018, month: 5, day: 31))
-var C6:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: JangchungGYM, STATE: 1, IMAGE: "testimg.jpg", COMMENT: "이거 실화냐", SUCTIME: Date(year: 2018, month: 5, day: 31))
-var D1:UserTourLandMark = UserTourLandMark(UT: WANNABE, PLACE: ENTER6_2, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date(year: 2018, month: 5, day: 29))
-var D2:UserTourLandMark = UserTourLandMark(UT: WANNABE, PLACE: NAMULIVE_2, STATE: 1, IMAGE: "testimg2.jpg", COMMENT: "fail.", SUCTIME: Date(year: 2018, month: 5, day: 31))
-var E1:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: NAMULIVE, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "1234", SUCTIME: Date(year: 2018, month: 5, day: 28))
-var E2:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: NAVER, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "asdf", SUCTIME: Date(year: 2018, month: 5, day: 28))
-var E3:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: SNU, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "코멘트를 입력하세요.", SUCTIME: Date(year: 2018, month: 5, day: 28))
-var E4:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: NAMSAN, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "ㅋㅋ", SUCTIME: Date(year: 2018, month: 5, day: 28))
-var E5:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: DonggukUniv, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date(year: 2018, month: 6, day: 4))
-var E6:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: JangchungGYM, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "진행중 가즈아", SUCTIME: Date(year: 2018, month: 6, day: 4))
+var A1:UserTourLandMark = UserTourLandMark(UT: TION_Jimin1, PLACE: HYU, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date_ymd(year: 2018, month: 5, day: 29))
+var A2:UserTourLandMark = UserTourLandMark(UT: TION_Jimin1, PLACE: ENTER6, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "ㄴㄴ", SUCTIME: Date_ymd(year: 2018, month: 5, day: 27))
+var A3:UserTourLandMark = UserTourLandMark(UT: TION_Jimin1, PLACE: CITYHALL, STATE: 1, IMAGE: "testimg2.jpg", COMMENT: "진행중임.", SUCTIME: Date_ymd(year: 2018, month: 5, day: 29))
+var B1:UserTourLandMark = UserTourLandMark(UT: TION_Jimin2, PLACE: ENTER6_2, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date_ymd(year: 2018, month: 5, day: 26))
+var B2:UserTourLandMark = UserTourLandMark(UT: TION_Jimin2, PLACE: NAMULIVE_2, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date_ymd(year: 2018, month: 5, day: 26))
+var C1:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: NAMULIVE, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "ㅇ", SUCTIME: Date_ymd(year: 2018, month: 5, day: 25))
+var C2:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: NAVER, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "코멘트를 입력하세요.", SUCTIME: Date_ymd(year: 2018, month: 5, day: 25))
+var C3:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: SNU, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "샤샷", SUCTIME: Date_ymd(year: 2018, month: 5, day: 25))
+var C4:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: NAMSAN, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "클라스 ㅋㅋㅋㅋ", SUCTIME: Date_ymd(year: 2018, month: 5, day: 25))
+var C5:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: DonggukUniv, STATE: 1, IMAGE: "testimg.jpg", COMMENT: "ㄹㅇ", SUCTIME: Date_ymd(year: 2018, month: 5, day: 31))
+var C6:UserTourLandMark = UserTourLandMark(UT: Umanle_GAZUA, PLACE: JangchungGYM, STATE: 1, IMAGE: "testimg.jpg", COMMENT: "이거 실화냐", SUCTIME: Date_ymd(year: 2018, month: 5, day: 31))
+var D1:UserTourLandMark = UserTourLandMark(UT: WANNABE, PLACE: ENTER6_2, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date_ymd(year: 2018, month: 5, day: 29))
+var D2:UserTourLandMark = UserTourLandMark(UT: WANNABE, PLACE: NAMULIVE_2, STATE: 1, IMAGE: "testimg2.jpg", COMMENT: "fail.", SUCTIME: Date_ymd(year: 2018, month: 5, day: 31))
+var E1:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: NAMULIVE, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "1234", SUCTIME: Date_ymd(year: 2018, month: 5, day: 28))
+var E2:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: NAVER, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "asdf", SUCTIME: Date_ymd(year: 2018, month: 5, day: 28))
+var E3:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: SNU, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "코멘트를 입력하세요.", SUCTIME: Date_ymd(year: 2018, month: 5, day: 28))
+var E4:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: NAMSAN, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "ㅋㅋ", SUCTIME: Date_ymd(year: 2018, month: 5, day: 28))
+var E5:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: DonggukUniv, STATE: 0, IMAGE: "testimg2.jpg", COMMENT: "ㅇㅇ", SUCTIME: Date_ymd(year: 2018, month: 6, day: 4))
+var E6:UserTourLandMark = UserTourLandMark(UT: XX, PLACE: JangchungGYM, STATE: 0, IMAGE: "testimg.jpg", COMMENT: "진행중 가즈아", SUCTIME: Date_ymd(year: 2018, month: 6, day: 4))
 
 // 리뷰 테이블에 들어갈 항목
-var RV1:Review = Review(ID: 1, User: Jimin, Star: 5, Cont: "와 진짜 이거 대박이닼ㅋㅋㅋㅋ", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date(year: 2018, month: 5, day: 19), Update: Date(year: 2018, month: 5, day: 21))
-var RV2:Review = Review(ID: 2, User: Umanle, Star: 5, Cont: "클라스가 다른...", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date(year: 2018, month: 5, day: 19), Update: Date(year: 2018, month: 5, day: 19))
-var RV3:Review = Review(ID: 3, User: TION, Star: 3, Cont: "블로그에 소개하면 대박나겠네요.", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date(year: 2018, month: 5, day: 19), Update: Date(year: 2018, month: 5, day: 19))
-var RV4:Review = Review(ID: 4, User: Marker, Star: 4, Cont: "캬~!", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date(year: 2018, month: 5, day: 20), Update: Date(year: 2018, month: 5, day: 20))
-var RV5:Review = Review(ID: 5, User: XMAN, Star: 4, Cont: "무난하네요.", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date(year: 2018, month: 5, day: 22), Update: Date(year: 2018, month: 5, day: 25))
-var RV6:Review = Review(ID: 6, User: Jimin, Star: 5, Cont: "여신을 반하게 한 최고의 투어.", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date(year: 2018, month: 5, day: 22), Update: Date(year: 2018, month: 5, day: 22))
-var RV7:Review = Review(ID: 7, User: Jimin, Star: 1, Cont: "노답. 더 이상의 자세한 설명은 생략한다.", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date(year: 2018, month: 5, day: 31), Update: Date(year: 2018, month: 6, day: 14))
+var RV1:Review = Review(ID: 1, User: Jimin, Star: 5, Cont: "와 진짜 이거 대박이닼ㅋㅋㅋㅋ", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date_ymd(year: 2018, month: 5, day: 19), Update: Date_ymd(year: 2018, month: 5, day: 21))
+var RV2:Review = Review(ID: 2, User: Umanle, Star: 5, Cont: "클라스가 다른...", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date_ymd(year: 2018, month: 5, day: 19), Update: Date_ymd(year: 2018, month: 5, day: 19))
+var RV3:Review = Review(ID: 3, User: TION, Star: 3, Cont: "블로그에 소개하면 대박나겠네요.", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date_ymd(year: 2018, month: 5, day: 19), Update: Date_ymd(year: 2018, month: 5, day: 19))
+var RV4:Review = Review(ID: 4, User: Marker, Star: 4, Cont: "캬~!", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date_ymd(year: 2018, month: 5, day: 20), Update: Date_ymd(year: 2018, month: 5, day: 20))
+var RV5:Review = Review(ID: 5, User: XMAN, Star: 4, Cont: "무난하네요.", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date_ymd(year: 2018, month: 5, day: 22), Update: Date_ymd(year: 2018, month: 5, day: 25))
+var RV6:Review = Review(ID: 6, User: Jimin, Star: 5, Cont: "여신을 반하게 한 최고의 투어.", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date_ymd(year: 2018, month: 5, day: 22), Update: Date_ymd(year: 2018, month: 5, day: 22))
+var RV7:Review = Review(ID: 7, User: Jimin, Star: 1, Cont: "노답. 더 이상의 자세한 설명은 생략한다.", RevImg: ["testimg.jpg", "testimg2.jpg"], Create: Date_ymd(year: 2018, month: 5, day: 31), Update: Date_ymd(year: 2018, month: 6, day: 14))
 
 /* 2) 각 테이블에 들어갈 항목(튜플)들을 정리한 각각의 배열 */
 
