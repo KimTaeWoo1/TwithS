@@ -12,7 +12,7 @@
         <!--Root View Controller-->
         <scene sceneID="yzd-mv-8eL">
             <objects>
-                <tableViewController id="Z3M-Qj-EG0" sceneMemberID="viewController">
+                <tableViewController id="Z3M-Qj-EG0" customClass="MyPageViewController" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mM5-dr-kax">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,10 +25,26 @@
                                     <rect key="frame" x="8" y="13" width="86" height="92"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="사용자 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMD-d3-QZL">
-                                    <rect key="frame" x="147" y="39" width="155" height="41"/>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p64-Aw-wvs">
+                                    <rect key="frame" x="295" y="44" width="73" height="59"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                    <state key="normal" title="Logout"/>
+                                    <connections>
+                                        <action selector="LogoutButtonClicked:" destination="Z3M-Qj-EG0" eventType="touchUpInside" id="n2R-D5-hXk"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knP-yn-uGM">
+                                    <rect key="frame" x="166" y="53" width="0.0" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmu-Z8-Onu">
+                                    <rect key="frame" x="144" y="49" width="86" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.94472938780000004" green="1" blue="0.436590221" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -115,6 +131,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="5We-50-Z90"/>
+                    <connections>
+                        <outlet property="displayNameLabel" destination="dmu-Z8-Onu" id="9jC-ei-itR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqk-42-fra" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -438,7 +457,7 @@
         <!--마이페이지-->
         <scene sceneID="NfQ-N7-dB0">
             <objects>
-                <navigationController id="xu8-eW-k5i" sceneMemberID="viewController">
+                <navigationController id="xu8-eW-k5i" customClass="MyP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="마이페이지" id="Gda-Rk-pmb"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pUY-UH-IoA">
