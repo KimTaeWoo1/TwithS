@@ -1,57 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RaQ-FO-pAF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wAr-r5-UCX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--진행중인 투어-->
         <scene sceneID="9tY-nh-aGK">
             <objects>
-                <tableViewController id="yV4-9H-Ohk" customClass="ProceedTour" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="yV4-9H-Ohk" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BaV-ua-3Vq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="BFg-H1-pxm">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="랜드마크를 터치하면 투어 정보를 볼 수 있습니다." id="a7R-0E-fmz"/>
-                            </items>
-                        </navigationBar>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="80z-2T-0hy">
-                            <rect key="frame" x="0.0" y="116" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Title" id="ZG6-Ob-hBv"/>
-                            </items>
-                        </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourCell" textLabel="fDa-gE-y0h" style="IBUITableViewCellStyleDefault" id="83t-b2-Y2b" customClass="ProceedCell" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourCell" rowHeight="256" id="83t-b2-Y2b">
+                                <rect key="frame" x="0.0" y="28" width="375" height="256"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="83t-b2-Y2b" id="ljh-PH-vBj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="255.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fDa-gE-y0h">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="현재 진행중인 투어" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCl-Gh-ScU">
+                                            <rect key="frame" x="30" y="45" width="276" height="129"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="proceed_box" destination="ljh-PH-vBj" id="o3v-hr-2mr"/>
-                                    <segue destination="Sya-NO-PI0" kind="show" identifier="tour_detail" id="ojy-u1-b8j"/>
+                                    <segue destination="Sya-NO-PI0" kind="show" id="ojy-u1-b8j"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -67,15 +52,8 @@
                                 <segue destination="Th0-yU-fCR" kind="presentation" id="q4k-aH-AZe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="편집" id="cHa-eo-2Js">
-                            <connections>
-                                <segue destination="fxv-44-GY6" kind="show" id="KE9-qb-MK2"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="편집" id="cHa-eo-2Js"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="title_text" destination="ZG6-Ob-hBv" id="48N-ox-cgr"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ov4-Dl-lze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -111,7 +89,6 @@
             </objects>
             <point key="canvasLocation" x="-945" y="737"/>
         </scene>
-<<<<<<< HEAD
         <!--Login View Controller-->
         <scene sceneID="Omd-73-h4o">
             <objects>
@@ -281,12 +258,10 @@
             </objects>
             <point key="canvasLocation" x="-2652" y="-170.46476761619192"/>
         </scene>
-=======
->>>>>>> 14edae6b0d2a9eaff800eedd52f630d9521e86c6
         <!--Tab Bar Controller-->
         <scene sceneID="AB1-mb-Qma">
             <objects>
-                <tabBarController id="RaQ-FO-pAF" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Home" id="RaQ-FO-pAF" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kpr-hp-bOK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -306,7 +281,7 @@
         <!--투어제목-->
         <scene sceneID="R0H-1c-OOx">
             <objects>
-                <tableViewController id="Sya-NO-PI0" customClass="Tour_Landmarks" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Sya-NO-PI0" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yUC-JU-1ia">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,64 +292,43 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XR5-oS-gN5">
                                     <rect key="frame" x="0.0" y="0.0" width="125" height="44"/>
-                                    <color key="backgroundColor" red="0.83243443287319607" green="1" blue="0.96722350443463834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="코스"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vj3-Tw-kma">
                                     <rect key="frame" x="125" y="0.0" width="125" height="44"/>
                                     <state key="normal" title="지도"/>
-                                    <connections>
-                                        <segue destination="JMc-ef-uBo" kind="show" identifier="tour_map_show" id="Kik-vX-fnz"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DN4-yF-DzB">
                                     <rect key="frame" x="250" y="0.0" width="125" height="44"/>
                                     <state key="normal" title="리뷰"/>
-                                    <connections>
-                                        <segue destination="e4z-b7-cKR" kind="show" identifier="tour_review_show" id="vnj-ma-AGH"/>
-                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="ZT1-dq-nrg">
-                            <rect key="frame" x="0.0" y="155" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Title" id="bX9-Ov-yZf">
-                                    <barButtonItem key="leftBarButtonItem" title="&lt; 진행중인 투어" id="3Lm-uw-bhi">
-                                        <connections>
-                                            <segue destination="yV4-9H-Ohk" kind="show" id="JqE-UH-Ptf"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="T_Landmark" textLabel="3qn-x1-Qv5" detailTextLabel="IG3-gZ-uqh" rowHeight="83" style="IBUITableViewCellStyleSubtitle" id="LuW-9h-98m">
-                                <rect key="frame" x="0.0" y="72" width="375" height="83"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="103" id="LuW-9h-98m">
+                                <rect key="frame" x="0.0" y="72" width="375" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LuW-9h-98m" id="NWx-97-m7J">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="102.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3qn-x1-Qv5">
-                                            <rect key="frame" x="16" y="21" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="랜드마크 목록" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZ3-2O-NBK">
+                                            <rect key="frame" x="110" y="20" width="155" height="62"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IG3-gZ-uqh">
-                                            <rect key="frame" x="16" y="44.5" width="33" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uS3-lQ-40g">
+                                            <rect key="frame" x="316" y="34" width="42" height="41"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <state key="normal" title="제출"/>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="TZ8-BQ-M5e" kind="presentation" identifier="go_landmarkinfo" id="VoS-VS-1Fv"/>
+                                    <segue destination="662-ar-mGs" kind="show" id="pEi-Ra-26l"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -386,137 +340,35 @@
                     <navigationItem key="navigationItem" title="투어제목" id="07C-Tt-4mo">
                         <barButtonItem key="rightBarButtonItem" title="투어 정보" id="QuA-9O-VsH">
                             <connections>
-                                <segue destination="NWw-EN-aTz" kind="presentation" identifier="go_tourinfo" id="4Kp-x4-iTj"/>
+                                <segue destination="NWw-EN-aTz" kind="show" id="Uvf-0Q-0mM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="BottomTitle" destination="bX9-Ov-yZf" id="Lxo-B6-AkJ"/>
-                        <outlet property="TV_Landmark" destination="yUC-JU-1ia" id="Ed1-dx-PPb"/>
-                        <outlet property="tour_title" destination="07C-Tt-4mo" id="imn-NB-dKk"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IxF-1Q-fsb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3829.5999999999999" y="-27.436281859070466"/>
+            <point key="canvasLocation" x="3831" y="-27"/>
         </scene>
         <!--투어 올리기-->
         <scene sceneID="ZPW-cT-qiy">
             <objects>
-                <tableViewController id="fxv-44-GY6" customClass="TourCreate" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="fxv-44-GY6" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BSz-Lc-KA6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="kc3-CE-Gs0">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="투어 이름:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ar5-2j-VH0">
-                                    <rect key="frame" x="30" y="14" width="91" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="투어 시간:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lib-Bc-WfY">
-                                    <rect key="frame" x="30" y="53" width="91" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Td-tF-IQm">
-                                    <rect key="frame" x="139" y="9" width="216" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TEI-JD-Mvz">
-                                    <rect key="frame" x="139" y="47" width="60" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-ZM-5Au">
-                                    <rect key="frame" x="250" y="47" width="60" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vae-97-0Cx">
-                                    <rect key="frame" x="207" y="53" width="30" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4v-ni-rLj">
-                                    <rect key="frame" x="314" y="53" width="15" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="투어 테마:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UT-XE-pLp">
-                                    <rect key="frame" x="30" y="94" width="91" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="투어 설명:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykm-9p-PYs">
-                                    <rect key="frame" x="30" y="129" width="91" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ftE-Bq-B5r">
-                                    <rect key="frame" x="139" y="124" width="216" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="rvx-vQ-slg">
-                            <rect key="frame" x="0.0" y="246" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EF9-M2-gEF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <items>
-                                        <navigationItem id="exP-Qe-LcE">
-                                            <barButtonItem key="rightBarButtonItem" title="랜드마크 추가" id="pBu-bc-o8E">
-                                                <connections>
-                                                    <segue destination="SXd-gu-4qX" kind="show" id="q45-ac-tCu"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </navigationItem>
-                                    </items>
-                                </navigationBar>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourCreate_Reuse" textLabel="lGk-yw-4G3" style="IBUITableViewCellStyleDefault" id="7tM-Ir-50j">
-                                <rect key="frame" x="0.0" y="202" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="281" id="7tM-Ir-50j">
+                                <rect key="frame" x="0.0" y="28" width="375" height="281"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7tM-Ir-50j" id="YwG-eJ-YB2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="280.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lGk-yw-4G3">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="투어 CREATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k2-Ly-QTC">
+                                            <rect key="frame" x="75" y="112" width="259" height="57"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="47"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -530,98 +382,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="투어 올리기" id="xJ4-8S-cso">
-                        <barButtonItem key="leftBarButtonItem" title="취소" id="PKM-o6-UqG">
-                            <connections>
-                                <segue destination="yV4-9H-Ohk" kind="show" identifier="Upload_Tour" id="0n7-jG-YeQ"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="올리기" id="yII-vf-ns9">
-                            <connections>
-                                <segue destination="yV4-9H-Ohk" kind="show" id="c1n-T7-cOf"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="취소" id="PKM-o6-UqG"/>
+                        <barButtonItem key="rightBarButtonItem" title="올리기" id="yII-vf-ns9"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="Descript" destination="ftE-Bq-B5r" id="Lpl-ah-dtw"/>
-                        <outlet property="Hour" destination="TEI-JD-Mvz" id="QZN-8d-aWw"/>
-                        <outlet property="Minute" destination="a2Y-ZM-5Au" id="N9B-Oo-uLm"/>
-                        <outlet property="TourNameBox" destination="3Td-tF-IQm" id="K7X-ks-JPC"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j1w-R2-HHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1288.8" y="814.54272863568224"/>
-        </scene>
-        <!--Select Landmark-->
-        <scene sceneID="m1R-qF-fko">
-            <objects>
-                <tableViewController id="SXd-gu-4qX" customClass="SelectLandmark" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LF9-sv-7h3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="mcj-14-oPJ">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hoa-OI-uPP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <items>
-                                        <navigationItem title="Title" id="8KK-7A-J7D">
-                                            <barButtonItem key="rightBarButtonItem" title="선택" id="qrd-Sk-oC6">
-                                                <connections>
-                                                    <segue destination="fxv-44-GY6" kind="show" identifier="Add_Landmark" id="nTL-iP-dyq"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </navigationItem>
-                                    </items>
-                                </navigationBar>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Landmark_Select_Reuse" textLabel="mrT-GC-raC" detailTextLabel="1qy-Kb-rp9" imageView="1cr-VJ-Xkw" style="IBUITableViewCellStyleSubtitle" id="4AI-up-jAw">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4AI-up-jAw" id="Yx0-Z5-yat">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mrT-GC-raC">
-                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1qy-Kb-rp9">
-                                            <rect key="frame" x="16" y="25.5" width="33" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1cr-VJ-Xkw">
-                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="SXd-gu-4qX" id="H2l-EI-Iaq"/>
-                            <outlet property="delegate" destination="SXd-gu-4qX" id="Z2m-Nh-SlQ"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="SelectLandmarkTable" destination="LF9-sv-7h3" id="5I0-Ho-dPX"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Fs-hw-75B" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1289" y="1624"/>
+            <point key="canvasLocation" x="1290" y="815"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fyq-Kh-oe0">
@@ -639,86 +406,31 @@
             </objects>
             <point key="canvasLocation" x="457" y="815"/>
         </scene>
-        <!--Tour Info-->
+        <!--Table View Controller-->
         <scene sceneID="ocd-33-ZbG">
             <objects>
-                <tableViewController id="NWw-EN-aTz" customClass="TourInfo" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="NWw-EN-aTz" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1CQ-wp-1T4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="yGu-60-vkF">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Title" id="jpn-52-5Z5">
-                                    <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="mUh-aI-61s">
-                                        <connections>
-                                            <action selector="go_Back2:" destination="NWw-EN-aTz" id="0SW-fs-ogf"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="DJk-Qq-SCQ">
-                            <rect key="frame" x="0.0" y="364" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem id="bs5-E6-bpk">
-                                    <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="F3c-iH-NuN">
-                                        <connections>
-                                            <action selector="go_Back:" destination="NWw-EN-aTz" id="hbx-ue-XYU"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourInfo_Table" textLabel="nkn-Nc-Dtq" detailTextLabel="a7k-7h-2TU" rowHeight="42" style="IBUITableViewCellStyleValue1" id="shU-8p-cgm">
-                                <rect key="frame" x="0.0" y="72" width="375" height="42"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="326" id="shU-8p-cgm">
+                                <rect key="frame" x="0.0" y="28" width="375" height="326"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="shU-8p-cgm" id="kHJ-ig-Akk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="325.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nkn-Nc-Dtq">
-                                            <rect key="frame" x="16" y="11" width="36.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a7k-7h-2TU">
-                                            <rect key="frame" x="315" y="11" width="44" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="투어 정보(모달)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENf-JF-H4H">
+                                            <rect key="frame" x="23" y="130" width="328" height="65"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="54"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tour_MapImage" rowHeight="250" id="QD0-t4-QwK" customClass="MapImageCell" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114" width="375" height="250"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QD0-t4-QwK" id="UkO-nB-hTA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iEU-SY-woR">
-                                            <rect key="frame" x="21" y="16" width="343" height="228"/>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="iEU-SY-woR" firstAttribute="leading" secondItem="UkO-nB-hTA" secondAttribute="leadingMargin" constant="5" id="5HN-QA-pNX"/>
-                                        <constraint firstItem="iEU-SY-woR" firstAttribute="top" secondItem="UkO-nB-hTA" secondAttribute="topMargin" constant="5" id="E0q-uF-Omk"/>
-                                        <constraint firstItem="iEU-SY-woR" firstAttribute="trailing" secondItem="UkO-nB-hTA" secondAttribute="trailingMargin" constant="5" id="cCr-bg-xMN"/>
-                                        <constraint firstItem="iEU-SY-woR" firstAttribute="bottom" secondItem="UkO-nB-hTA" secondAttribute="bottomMargin" constant="5" id="fkf-96-3d6"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="MapViewImg" destination="iEU-SY-woR" id="H4y-do-DUH"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -726,121 +438,34 @@
                             <outlet property="delegate" destination="NWw-EN-aTz" id="3dH-E7-luC"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="TourInfoTable" destination="1CQ-wp-1T4" id="Th5-FP-ibc"/>
-                        <outlet property="bar1" destination="jpn-52-5Z5" id="bKX-eL-w6O"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cxj-rV-Cvx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3517.5999999999999" y="-1272.4137931034484"/>
+            <point key="canvasLocation" x="3519" y="-1272"/>
         </scene>
-        <!--Landmark Info-->
-        <scene sceneID="0mQ-vQ-N47">
+        <!--View Controller-->
+        <scene sceneID="YB5-1R-61l">
             <objects>
-                <tableViewController id="TZ8-BQ-M5e" customClass="LandmarkInfo" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vgY-Oj-DWg">
+                <viewController id="662-ar-mGs" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bBF-nS-bdm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="랜드마크 정보(모달)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Snm-kh-LV2">
+                                <rect key="frame" x="51" y="253" width="282" height="233"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="lqr-Kz-bwO">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Title" id="b5r-TQ-Juo">
-                                    <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="6Om-NJ-UtR">
-                                        <connections>
-                                            <action selector="go_Back2:" destination="TZ8-BQ-M5e" id="Aiv-X2-g9Y"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="NKE-Zj-2Zs">
-                            <rect key="frame" x="0.0" y="365" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem id="T8F-rT-jyZ">
-                                    <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="XCL-XR-pb9">
-                                        <connections>
-                                            <action selector="go_Back:" destination="TZ8-BQ-M5e" id="g5g-Et-O2e"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LandmarkInfo_Table" textLabel="1Eh-RA-Apg" detailTextLabel="itF-pX-5ky" style="IBUITableViewCellStyleValue1" id="jpQ-N1-cPM">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jpQ-N1-cPM" id="j7r-ya-nLV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Eh-RA-Apg">
-                                            <rect key="frame" x="16" y="12" width="36.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="itF-pX-5ky">
-                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LandmarkInfo_Images" rowHeight="249" id="QG8-RU-BLj" customClass="LDMK_image_cell" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="116" width="375" height="249"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QG8-RU-BLj" id="CYg-cZ-Ywm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="248.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E2Q-QS-Hxw">
-                                            <rect key="frame" x="8" y="8" width="359" height="209"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dY-t1-UUx">
-                                            <rect key="frame" x="24" y="225" width="327" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="3dY-t1-UUx" firstAttribute="top" secondItem="E2Q-QS-Hxw" secondAttribute="bottom" constant="8" id="BUo-HB-SoL"/>
-                                        <constraint firstItem="3dY-t1-UUx" firstAttribute="top" secondItem="E2Q-QS-Hxw" secondAttribute="bottom" constant="8" id="Lib-iv-oAV"/>
-                                        <constraint firstItem="E2Q-QS-Hxw" firstAttribute="leading" secondItem="CYg-cZ-Ywm" secondAttribute="leading" constant="8" id="Nil-Ip-ses"/>
-                                        <constraint firstItem="3dY-t1-UUx" firstAttribute="bottom" secondItem="CYg-cZ-Ywm" secondAttribute="bottomMargin" constant="8" id="WxV-7e-c1W"/>
-                                        <constraint firstAttribute="trailing" secondItem="E2Q-QS-Hxw" secondAttribute="trailing" constant="8" id="ciW-eN-TW7"/>
-                                        <constraint firstItem="3dY-t1-UUx" firstAttribute="leading" secondItem="CYg-cZ-Ywm" secondAttribute="leadingMargin" constant="8" id="iMK-Iw-fsG"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="3dY-t1-UUx" secondAttribute="trailing" constant="8" id="tid-be-WrD"/>
-                                        <constraint firstItem="E2Q-QS-Hxw" firstAttribute="top" secondItem="CYg-cZ-Ywm" secondAttribute="top" constant="8" id="w5T-as-rYi"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="LDMK_image" destination="E2Q-QS-Hxw" id="Luo-Yn-hAY"/>
-                                    <outlet property="LDMK_label" destination="3dY-t1-UUx" id="n76-hz-0zu"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="TZ8-BQ-M5e" id="0xL-9P-opk"/>
-                            <outlet property="delegate" destination="TZ8-BQ-M5e" id="shS-nb-ll5"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="LDMKInfo" destination="vgY-Oj-DWg" id="Kia-8a-df8"/>
-                        <outlet property="bar1" destination="b5r-TQ-Juo" id="QJA-dV-F29"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cRf-sP-dCA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <viewLayoutGuide key="safeArea" id="gYp-Yj-q9e"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dk4-sd-dJ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4652" y="-1272.4137931034484"/>
+            <point key="canvasLocation" x="4863" y="-1272"/>
         </scene>
         <!--홈-->
         <scene sceneID="tkg-Pv-mhF">
@@ -863,7 +488,7 @@
         <!--투어제목-->
         <scene sceneID="npV-AM-F3e">
             <objects>
-                <tableViewController id="JMc-ef-uBo" customClass="Tour_Map" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="JMc-ef-uBo" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ksf-rB-ecp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -875,71 +500,29 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AA7-rF-u0r">
                                     <rect key="frame" x="0.0" y="0.0" width="125" height="44"/>
                                     <state key="normal" title="코스"/>
-                                    <connections>
-                                        <segue destination="Sya-NO-PI0" kind="show" identifier="tour_course_show" id="2a1-rc-R4a"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsl-O7-soV">
                                     <rect key="frame" x="125" y="0.0" width="125" height="44"/>
-                                    <color key="backgroundColor" red="0.83243443287319607" green="1" blue="0.96722350443463834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="지도"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbu-pX-Xfr">
                                     <rect key="frame" x="250" y="0.0" width="125" height="44"/>
                                     <state key="normal" title="리뷰"/>
-                                    <connections>
-                                        <segue destination="e4z-b7-cKR" kind="show" identifier="tour_review_show" id="ZKr-v0-wUD"/>
-                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="gRE-2u-sec">
-                            <rect key="frame" x="0.0" y="424" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Title" id="Op0-Pb-ki6">
-                                    <barButtonItem key="leftBarButtonItem" title="&lt; 진행중인 투어" id="rxO-dY-EEo">
-                                        <connections>
-                                            <segue destination="yV4-9H-Ohk" kind="show" id="hZk-aU-FfN"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="T_MapView" rowHeight="304" id="qMj-xA-icG" customClass="MapViewCell" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="304"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qMj-xA-icG" id="sac-N7-7AC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="303.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OCC-c5-FMV">
-                                            <rect key="frame" x="24" y="19" width="343" height="282"/>
-                                        </mapView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="OCC-c5-FMV" firstAttribute="top" secondItem="sac-N7-7AC" secondAttribute="topMargin" constant="8" id="21G-dL-6jq"/>
-                                        <constraint firstItem="OCC-c5-FMV" firstAttribute="leading" secondItem="sac-N7-7AC" secondAttribute="leadingMargin" constant="8" id="UQs-vx-xXl"/>
-                                        <constraint firstItem="OCC-c5-FMV" firstAttribute="trailing" secondItem="sac-N7-7AC" secondAttribute="trailingMargin" constant="8" id="WRQ-0P-bBn"/>
-                                        <constraint firstItem="OCC-c5-FMV" firstAttribute="bottom" secondItem="sac-N7-7AC" secondAttribute="bottomMargin" constant="8" id="rMv-J7-k4T"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="Map_View" destination="OCC-c5-FMV" id="1jI-3D-jEB"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="T_Map" textLabel="7Ze-3x-7st" rowHeight="48" style="IBUITableViewCellStyleDefault" id="HTg-mV-zpg">
-                                <rect key="frame" x="0.0" y="376" width="375" height="48"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="103" id="HTg-mV-zpg">
+                                <rect key="frame" x="0.0" y="72" width="375" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HTg-mV-zpg" id="TGa-IC-Gj2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="102.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Ze-3x-7st">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="47.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="투어 지도" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WI7-fX-hTW">
+                                            <rect key="frame" x="110" y="20" width="155" height="62"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -953,26 +536,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="투어제목" id="Sfs-8r-duy">
-                        <barButtonItem key="rightBarButtonItem" title="투어 정보" id="VX4-hw-0ul">
-                            <connections>
-                                <segue destination="NWw-EN-aTz" kind="presentation" identifier="go_tourinfo2" id="2LV-sz-HNe"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="투어 정보" id="VX4-hw-0ul"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="BottomTitle" destination="Op0-Pb-ki6" id="Gaz-dm-HDv"/>
-                        <outlet property="TV_Map" destination="Ksf-rB-ecp" id="3N1-nB-wVV"/>
-                        <outlet property="tour_title" destination="Sfs-8r-duy" id="fVF-qu-sSg"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q99-3c-hsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5032.8000000000002" y="-27.436281859070466"/>
+            <point key="canvasLocation" x="3830" y="815"/>
         </scene>
         <!--투어제목-->
         <scene sceneID="z4Y-Lx-bEP">
             <objects>
-                <tableViewController id="e4z-b7-cKR" customClass="Tour_Review" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="e4z-b7-cKR" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="guv-C4-shi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -984,56 +558,29 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGr-lt-HmE">
                                     <rect key="frame" x="0.0" y="0.0" width="125" height="44"/>
                                     <state key="normal" title="코스"/>
-                                    <connections>
-                                        <segue destination="Sya-NO-PI0" kind="show" identifier="tour_course_show" id="jPg-zh-6fV"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYI-qw-CFG">
                                     <rect key="frame" x="125" y="0.0" width="125" height="44"/>
                                     <state key="normal" title="지도"/>
-                                    <connections>
-                                        <segue destination="JMc-ef-uBo" kind="show" identifier="tour_map_show" id="WFf-cx-5SK"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81x-lu-dli">
                                     <rect key="frame" x="250" y="0.0" width="125" height="44"/>
-                                    <color key="backgroundColor" red="0.83243443287319607" green="1" blue="0.96722350443463834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="리뷰"/>
                                 </button>
                             </subviews>
                         </stackView>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="sfQ-lA-Wg5">
-                            <rect key="frame" x="0.0" y="146" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Title" id="S1g-DB-9ZU">
-                                    <barButtonItem key="leftBarButtonItem" title="진행중인 투어" id="92M-zf-C4E">
-                                        <connections>
-                                            <segue destination="yV4-9H-Ohk" kind="show" id="2rj-iG-3mI"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="T_Review" textLabel="gaJ-CM-aKl" detailTextLabel="ALc-Gu-pqj" rowHeight="74" style="IBUITableViewCellStyleSubtitle" id="eOJ-aZ-KNe">
-                                <rect key="frame" x="0.0" y="72" width="375" height="74"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="103" id="eOJ-aZ-KNe">
+                                <rect key="frame" x="0.0" y="72" width="375" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eOJ-aZ-KNe" id="HoA-l3-wem">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="102.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gaJ-CM-aKl">
-                                            <rect key="frame" x="16" y="17" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ALc-Gu-pqj">
-                                            <rect key="frame" x="16" y="40.5" width="44" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="리뷰" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hb0-lF-ORu">
+                                            <rect key="frame" x="110" y="20" width="155" height="62"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1047,29 +594,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="투어제목" id="ePb-Ci-jPi">
-                        <barButtonItem key="rightBarButtonItem" title="투어 정보" id="Juw-xu-wRd">
-                            <connections>
-                                <segue destination="NWw-EN-aTz" kind="presentation" identifier="go_tourinfo3" id="5eU-VF-jaE"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="투어 정보" id="Juw-xu-wRd"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="BottomTitle" destination="S1g-DB-9ZU" id="nNg-AH-DzC"/>
-                        <outlet property="TV_Review" destination="guv-C4-shi" id="vID-TY-dfC"/>
-                        <outlet property="tour_title" destination="ePb-Ci-jPi" id="AAP-fS-FPn"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Et0-Jt-BW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4416.8000000000002" y="798.35082458770626"/>
+            <point key="canvasLocation" x="3830" y="1592"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ZKr-v0-wUD"/>
-        <segue reference="WFf-cx-5SK"/>
-        <segue reference="2LV-sz-HNe"/>
-        <segue reference="nTL-iP-dyq"/>
-        <segue reference="2a1-rc-R4a"/>
-        <segue reference="hZk-aU-FfN"/>
-    </inferredMetricsTieBreakers>
 </document>
