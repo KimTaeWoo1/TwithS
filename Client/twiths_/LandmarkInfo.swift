@@ -3,7 +3,6 @@
 //  twiths_
 //
 //  Created by ㅇㅇ on 2018. 5. 23..
-//  Copyright © 2018년 yeon suk choi. All rights reserved.
 //
 
 import UIKit
