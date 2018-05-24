@@ -9,9 +9,8 @@ pod 'Firebase/Core'
 
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'
-pod 'FacebookCore'
-pod 'FacebookLogin'
-
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
   # Pods for twiths_
 
 end

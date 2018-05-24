@@ -100,13 +100,13 @@
 		5B6AC1CE20A980A3006EF078 /* twiths_ */ = {
 			isa = PBXGroup;
 			children = (
-				5B52E31A20B5CDE100134C57 /* MyPage */,
 				5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */,
 				5B6AC1CF20A980A3006EF078 /* AppDelegate.swift */,
 				5B6AC1D120A980A3006EF078 /* ViewController.swift */,
 				5B6AC1D320A980A3006EF078 /* Main.storyboard */,
 				5BD85D1D20AD7F960065D9AA /* Storyboard */,
 				5BAAC72620B5C52200761C86 /* Home */,
+				5B52E31A20B5CDE100134C57 /* MyPage */,
 				5BAAC72520B5C51600761C86 /* Authentication */,
 				5B6AC1D620A980A5006EF078 /* Assets.xcassets */,
 				5B6AC1D820A980A5006EF078 /* LaunchScreen.storyboard */,
@@ -262,8 +262,6 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -274,8 +272,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
