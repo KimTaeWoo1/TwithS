@@ -29,7 +29,6 @@
 		5BAAC72820B5C53C00761C86 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAAC72720B5C53C00761C86 /* LoginViewController.swift */; };
 		5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAAC72920B5C54700761C86 /* SignupViewController.swift */; };
 		5BD40AD820B6FE13002D888F /* TourCreateStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD40AD520B6FE12002D888F /* TourCreateStoryBoard.storyboard */; };
-		5BD40AD920B6FE13002D888F /* SearchStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD40AD620B6FE12002D888F /* SearchStoryboard.storyboard */; };
 		5BD40ADA20B6FE13002D888F /* TourStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD40AD720B6FE13002D888F /* TourStoryBoard.storyboard */; };
 		5BD85D1A20AD7D7E0065D9AA /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD85D1920AD7D7E0065D9AA /* Search.storyboard */; };
 		5BD85D1C20AD7E920065D9AA /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD85D1B20AD7E920065D9AA /* Mypage.storyboard */; };
@@ -61,7 +60,6 @@
 		5BAAC72720B5C53C00761C86 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5BAAC72920B5C54700761C86 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		5BD40AD520B6FE12002D888F /* TourCreateStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TourCreateStoryBoard.storyboard; sourceTree = "<group>"; };
-		5BD40AD620B6FE12002D888F /* SearchStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchStoryboard.storyboard; sourceTree = "<group>"; };
 		5BD40AD720B6FE13002D888F /* TourStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TourStoryBoard.storyboard; sourceTree = "<group>"; };
 		5BD85D1920AD7D7E0065D9AA /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		5BD85D1B20AD7E920065D9AA /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 		5BD85D1D20AD7F960065D9AA /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				5BD40AD620B6FE12002D888F /* SearchStoryboard.storyboard */,
 				5BD40AD520B6FE12002D888F /* TourCreateStoryBoard.storyboard */,
 				5BD40AD720B6FE13002D888F /* TourStoryBoard.storyboard */,
 				5BD85D1B20AD7E920065D9AA /* Mypage.storyboard */,
@@ -262,7 +259,6 @@
 				5BD40AD820B6FE13002D888F /* TourCreateStoryBoard.storyboard in Resources */,
 				5B6AC1D520A980A3006EF078 /* Main.storyboard in Resources */,
 				5B3516DB20B5C68E00DD4644 /* GoogleService-Info.plist in Resources */,
-				5BD40AD920B6FE13002D888F /* SearchStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
