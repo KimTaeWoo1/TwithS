@@ -15,14 +15,14 @@ class Tour: Object {
     @objc dynamic var creator: User?
     @objc dynamic var timeLimit = 0
     @objc dynamic var image:Data
-    @objc dynamic var description = ""
+    @objc dynamic var detail = ""
     
     @objc dynamic var mapImage:Data
     
     @objc dynamic var createDate: Date = Date()
     @objc dynamic var updateDate: Date = Date()
     
-    @objc dynamic var landmarks = List<UserTourLandMark>()?
+    let landmarks = List<UserTourLandMark>()
     
     override static func primaryKey() -> String? {
         return "id"
@@ -36,7 +36,7 @@ class Tour: Object {
 class Landmark: Object {
     @objc dynamic var id = 0
     @objc dynamic var tour: Tour?
-    @objc dynamic var description = ""
+    @objc dynamic var deteail = ""
     @objc dynamic var image: Data
     
     override static func primaryKey() -> String? {
@@ -62,7 +62,8 @@ class UserTourLandMark: Object {
 
 class User: Object{
     
-    @objc dynamic var tours = List<UserTourRelation>()?
+    let tours = List<UserTourRelation>()
+    @objc dynamic var state = 0
     
 }
 
