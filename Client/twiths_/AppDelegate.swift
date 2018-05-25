@@ -13,8 +13,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    //test
+class AppDelegate: UIResponder, UIApplication {
 
     var window: UIWindow?
 
