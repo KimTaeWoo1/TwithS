@@ -62,7 +62,7 @@
         <!--Tour-->
         <scene sceneID="Jxa-AJ-gGj">
             <objects>
-                <viewControllerPlaceholder storyboardName="TourStoryBoard" referencedIdentifier="Tour" id="pKF-2G-iia" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Tour" referencedIdentifier="Tour" id="pKF-2G-iia" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ObS-de-cDD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2118" y="-146"/>
@@ -70,7 +70,7 @@
         <!--TourCreate-->
         <scene sceneID="pW0-aG-1Sm">
             <objects>
-                <viewControllerPlaceholder storyboardName="TourCreateStoryBoard" referencedIdentifier="TourCreate" id="Jqe-dL-mAd" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="TourCreate" referencedIdentifier="TourCreate" id="Jqe-dL-mAd" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sZi-56-THC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1439" y="431"/>
