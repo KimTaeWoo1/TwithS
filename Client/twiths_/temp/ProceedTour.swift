@@ -7,6 +7,7 @@
 
 import UIKit
 
+/*
 class ProceedCell:UITableViewCell {
     @IBOutlet var proceed_box: UIView!
 }
@@ -195,3 +196,4 @@ class ProceedTour: UITableViewController {
     }
 
 }
+ */

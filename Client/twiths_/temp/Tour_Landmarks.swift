@@ -7,6 +7,7 @@
 
 import UIKit
 
+/*
 class Tour_Landmarks: UITableViewController {
     @IBOutlet var tour_title: UINavigationItem!
     
@@ -119,3 +120,4 @@ class Tour_Landmarks: UITableViewController {
     }
 
 }
+ */

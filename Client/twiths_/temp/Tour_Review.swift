@@ -7,6 +7,7 @@
 
 import UIKit
 
+/*
 class Tour_Review: UITableViewController {
     @IBOutlet var tour_title: UINavigationItem!
     
@@ -122,3 +123,4 @@ class Tour_Review: UITableViewController {
     }
 
 }
+ */
