@@ -9,6 +9,10 @@ import UIKit
 
 class LandmarkListVC: UITableViewController {
 
+    var ID:Int = 0
+    var This_Tour:Tour = Empty_Tour
+    var Landmark_List:[Landmark] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
