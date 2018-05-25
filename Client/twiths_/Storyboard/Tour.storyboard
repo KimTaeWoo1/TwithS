@@ -12,7 +12,7 @@
         <!--투어제목-->
         <scene sceneID="CzP-r1-s0X">
             <objects>
-                <tableViewController storyboardIdentifier="Tour" id="bL3-f5-AND" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Tour" id="bL3-f5-AND" customClass="LandmarkListVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sdj-Rn-Sbu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="3831" y="-27"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Tour InfoVC-->
         <scene sceneID="X6M-gD-fKJ">
             <objects>
-                <tableViewController id="eEr-BZ-yra" sceneMemberID="viewController">
+                <tableViewController id="eEr-BZ-yra" customClass="TourInfoVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1nw-tb-MWd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,7 +120,7 @@
         <!--Root View Controller-->
         <scene sceneID="hAV-Ap-U03">
             <objects>
-                <tableViewController id="z0G-Nh-f0w" sceneMemberID="viewController">
+                <tableViewController id="z0G-Nh-f0w" customClass="LandmarkInfoVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Pz-dJ-zCq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

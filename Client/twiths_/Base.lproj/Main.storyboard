@@ -13,7 +13,7 @@
         <!--진행중인 투어-->
         <scene sceneID="9tY-nh-aGK">
             <objects>
-                <tableViewController id="yV4-9H-Ohk" sceneMemberID="viewController">
+                <tableViewController id="yV4-9H-Ohk" customClass="ProceedingVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BaV-ua-3Vq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

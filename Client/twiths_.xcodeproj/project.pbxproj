@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00A2651220B83B0200B80AE6 /* ProceedingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2651120B83B0200B80AE6 /* ProceedingVC.swift */; };
+		00A2651420B83B3500B80AE6 /* TourCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2651320B83B3500B80AE6 /* TourCreateVC.swift */; };
+		00A2651620B83B5100B80AE6 /* LandmarkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2651520B83B5100B80AE6 /* LandmarkListVC.swift */; };
+		00A2651820B83B8300B80AE6 /* TourInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2651720B83B8300B80AE6 /* TourInfoVC.swift */; };
+		00A2651C20B83C0600B80AE6 /* LandmarkInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2651B20B83C0600B80AE6 /* LandmarkInfoVC.swift */; };
+		00A2651F20B83E1F00B80AE6 /* DBFindHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2651E20B83E1F00B80AE6 /* DBFindHelper.swift */; };
 		35C8D8354440214168BB483B /* Pods_twiths_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3941FE870DFF7D3907971846 /* Pods_twiths_.framework */; };
 		5B3516DB20B5C68E00DD4644 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */; };
 		5B52E32020B5CE5800134C57 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52E31F20B5CE5800134C57 /* MyPageViewController.swift */; };
@@ -30,13 +36,18 @@
 		5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAAC72920B5C54700761C86 /* SignupViewController.swift */; };
 		5BD40AD820B6FE13002D888F /* TourCreate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD40AD520B6FE12002D888F /* TourCreate.storyboard */; };
 		5BD40ADA20B6FE13002D888F /* Tour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD40AD720B6FE13002D888F /* Tour.storyboard */; };
-		5BD40ADF20B702AC002D888F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD40ADE20B702AC002D888F /* Model.swift */; };
 		5BD85D1A20AD7D7E0065D9AA /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD85D1920AD7D7E0065D9AA /* Search.storyboard */; };
 		5BD85D1C20AD7E920065D9AA /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD85D1B20AD7E920065D9AA /* Mypage.storyboard */; };
 		5BD85D1F20ADF3EB0065D9AA /* Jjim.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD85D1E20ADF3EB0065D9AA /* Jjim.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00A2651120B83B0200B80AE6 /* ProceedingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProceedingVC.swift; sourceTree = "<group>"; };
+		00A2651320B83B3500B80AE6 /* TourCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateVC.swift; sourceTree = "<group>"; };
+		00A2651520B83B5100B80AE6 /* LandmarkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListVC.swift; sourceTree = "<group>"; };
+		00A2651720B83B8300B80AE6 /* TourInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoVC.swift; sourceTree = "<group>"; };
+		00A2651B20B83C0600B80AE6 /* LandmarkInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkInfoVC.swift; sourceTree = "<group>"; };
+		00A2651E20B83E1F00B80AE6 /* DBFindHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBFindHelper.swift; sourceTree = "<group>"; };
 		3941FE870DFF7D3907971846 /* Pods_twiths_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twiths_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5B52E31F20B5CE5800134C57 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +73,6 @@
 		5BAAC72920B5C54700761C86 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		5BD40AD520B6FE12002D888F /* TourCreate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TourCreate.storyboard; sourceTree = "<group>"; };
 		5BD40AD720B6FE13002D888F /* Tour.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tour.storyboard; sourceTree = "<group>"; };
-		5BD40ADE20B702AC002D888F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		5BD85D1920AD7D7E0065D9AA /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		5BD85D1B20AD7E920065D9AA /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
 		5BD85D1E20ADF3EB0065D9AA /* Jjim.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Jjim.storyboard; sourceTree = "<group>"; };
@@ -82,6 +92,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00A2650E20B83A8B00B80AE6 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				00A2651120B83B0200B80AE6 /* ProceedingVC.swift */,
+			);
+			name = MainPage;
+			path = Authentication/MainPage;
+			sourceTree = "<group>";
+		};
+		00A2650F20B83ABE00B80AE6 /* TourCreate */ = {
+			isa = PBXGroup;
+			children = (
+				00A2651320B83B3500B80AE6 /* TourCreateVC.swift */,
+			);
+			name = TourCreate;
+			path = Authentication/MainPage/TourCreate;
+			sourceTree = "<group>";
+		};
+		00A2651020B83ACD00B80AE6 /* Tour */ = {
+			isa = PBXGroup;
+			children = (
+				00A2651520B83B5100B80AE6 /* LandmarkListVC.swift */,
+				00A2651720B83B8300B80AE6 /* TourInfoVC.swift */,
+				00A2651B20B83C0600B80AE6 /* LandmarkInfoVC.swift */,
+			);
+			name = Tour;
+			path = Authentication/MainPage/Tour;
+			sourceTree = "<group>";
+		};
+		00A2651D20B83E0200B80AE6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				00A2651E20B83E1F00B80AE6 /* DBFindHelper.swift */,
+			);
+			name = Helpers;
+			path = Authentication/MainPage/Tour/Helpers;
+			sourceTree = "<group>";
+		};
 		0801471973B55E1F882FECAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,7 +176,6 @@
 		5B6AC1CE20A980A3006EF078 /* twiths_ */ = {
 			isa = PBXGroup;
 			children = (
-				5BD40ADE20B702AC002D888F /* Model.swift */,
 				5BD40ADB20B6FE2B002D888F /* temp */,
 				5B8AF55620B6F7E900A92405 /* Database_test.swift */,
 				5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */,
@@ -137,6 +184,10 @@
 				5B6AC1D320A980A3006EF078 /* Main.storyboard */,
 				5BD85D1D20AD7F960065D9AA /* Storyboard */,
 				5BAAC72620B5C52200761C86 /* Home */,
+				00A2650E20B83A8B00B80AE6 /* MainPage */,
+				00A2650F20B83ABE00B80AE6 /* TourCreate */,
+				00A2651020B83ACD00B80AE6 /* Tour */,
+				00A2651D20B83E0200B80AE6 /* Helpers */,
 				5B52E31A20B5CDE100134C57 /* MyPage */,
 				5BAAC72520B5C51600761C86 /* Authentication */,
 				5B6AC1D620A980A5006EF078 /* Assets.xcassets */,
@@ -345,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A2651420B83B3500B80AE6 /* TourCreateVC.swift in Sources */,
 				5B8AF55B20B6F7E900A92405 /* ProceedTour.swift in Sources */,
 				5B8AF55C20B6F7E900A92405 /* SelectLandmark.swift in Sources */,
 				5B8AF56020B6F7E900A92405 /* Database_test.swift in Sources */,
@@ -352,15 +404,19 @@
 				5BAAC72820B5C53C00761C86 /* LoginViewController.swift in Sources */,
 				5B8AF55920B6F7E900A92405 /* TourCreate.swift in Sources */,
 				5B6AC1D220A980A3006EF078 /* ViewController.swift in Sources */,
+				00A2651C20B83C0600B80AE6 /* LandmarkInfoVC.swift in Sources */,
 				5B8AF55A20B6F7E900A92405 /* Tour_Map.swift in Sources */,
 				5B8AF55E20B6F7E900A92405 /* For_Create_Tour.swift in Sources */,
 				5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */,
+				00A2651220B83B0200B80AE6 /* ProceedingVC.swift in Sources */,
 				5B8AF55F20B6F7E900A92405 /* Tour_Landmarks.swift in Sources */,
 				5B6AC1D020A980A3006EF078 /* AppDelegate.swift in Sources */,
+				00A2651820B83B8300B80AE6 /* TourInfoVC.swift in Sources */,
+				00A2651F20B83E1F00B80AE6 /* DBFindHelper.swift in Sources */,
 				5B8AF54C20B6F7CF00A92405 /* Tour_Review.swift in Sources */,
-				5BD40ADF20B702AC002D888F /* Model.swift in Sources */,
 				5B8AF55720B6F7E900A92405 /* Tour_Find.swift in Sources */,
 				5B8AF55820B6F7E900A92405 /* TourInfo.swift in Sources */,
+				00A2651620B83B5100B80AE6 /* LandmarkListVC.swift in Sources */,
 				5B8AF55D20B6F7E900A92405 /* LandmarkInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
