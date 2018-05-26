@@ -7,6 +7,7 @@
 
 import UIKit
 
+/*
 class MapImageCell: UITableViewCell {
     @IBOutlet var MapViewImg: UIImageView!
     
@@ -173,3 +174,4 @@ class TourInfo: UITableViewController {
     }
 
 }
+ */

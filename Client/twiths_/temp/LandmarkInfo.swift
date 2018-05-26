@@ -7,6 +7,7 @@
 
 import UIKit
 
+/*
 class LDMK_image_cell: UITableViewCell {
     
     @IBOutlet var LDMK_image: UIImageView!
@@ -148,3 +149,4 @@ class LandmarkInfo: UITableViewController {
     }
 
 }
+ */

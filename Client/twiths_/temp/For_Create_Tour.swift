@@ -7,6 +7,7 @@
 
 import Foundation
 
+/*
 class New_Tour {
     var Landmarks:[Landmark] = []
     
@@ -30,3 +31,4 @@ class New_Tour {
 }
 
 let NewTour:New_Tour = New_Tour()
+*/

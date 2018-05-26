@@ -6,14 +6,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--투어제목-->
         <scene sceneID="CzP-r1-s0X">
             <objects>
-                <tableViewController storyboardIdentifier="Tour" id="bL3-f5-AND" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Tour" id="bL3-f5-AND" customClass="LandmarkListVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sdj-Rn-Sbu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,7 +59,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Vg9-MO-k7Q" kind="show" id="4Bp-hj-2in"/>
+                                    <segue destination="DPk-WK-Efk" kind="presentation" trigger="accessoryAction" id="PcS-Rs-tNK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -81,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="3831" y="-27"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Tour InfoVC-->
         <scene sceneID="X6M-gD-fKJ">
             <objects>
-                <tableViewController id="eEr-BZ-yra" sceneMemberID="viewController">
+                <tableViewController id="eEr-BZ-yra" customClass="TourInfoVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1nw-tb-MWd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,29 +117,59 @@
             </objects>
             <point key="canvasLocation" x="3519" y="-1272"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="FYX-YH-TnO">
+        <!--Root View Controller-->
+        <scene sceneID="hAV-Ap-U03">
             <objects>
-                <viewController id="Vg9-MO-k7Q" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Fg8-wu-ADx">
+                <tableViewController id="z0G-Nh-f0w" customClass="LandmarkInfoVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Pz-dJ-zCq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="랜드마크 정보(모달)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjk-DX-rdg">
-                                <rect key="frame" x="51" y="253" width="282" height="233"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="2Ly-wb-OM6"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R6A-AE-2qN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="350" id="h7m-NL-euB">
+                                <rect key="frame" x="0.0" y="28" width="375" height="350"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h7m-NL-euB" id="XyA-xF-uJu">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="349.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="랜드마크정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSe-WX-GVR">
+                                            <rect key="frame" x="186" y="22" width="208" height="48"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="z0G-Nh-f0w" id="VWd-US-Woo"/>
+                            <outlet property="delegate" destination="z0G-Nh-f0w" id="YRF-32-K8G"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Fdd-6A-avz"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NN8-hD-UVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4863" y="-1272"/>
+            <point key="canvasLocation" x="5703.1999999999998" y="-750.67466266866575"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0fH-hy-Tsp">
+            <objects>
+                <navigationController id="DPk-WK-Efk" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gut-RD-hu2">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="z0G-Nh-f0w" kind="relationship" relationship="rootViewController" id="nOA-XO-hh7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u3v-9t-rC7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4755" y="-750"/>
         </scene>
         <!--투어제목-->
         <scene sceneID="iwW-CG-9Ks">

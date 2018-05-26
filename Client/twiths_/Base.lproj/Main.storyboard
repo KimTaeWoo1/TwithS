@@ -13,30 +13,30 @@
         <!--진행중인 투어-->
         <scene sceneID="9tY-nh-aGK">
             <objects>
-                <tableViewController id="yV4-9H-Ohk" sceneMemberID="viewController">
+                <tableViewController id="yV4-9H-Ohk" customClass="ProceedingVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BaV-ua-3Vq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourCell" rowHeight="256" id="83t-b2-Y2b">
-                                <rect key="frame" x="0.0" y="28" width="375" height="256"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourCell" textLabel="a9f-Be-5q5" style="IBUITableViewCellStyleDefault" id="83t-b2-Y2b">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="83t-b2-Y2b" id="ljh-PH-vBj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="255.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="현재 진행중인 투어" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCl-Gh-ScU">
-                                            <rect key="frame" x="30" y="45" width="276" height="129"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a9f-Be-5q5">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="pKF-2G-iia" kind="presentation" trigger="accessoryAction" id="8Yq-Wo-vKJ"/>
+                                    <segue destination="pKF-2G-iia" kind="presentation" identifier="tour_detail" trigger="accessoryAction" id="8Yq-Wo-vKJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -49,7 +49,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="v9R-XR-7Ax"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="3rf-di-oiJ">
                             <connections>
-                                <segue destination="Jqe-dL-mAd" kind="presentation" id="3Mg-ry-tFK"/>
+                                <segue destination="Jqe-dL-mAd" kind="presentation" identifier="" id="3Mg-ry-tFK"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="편집" id="cHa-eo-2Js"/>

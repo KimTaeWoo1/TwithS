@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 class TourCreate: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet var TourNameBox: UITextField!
     
@@ -165,3 +165,4 @@ class TourCreate: UITableViewController, UICollectionViewDataSource, UICollectio
     }
 
 }
+*/

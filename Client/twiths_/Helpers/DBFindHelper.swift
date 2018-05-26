@@ -1,14 +1,12 @@
 //
-//  Tour_Find.swift
+//  DBFindHelper.swift
 //  twiths_
 //
-//  Created by ㅇㅇ on 2018. 5. 22..
+//  Created by ㅇㅇ on 2018. 5. 25..
 //
-//  투어를 찾는 데 필요한 함수
 
 import Foundation
 
-/*
 let Empty_Tour:Tour = Tour(NAME: "", ID: 0, User: User(ID: "", PWD: "", NICK: ""), Created: Date_ymd(year: 1970, month: 1, day: 1), Updated: Date_ymd(year: 1970, month: 1, day: 1), Limit: 0, Image: [], descrip: "", MapImage: "")
 
 // 투어 아이디를 인수로 받아서 투어를 반환하는 함수
@@ -29,4 +27,3 @@ func Tour_LandmarkList(A:Tour) -> [Landmark] {
     }
     return B
 }
- */

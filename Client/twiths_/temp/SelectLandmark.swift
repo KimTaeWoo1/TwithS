@@ -9,6 +9,7 @@ import UIKit
 
 class SelectLandmark: UITableViewController {
     
+    /*
     var Landmarks2:[Landmark] = []
     
     @IBOutlet var SelectLandmarkTable: UITableView!
@@ -126,5 +127,6 @@ class SelectLandmark: UITableViewController {
             NewTour.Landmarks.append(DummyData.Landmarks[selindex])
         }
     }
+ */
 
 }
