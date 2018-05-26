@@ -9,6 +9,8 @@ import UIKit
 
 class LandmarkInfoVC: UITableViewController {
 
+    var This_Landmark:Landmark = DummyData.Landmarks[0]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

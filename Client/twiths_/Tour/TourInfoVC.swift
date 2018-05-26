@@ -8,6 +8,8 @@
 import UIKit
 
 class TourInfoVC: UITableViewController {
+    
+    var This_Tour:Tour = Empty_Tour
 
     override func viewDidLoad() {
         super.viewDidLoad()

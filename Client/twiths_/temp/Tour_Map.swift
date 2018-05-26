@@ -9,12 +9,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
+/*
 class MapViewCell: UITableViewCell {
     
     @IBOutlet var Map_View: MKMapView!
 }
-
-/*
 
 class Tour_Map: UITableViewController, CLLocationManagerDelegate {
     @IBOutlet var tour_title: UINavigationItem!

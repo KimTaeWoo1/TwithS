@@ -4,8 +4,15 @@
 //
 //  Created by ㅇㅇ on 2018. 5. 25..
 //
+// 임시로 이전 데이터베이스 양식을 이용하므로 나중에 수정이 필요함.
 
 import UIKit
+
+class LandmarkCell: UITableViewCell {
+    @IBOutlet var LandmarkImage: UIImageView!
+    @IBOutlet var LandmarkTitle: UILabel!
+    @IBOutlet var LandmarkDescription: UILabel!
+}
 
 class LandmarkListVC: UITableViewController {
 
@@ -32,23 +39,31 @@ class LandmarkListVC: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return Landmark_List.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkListREUSE", for: indexPath) as! LandmarkCell
 
-        // Configure the cell...
+        let This_Landmark:Landmark = Landmark_List[indexPath.row]
+        cell.LandmarkTitle.text = This_Landmark.Name
+        cell.LandmarkDescription.text = This_Landmark.description
+        
+        // 실제로 이미지를 적용하려면 Assets.xcassets에 추가해야 함
+        if This_Landmark.Image.count > 0 { cell.LandmarkImage.image = UIImage(named: This_Landmark.Image[0]) }
 
         return cell
     }
-    */
+    
+    // 테이블 뷰 셀의 세로 길이 설정
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 127.0
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -85,14 +100,23 @@ class LandmarkListVC: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        // 투어 정보 보기
+        if segue.identifier == "TourInfoGO" {
+            let dest = segue.destination as! TourInfoVC
+            dest.This_Tour = find_tour(tourID: ID)
+        }
+            
+        // 랜드마크 정보 보기
+        else if segue.identifier == "LandmarkInfoGO" {
+            let dest = segue.destination as! UINavigationController
+            let destTarget = dest.topViewController as! LandmarkInfoVC
+            destTarget.This_Landmark = Landmark_List[(self.tableView.indexPathForSelectedRow?.row)!]
+        }
     }
-    */
 
 }
