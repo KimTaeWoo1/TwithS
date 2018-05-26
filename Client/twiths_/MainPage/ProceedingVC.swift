@@ -97,6 +97,9 @@ class ProceedingVC: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section:Int) -> String? {
         return "랜드마크 개수: \(get_landmark_count(A: DummyData.Logined.ProceedingTours[section].Tour))"
     }
+    
+    @IBAction func TourListToTourCreate(segue:UIStoryboardSegue){
+    }
 
     /*
     // Override to support conditional editing of the table view.
