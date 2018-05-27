@@ -30,23 +30,61 @@ class LandmarkInfoVC: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return This_Landmark.Image.count + 6
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        if indexPath.row < 6 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkInfo_Table", for: indexPath)
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "랜드마크 이름:"
+                cell.detailTextLabel?.text = This_Landmark.Name
+                break
+            case 1:
+                cell.textLabel?.text = "투어 이름:"
+                cell.detailTextLabel?.text = This_Landmark.Tour.Name
+                break
+            case 2:
+                cell.textLabel?.text = "랜드마크의 위치:"
+                cell.detailTextLabel?.text = This_Landmark.Location
+                break
+            case 3:
+                let GPS = This_Landmark.GPSAddress
+                cell.textLabel?.text = "GPS 좌표:"
+                cell.detailTextLabel?.text = "위도: \(GPS.WD), 경도: \(GPS.KD)"
+                break
+            case 4:
+                cell.textLabel?.text = "설명:"
+                cell.detailTextLabel?.text = This_Landmark.description
+                break
+            case 5:
+                cell.textLabel?.text = "이미지"
+                cell.detailTextLabel?.text = ""
+                break
+            default:
+                cell.textLabel?.text = ""
+                cell.detailTextLabel?.text = ""
+                break
+            }
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkInfo_Images", for: indexPath) as! LDMK_image_cell
+            cell.LDMK_image.image = UIImage(named: This_Landmark.Image[indexPath.row-6])
+            cell.LDMK_label.text = This_Landmark.Image[indexPath.row-6]
+            return cell
+        }
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

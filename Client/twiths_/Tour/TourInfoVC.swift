@@ -7,6 +7,11 @@
 
 import UIKit
 
+class MapImageCell: UITableViewCell {
+    
+    @IBOutlet var MapImg: UIImageView!
+}
+
 class TourInfoVC: UITableViewController {
     
     var This_Tour:Tour = Empty_Tour
@@ -30,23 +35,88 @@ class TourInfoVC: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 11
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        
+        if indexPath.row < 10 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfo_Table", for: indexPath)
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "투어 이름:"
+                cell.detailTextLabel?.text = This_Tour.Name
+                break
+            case 1:
+                cell.textLabel?.text = "테마:"
+                cell.detailTextLabel?.text = ""
+                break
+            case 2:
+                cell.textLabel?.text = "만든이:"
+                cell.detailTextLabel?.text = This_Tour.Admin.Nickname
+                break
+            case 3:
+                cell.textLabel?.text = "만든 날짜:"
+                cell.detailTextLabel?.text = "\(This_Tour.Created.year)/\(This_Tour.Created.month)/\(This_Tour.Created.day)"
+                break
+            case 4:
+                cell.textLabel?.text = "수정한 날짜:"
+                cell.detailTextLabel?.text = "\(This_Tour.Updated.year)/\(This_Tour.Updated.month)/\(This_Tour.Updated.day)"
+                break
+            case 5:
+                cell.textLabel?.text = "제한시간:"
+                cell.detailTextLabel?.text = "\(This_Tour.TimeLimit / 60)시간 \(This_Tour.TimeLimit % 60)분"
+                break
+            case 6:
+                cell.textLabel?.text = "대표 사진"
+                if This_Tour.Image.count > 0 {
+                    cell.imageView?.image = UIImage(named: This_Tour.Image[0])
+                    cell.detailTextLabel?.text = ""
+                }
+                else {
+                    cell.detailTextLabel?.text = "사진 없음"
+                }
+                break
+            case 7:
+                cell.textLabel?.text = "투어 정보:"
+                cell.detailTextLabel?.text = This_Tour.description
+                break
+            case 8:
+                cell.textLabel?.text = "별점:"
+                let stars:[Int] = This_Tour.Reviews.map({$0.Stars})
+                let sum:Int = stars.reduce(0, +)
+                var avg:Double = 0.0
+                if stars.count > 0 { avg = Double(sum) / Double(stars.count) }
+                cell.detailTextLabel?.text = "\(avg) / 5.0 (\(This_Tour.Reviews.count)개의 리뷰)"
+                break
+            case 9:
+                cell.textLabel?.text = "투어 지도"
+                cell.detailTextLabel?.text = ""
+                break
+            default:
+                cell.textLabel?.text = ""
+                cell.detailTextLabel?.text = ""
+                break
+            }
+            
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Tour_MapImage", for: indexPath) as! MapImageCell
+            cell.MapImg.image = UIImage(named: This_Tour.MapImage)
+            
+            return cell
+        }
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
