@@ -45,7 +45,6 @@ class LandmarkInfoVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         if indexPath.row < 6 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkInfo_Table", for: indexPath)
@@ -88,8 +87,6 @@ class LandmarkInfoVC: UITableViewController {
             cell.LDMK_text.text = This_Landmark.Image[indexPath.row-6]
             return cell
         }
-
-        return cell
     }
 
     /*

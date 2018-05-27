@@ -44,8 +44,6 @@ class TourInfoVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
         
         if indexPath.row < 10 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfo_Table", for: indexPath)
@@ -114,8 +112,6 @@ class TourInfoVC: UITableViewController {
             
             return cell
         }
-
-        return cell
     }
 
     /*
