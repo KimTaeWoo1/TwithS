@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		00A2654320B846DE00B80AE6 /* DBFindHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654220B846DE00B80AE6 /* DBFindHelper.swift */; };
-		00A2654520B846F700B80AE6 /* ProceedingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654420B846F700B80AE6 /* ProceedingVC.swift */; };
+		00A2654520B846F700B80AE6 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654420B846F700B80AE6 /* MainVC.swift */; };
 		00A2654720B8470C00B80AE6 /* LandmarkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */; };
 		00A2654920B8471B00B80AE6 /* TourInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654820B8471B00B80AE6 /* TourInfoVC.swift */; };
 		00A2654B20B8472900B80AE6 /* LandmarkInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */; };
 		00A2654D20B8474700B80AE6 /* TourCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654C20B8474700B80AE6 /* TourCreateVC.swift */; };
 		35C8D8354440214168BB483B /* Pods_twiths_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3941FE870DFF7D3907971846 /* Pods_twiths_.framework */; };
+		5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423B820BAF7CD007B2D40 /* Model.swift */; };
+		5B3423BB20BB0AF5007B2D40 /* TourCreateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */; };
 		5B3516DB20B5C68E00DD4644 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */; };
 		5B52E32020B5CE5800134C57 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52E31F20B5CE5800134C57 /* MyPageViewController.swift */; };
 		5B6AC1D020A980A3006EF078 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6AC1CF20A980A3006EF078 /* AppDelegate.swift */; };
@@ -43,12 +45,14 @@
 
 /* Begin PBXFileReference section */
 		00A2654220B846DE00B80AE6 /* DBFindHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBFindHelper.swift; sourceTree = "<group>"; };
-		00A2654420B846F700B80AE6 /* ProceedingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProceedingVC.swift; sourceTree = "<group>"; };
+		00A2654420B846F700B80AE6 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListVC.swift; sourceTree = "<group>"; };
 		00A2654820B8471B00B80AE6 /* TourInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoVC.swift; sourceTree = "<group>"; };
 		00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkInfoVC.swift; sourceTree = "<group>"; };
 		00A2654C20B8474700B80AE6 /* TourCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateVC.swift; sourceTree = "<group>"; };
 		3941FE870DFF7D3907971846 /* Pods_twiths_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twiths_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B3423B820BAF7CD007B2D40 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateHelper.swift; sourceTree = "<group>"; };
 		5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5B52E31F20B5CE5800134C57 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		5B6AC1CC20A980A3006EF078 /* twiths_.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twiths_.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,25 +96,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00A2653E20B8468E00B80AE6 /* MainPage */ = {
+		00A2653E20B8468E00B80AE6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				00A2654420B846F700B80AE6 /* ProceedingVC.swift */,
+				00A2654420B846F700B80AE6 /* MainVC.swift */,
+				5BAAC72720B5C53C00761C86 /* LoginViewController.swift */,
+				5BAAC72920B5C54700761C86 /* SignupViewController.swift */,
 			);
-			path = MainPage;
-			sourceTree = "<group>";
-		};
-		00A2653F20B8469700B80AE6 /* TourCreate */ = {
-			isa = PBXGroup;
-			children = (
-				00A2654C20B8474700B80AE6 /* TourCreateVC.swift */,
-			);
-			path = TourCreate;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		00A2654020B8469D00B80AE6 /* Tour */ = {
 			isa = PBXGroup;
 			children = (
+				00A2654C20B8474700B80AE6 /* TourCreateVC.swift */,
 				00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */,
 				00A2654820B8471B00B80AE6 /* TourInfoVC.swift */,
 				00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */,
@@ -122,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				00A2654220B846DE00B80AE6 /* DBFindHelper.swift */,
+				5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -172,42 +172,23 @@
 		5B6AC1CE20A980A3006EF078 /* twiths_ */ = {
 			isa = PBXGroup;
 			children = (
-				00A2654120B846A800B80AE6 /* Helpers */,
-				00A2653E20B8468E00B80AE6 /* MainPage */,
-				00A2653F20B8469700B80AE6 /* TourCreate */,
-				00A2654020B8469D00B80AE6 /* Tour */,
-				5BD40ADB20B6FE2B002D888F /* temp */,
+				5B3423B820BAF7CD007B2D40 /* Model.swift */,
 				5B8AF55620B6F7E900A92405 /* Database_test.swift */,
 				5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */,
 				5B6AC1CF20A980A3006EF078 /* AppDelegate.swift */,
 				5B6AC1D120A980A3006EF078 /* ViewController.swift */,
 				5B6AC1D320A980A3006EF078 /* Main.storyboard */,
 				5BD85D1D20AD7F960065D9AA /* Storyboard */,
-				5BAAC72620B5C52200761C86 /* Home */,
+				00A2653E20B8468E00B80AE6 /* Main */,
+				00A2654020B8469D00B80AE6 /* Tour */,
 				5B52E31A20B5CDE100134C57 /* MyPage */,
-				5BAAC72520B5C51600761C86 /* Authentication */,
+				00A2654120B846A800B80AE6 /* Helpers */,
 				5B6AC1D620A980A5006EF078 /* Assets.xcassets */,
 				5B6AC1D820A980A5006EF078 /* LaunchScreen.storyboard */,
 				5B6AC1DB20A980A5006EF078 /* Info.plist */,
+				5BD40ADB20B6FE2B002D888F /* temp */,
 			);
 			path = twiths_;
-			sourceTree = "<group>";
-		};
-		5BAAC72520B5C51600761C86 /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				5BAAC72720B5C53C00761C86 /* LoginViewController.swift */,
-				5BAAC72920B5C54700761C86 /* SignupViewController.swift */,
-			);
-			path = Authentication;
-			sourceTree = "<group>";
-		};
-		5BAAC72620B5C52200761C86 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Home;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		5BD40ADB20B6FE2B002D888F /* temp */ = {
@@ -364,8 +345,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -376,8 +356,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,9 +382,11 @@
 				5B8AF55A20B6F7E900A92405 /* Tour_Map.swift in Sources */,
 				5B8AF55E20B6F7E900A92405 /* For_Create_Tour.swift in Sources */,
 				5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */,
-				00A2654520B846F700B80AE6 /* ProceedingVC.swift in Sources */,
+				00A2654520B846F700B80AE6 /* MainVC.swift in Sources */,
 				00A2654D20B8474700B80AE6 /* TourCreateVC.swift in Sources */,
 				5B8AF55F20B6F7E900A92405 /* Tour_Landmarks.swift in Sources */,
+				5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */,
+				5B3423BB20BB0AF5007B2D40 /* TourCreateHelper.swift in Sources */,
 				5B6AC1D020A980A3006EF078 /* AppDelegate.swift in Sources */,
 				00A2654720B8470C00B80AE6 /* LandmarkListVC.swift in Sources */,
 				00A2654320B846DE00B80AE6 /* DBFindHelper.swift in Sources */,

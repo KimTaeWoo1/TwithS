@@ -112,7 +112,7 @@ class LandmarkListVC: UITableViewController {
         // 투어 정보 보기
         if segue.identifier == "TourInfoGO" {
             let dest = segue.destination as! UINavigationController
-            let destTarget = dest.topViewController as! TourInfoVC
+            let destTarget = dest.topViewController as! TourInfoVC  
             destTarget.This_Tour = find_tour(tourID: ID)
         }
             

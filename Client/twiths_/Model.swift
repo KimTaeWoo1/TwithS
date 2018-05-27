@@ -7,85 +7,79 @@
 // asdfs
 
 import Foundation
-import RealmSwift
 
-class Tour: Object {
-    @objc dynamic var id = 0
-    @objc dynamic var name = ""
-    @objc dynamic var creator: User?
-    @objc dynamic var timeLimit = 0
-    @objc dynamic var image:Data
-    @objc dynamic var detail = ""
+class Tour_ {
+    var id = ""
+    var name = ""
+    var creator: Int = 0
+    var timeLimit:Int = 0
+    var image:String = ""
+    var detail = ""
     
-    @objc dynamic var mapImage:Data
+    var mapImage:String = ""
     
-    @objc dynamic var createDate: Date = Date()
-    @objc dynamic var updateDate: Date = Date()
+    var createDate: Date = Date()
+    var updateDate: Date = Date()
     
-    let landmarks = List<UserTourLandMark>()
+    var landmarks:[Landmark] = []
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
-    override static func indexedProperties() -> [String] {
-        return ["name"]
-    }
+    init(){}
 }
 
-class Landmark: Object {
-    @objc dynamic var id = 0
-    @objc dynamic var tour: Tour?
-    @objc dynamic var deteail = ""
-    @objc dynamic var image: Data
+class Landmark_ {
+    var id = ""
+    var tour: String = ""
+    var name: String = ""
+    var detail:String = ""
+    var image: String = ""
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
-    override static func indexedProperties() -> [String] {
-        return ["name"]
-    }
-    
+    init(){}
 }
 
 
-class UserTourLandMark: Object {
-    @objc dynamic var tour: Tour?
-    @objc dynamic var landmark: Landmark?
-    @objc dynamic var state = 0
-    @objc dynamic var image: Data
-    @objc dynamic var comment = ""
-    @objc dynamic var successTime: Date
-}
-
-
-class User: Object{
+class UserTourLandMark_ {
+    var id = ""
+    var tour: String = ""
+    var landmark: String = ""
+    var state = 0
+    var image: String = ""
+    var comment = ""
+    var successTime: Date = Date()
     
-    let tours = List<UserTourRelation>()
-    @objc dynamic var state = 0
-    
-}
-
-
-class UserTourRelation: Object{
-    @objc dynamic var tour: Tour?
-    @objc dynamic var state = 0
-    @objc dynamic var Started: Date?
-}
-
-
-class Review: Object {
-    @objc dynamic var id = 0
-    @objc dynamic var creator: User?
-    @objc dynamic var tour: Tour?
-    @objc dynamic var stars = 0
-    @objc dynamic var createTime:Date = Date()
-    @objc dynamic var updateTime:Date = Date()
-    @objc dynamic var image:Data
-    
-    override static func primaryKey() -> String? {
-        return "id"
+    init(){
     }
+}
+
+
+class UserProfile{
+    var user:Int = 0
+    var tours:[Int] = []
+    var displayName:String = ""
+    
+    init(){}
+}
+
+
+class UserTourRelation {
+    var id = ""
+    var tour = ""
+    var state = 0
+    var startTime: Date?
+    var endTime: Date?
+    
+    init(){}
+}
+
+
+class Review_ {
+    var id = 0
+    var creator = ""
+    var tour = ""
+    var stars = 0
+    var createTime:Date = Date()
+    var updateTime:Date = Date()
+    var image:String = ""
+    
+    init(){}
 }
 

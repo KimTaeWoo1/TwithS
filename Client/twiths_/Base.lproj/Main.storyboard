@@ -13,7 +13,7 @@
         <!--진행중인 투어-->
         <scene sceneID="9tY-nh-aGK">
             <objects>
-                <tableViewController id="yV4-9H-Ohk" customClass="ProceedingVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="yV4-9H-Ohk" customClass="MainVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BaV-ua-3Vq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,7 +49,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="v9R-XR-7Ax"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="3rf-di-oiJ">
                             <connections>
-                                <segue destination="Ulq-7T-ZiY" kind="presentation" id="L98-cQ-S6C"/>
+                                <segue destination="Ulq-7T-ZiY" kind="presentation" identifier="" id="L98-cQ-S6C"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="편집" id="cHa-eo-2Js"/>
@@ -134,14 +134,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QhM-fH-I86">
                                 <rect key="frame" x="87" y="250" width="200" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이메일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOe-sB-fX2">
                                 <rect key="frame" x="87" y="123" width="45" height="21"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProceedingVC: UITableViewController {
+class MainVC: UITableViewController {
 
     var all_landmarks:[[Landmark]] = [] // 사용자가 진행 중인 모든 투어에 있는 랜드마크 목록을 합친 배열
     var data_added:Int = 0 // all_landmarks_data_add()가 실행을 시작했는지의 여부
@@ -100,7 +100,8 @@ class ProceedingVC: UITableViewController {
     
     @IBAction func TourListToTourCreate(segue:UIStoryboardSegue){
     }
-
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
