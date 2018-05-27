@@ -183,7 +183,7 @@
         <!--Tour 정보-->
         <scene sceneID="u7T-wK-9Fo">
             <objects>
-                <tableViewController id="gdw-B2-237" sceneMemberID="viewController">
+                <tableViewController id="gdw-B2-237" customClass="TourInfoVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Cw-vr-ppU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
