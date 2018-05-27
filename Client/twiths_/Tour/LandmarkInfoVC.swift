@@ -7,6 +7,12 @@
 
 import UIKit
 
+class LDMK_Image_Cell : UITableViewCell {
+    
+    @IBOutlet var LDMK_img: UIImageView!
+    @IBOutlet var LDMK_text: UILabel!
+}
+
 class LandmarkInfoVC: UITableViewController {
 
     var This_Landmark:Landmark = DummyData.Landmarks[0]
@@ -77,9 +83,9 @@ class LandmarkInfoVC: UITableViewController {
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkInfo_Images", for: indexPath) as! LDMK_image_cell
-            cell.LDMK_image.image = UIImage(named: This_Landmark.Image[indexPath.row-6])
-            cell.LDMK_label.text = This_Landmark.Image[indexPath.row-6]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkInfo_Images", for: indexPath) as! LDMK_Image_Cell
+            cell.LDMK_img.image = UIImage(named: This_Landmark.Image[indexPath.row-6])
+            cell.LDMK_text.text = This_Landmark.Image[indexPath.row-6]
             return cell
         }
 
