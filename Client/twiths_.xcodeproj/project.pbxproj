@@ -16,6 +16,9 @@
 		35C8D8354440214168BB483B /* Pods_twiths_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3941FE870DFF7D3907971846 /* Pods_twiths_.framework */; };
 		5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423B820BAF7CD007B2D40 /* Model.swift */; };
 		5B3423BB20BB0AF5007B2D40 /* TourCreateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */; };
+		5B3423C020BC38B0007B2D40 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423BF20BC38B0007B2D40 /* SearchVC.swift */; };
+		5B3423C220BC5455007B2D40 /* TourInfoNotProceed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B3423C120BC5455007B2D40 /* TourInfoNotProceed.storyboard */; };
+		5B3423C520BC581F007B2D40 /* TourInfoMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423C420BC581F007B2D40 /* TourInfoMainVC.swift */; };
 		5B3516DB20B5C68E00DD4644 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */; };
 		5B52E32020B5CE5800134C57 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52E31F20B5CE5800134C57 /* MyPageViewController.swift */; };
 		5B6AC1D020A980A3006EF078 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6AC1CF20A980A3006EF078 /* AppDelegate.swift */; };
@@ -53,6 +56,9 @@
 		3941FE870DFF7D3907971846 /* Pods_twiths_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twiths_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3423B820BAF7CD007B2D40 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateHelper.swift; sourceTree = "<group>"; };
+		5B3423BF20BC38B0007B2D40 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		5B3423C120BC5455007B2D40 /* TourInfoNotProceed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TourInfoNotProceed.storyboard; sourceTree = "<group>"; };
+		5B3423C420BC581F007B2D40 /* TourInfoMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoMainVC.swift; sourceTree = "<group>"; };
 		5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5B52E31F20B5CE5800134C57 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		5B6AC1CC20A980A3006EF078 /* twiths_.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twiths_.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +149,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5B3423BE20BC3899007B2D40 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5B3423BF20BC38B0007B2D40 /* SearchVC.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		5B3423C320BC568C007B2D40 /* TourInfoNotProceed */ = {
+			isa = PBXGroup;
+			children = (
+				5B3423C420BC581F007B2D40 /* TourInfoMainVC.swift */,
+			);
+			path = TourInfoNotProceed;
+			sourceTree = "<group>";
+		};
 		5B52E31A20B5CDE100134C57 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +203,8 @@
 				5BD85D1D20AD7F960065D9AA /* Storyboard */,
 				00A2653E20B8468E00B80AE6 /* Main */,
 				00A2654020B8469D00B80AE6 /* Tour */,
+				5B3423C320BC568C007B2D40 /* TourInfoNotProceed */,
+				5B3423BE20BC3899007B2D40 /* Search */,
 				5B52E31A20B5CDE100134C57 /* MyPage */,
 				00A2654120B846A800B80AE6 /* Helpers */,
 				5B6AC1D620A980A5006EF078 /* Assets.xcassets */,
@@ -215,6 +239,7 @@
 				5BD40AD720B6FE13002D888F /* Tour.storyboard */,
 				5BD85D1B20AD7E920065D9AA /* Mypage.storyboard */,
 				5BD85D1920AD7D7E0065D9AA /* Search.storyboard */,
+				5B3423C120BC5455007B2D40 /* TourInfoNotProceed.storyboard */,
 				5BD85D1E20ADF3EB0065D9AA /* Jjim.storyboard */,
 			);
 			path = Storyboard;
@@ -289,6 +314,7 @@
 				5BD40ADA20B6FE13002D888F /* Tour.storyboard in Resources */,
 				5BD40AD820B6FE13002D888F /* TourCreate.storyboard in Resources */,
 				5B6AC1D520A980A3006EF078 /* Main.storyboard in Resources */,
+				5B3423C220BC5455007B2D40 /* TourInfoNotProceed.storyboard in Resources */,
 				5B3516DB20B5C68E00DD4644 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00A2654B20B8472900B80AE6 /* LandmarkInfoVC.swift in Sources */,
+				5B3423C020BC38B0007B2D40 /* SearchVC.swift in Sources */,
 				5B8AF55B20B6F7E900A92405 /* ProceedTour.swift in Sources */,
 				5B8AF55C20B6F7E900A92405 /* SelectLandmark.swift in Sources */,
 				5B8AF56020B6F7E900A92405 /* Database_test.swift in Sources */,
@@ -391,6 +418,7 @@
 				00A2654720B8470C00B80AE6 /* LandmarkListVC.swift in Sources */,
 				00A2654320B846DE00B80AE6 /* DBFindHelper.swift in Sources */,
 				5B8AF54C20B6F7CF00A92405 /* Tour_Review.swift in Sources */,
+				5B3423C520BC581F007B2D40 /* TourInfoMainVC.swift in Sources */,
 				5B8AF55720B6F7E900A92405 /* Tour_Find.swift in Sources */,
 				5B8AF55820B6F7E900A92405 /* TourInfo.swift in Sources */,
 				00A2654920B8471B00B80AE6 /* TourInfoVC.swift in Sources */,

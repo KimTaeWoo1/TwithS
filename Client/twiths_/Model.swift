@@ -11,7 +11,7 @@ import Foundation
 class Tour_ {
     var id = ""
     var name = ""
-    var creator: Int = 0
+    var creator: String = ""
     var timeLimit:Int = 0
     var image:String = ""
     var detail = ""
@@ -51,7 +51,7 @@ class UserTourLandMark_ {
 }
 
 
-class UserProfile{
+class UserProfile_{
     var user:Int = 0
     var tours:[Int] = []
     var displayName:String = ""
@@ -60,7 +60,7 @@ class UserProfile{
 }
 
 
-class UserTourRelation {
+class UserTourRelation_ {
     var id = ""
     var tour = ""
     var state = 0
