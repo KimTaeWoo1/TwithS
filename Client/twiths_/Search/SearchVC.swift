@@ -3,12 +3,12 @@
 //  twiths_
 //
 //  Created by yeon suk choi on 2018. 5. 28..
-//  Copyright © 2018년 yeon suk choi. All rights reserved.
+//  Copyright © 2018년 Hanyang University Software Studio 1 TwithS team. All rights reserved.
 //
 
 import UIKit
 import FirebaseDatabase
-
+import FirebaseStorage
 
 class SearchVC: UITableViewController, UISearchResultsUpdating {
     
@@ -31,6 +31,7 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
                 tour.name = childData?["name"] as? String ?? ""
                 tour.creator = childData?["creator"] as? String ?? ""
                 tour.detail = childData?["detail"] as? String ?? ""
+                tour.image = childData?["image"] as? String ?? ""
                 self.tours.append(tour)
             }
             
@@ -47,6 +48,7 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
     }
 
     func updateSearchResults(for searchController: UISearchController) {
+        
         if searchController.searchBar.text! == "" {
             filteredTours = tours
         } else {
@@ -79,8 +81,20 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
         cell.textLabel?.text = filteredTours[indexPath.row].name
         cell.detailTextLabel?.text = filteredTours[indexPath.row].detail
-        // Configure the cell...
-
+        
+        // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+        let imgName = filteredTours[indexPath.row].image
+        let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+        
+        // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+        storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+            if Error != nil {
+                // 오류가 발생함.
+            } else {
+                cell.imageView?.image = UIImage(data: Data!)
+            }
+        }
+        
         return cell
     }
     

@@ -92,7 +92,7 @@ class TourCreateVC: UITableViewController, UINavigationControllerDelegate, UIIma
             tour.creator = userID!
             tour.name = TourNameField.text!
             tour.detail = detailTextField.text
-            tour.image = ImgView1.image!.description // 임시로 해당 이미지의 description으로 저장
+            tour.image = ImgUrl1.path
             tour.timeLimit = makeLimitToMinite(day: Int(limitDay.text!)!, hour: Int(limitHour.text!)!, min: Int(limitMin.text!)!)
             
             tourRef.child("creator").setValue(tour.creator)
@@ -104,7 +104,7 @@ class TourCreateVC: UITableViewController, UINavigationControllerDelegate, UIIma
             let landmark = Landmark_()
             landmark.tour = String(tourRef.key)
             landmark.name = landmarkNameField.text!
-            landmark.image = ImgView2.image!.description // 임시로 해당 이미지의 description으로 저장
+            landmark.image = ImgUrl2.path
             landmark.detail = landmarkDetailTextField.text
 
             landmarkRef.child("tour").setValue(landmark.tour)
@@ -116,7 +116,7 @@ class TourCreateVC: UITableViewController, UINavigationControllerDelegate, UIIma
             let storage1 = Storage.storage()
             let data1 = UIImagePNGRepresentation(ImgView1.image!)
             let storRef1 = storage1.reference()
-            let ImgRef1 = storRef1.child(ImgUrl1.path)
+            let ImgRef1 = storRef1.child(ImgUrl1.absoluteString)
             _ = ImgRef1.putData(data1!, metadata:nil, completion: { (metadata, error) in
                 if let metadata = metadata {
                     print("Success")
@@ -129,7 +129,7 @@ class TourCreateVC: UITableViewController, UINavigationControllerDelegate, UIIma
             let storage2 = Storage.storage()
             let data2 = UIImagePNGRepresentation(ImgView2.image!)
             let storRef2 = storage2.reference()
-            let ImgRef2 = storRef2.child(ImgUrl2.path)
+            let ImgRef2 = storRef2.child(ImgUrl2.absoluteString)
             _ = ImgRef2.putData(data2!, metadata:nil, completion: { (metadata, error) in
                 if let metadata = metadata {
                     print("Success")
