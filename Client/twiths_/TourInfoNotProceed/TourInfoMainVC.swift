@@ -10,6 +10,8 @@ import UIKit
 
 class TourInfoMainVC: UITableViewController {
 
+    var ThisTour:Tour_ = Tour_()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,27 +31,30 @@ class TourInfoMainVC: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return ThisTour.landmarks.count
     }
     
     @IBAction func ToTourInfoMainSegue(segue: UIStoryboardSegue){
         
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath)
 
-        // Configure the cell...
-
+        let ThisLandmark:Landmark = ThisTour.landmarks[indexPath.row]
+        cell.textLabel!.text = ThisLandmark.Name
+        cell.detailTextLabel!.text = ThisLandmark.description
+        if ThisLandmark.Image.count > 0 {
+            cell.imageView!.image = UIImage(named: ThisLandmark.Image[0])
+        }
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

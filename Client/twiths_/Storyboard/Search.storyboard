@@ -47,7 +47,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Ftb-5L-I5k" kind="show" id="Aeq-6H-5mp"/>
+                                    <segue destination="Ftb-5L-I5k" kind="show" identifier="ShowLandmark" id="Aeq-6H-5mp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
