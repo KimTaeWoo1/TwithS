@@ -58,19 +58,14 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             switch indexPath.row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourNameCell
-                cell.tourNameField.delegate = self
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourDetailCell
-                cell.tourDetailField.delegate = self
                 makeBorderToTextField(cell.tourDetailField)
                 return cell
                 
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourLimitTimeCell
-                cell.limitDay.delegate = self
-                cell.limitHour.delegate = self
-                cell.limitMin.delegate = self
                 return cell
                 
             default:
