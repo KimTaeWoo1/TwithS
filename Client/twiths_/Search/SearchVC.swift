@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 import FirebaseStorage
 
 class SearchVC: UITableViewController, UISearchResultsUpdating {
     
     
-    let ref = Database.database().reference()
     var tours:[Tour_]  = []
     var filteredTours:[Tour_] = []
     let searchController = UISearchController(searchResultsController: nil)
@@ -21,49 +20,26 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ref.child("Tours").observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            var tourList:[Tour_] = []
-            value?.forEach{ childSnapshot in
-                let childData = childSnapshot.value as? NSDictionary
-                let tour = Tour_()
-                
-                tour.name = childData?["name"] as? String ?? ""
-                tour.creator = childData?["creator"] as? String ?? ""
-                tour.detail = childData?["detail"] as? String ?? ""
-                tour.image = childData?["image"] as? String ?? ""
-
-                tourList.append(tour)
-
-                tour.landmarks = childData?["landmarks"] as? [Landmark_] ?? []
-                self.tours.append(tour)
+        let db = Firestore.firestore()
+        var ref = db.collection("tours").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var tourList:[Tour_] = []
+                for document in querySnapshot!.documents {
+                    let tour = Tour_()
+                    tour.id = document.documentID
+                    tour.name = document.data()["name"] as! String
+                    tour.createDate = document.data()["createDate"] as! Date
+                    tour.updateDate = document.data()["updateDate"] as! Date
+                    tour.creator = document.data()["creator"] as! String
+                    tour.detail = document.data()["detail"] as! String
+                    tour.timeLimit = document.data()["timeLimit"] as! Int
+                    tourList.append(tour)
+                }
+                self.tours = tourList
             }
-            self.tours = tourList
-            
-        }) { (error) in
-            print(error.localizedDescription)
         }
-        
-        // TourInfoNotProceed 폴더 안에 있는 뷰에서 잘 나오는지 테스트하기 위한 더미 데이터. 서버에는 존재하지 않고, 이미지는 테스트하지 않음. 기본적인 테스트이기 때문에 일부 정보만 정상적으로 표시됨.
-        let dummyTour = Tour_()
-        dummyTour.name = "test tour 1"
-        dummyTour.creator = "test"
-        dummyTour.detail = "test detail 1"
-        
-        let dummy1 = Landmark_()
-        dummy1.name = "dummy landmark 1"
-        dummy1.tour = dummyTour.name
-        dummy1.detail = "dummy landmark detail 1"
-        
-        let dummy2 = Landmark_()
-        dummy2.name = "dummy landmark 2"
-        dummy2.tour = dummyTour.name
-        dummy2.detail = "dummy landmark detail 2"
-        
-        dummyTour.landmarks = [dummy1, dummy2]
-        self.tours.append(dummyTour)
-        
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -71,7 +47,7 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "searchCell")
     }
-
+    
     func updateSearchResults(for searchController: UISearchController) {
         
         if searchController.searchBar.text! == "" {
@@ -88,19 +64,19 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return self.filteredTours.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
@@ -123,44 +99,44 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
         return cell
     }
     
-
+    
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
@@ -173,5 +149,5 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
             print(dest.ThisTour.landmarks)
         }
     }
-
+    
 }

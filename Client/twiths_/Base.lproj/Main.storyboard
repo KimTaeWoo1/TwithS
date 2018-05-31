@@ -88,7 +88,7 @@
         <!--Jjim-->
         <scene sceneID="P1R-tk-4yW">
             <objects>
-                <viewControllerPlaceholder storyboardName="Jjim" id="U1k-TP-khG" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="Jjim" storyboardName="Jjim" id="U1k-TP-khG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="9zZ-44-4Ql"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hTK-L2-fBU" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -14,7 +14,6 @@
 		00A2654720B8470C00B80AE6 /* LandmarkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */; };
 		00A2654920B8471B00B80AE6 /* TourInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654820B8471B00B80AE6 /* TourInfoVC.swift */; };
 		00A2654B20B8472900B80AE6 /* LandmarkInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */; };
-		00A2654D20B8474700B80AE6 /* TourCreateVC__.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654C20B8474700B80AE6 /* TourCreateVC__.swift */; };
 		35C8D8354440214168BB483B /* Pods_twiths_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3941FE870DFF7D3907971846 /* Pods_twiths_.framework */; };
 		5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423B820BAF7CD007B2D40 /* Model.swift */; };
 		5B3423BB20BB0AF5007B2D40 /* TourCreateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */; };
@@ -58,7 +57,6 @@
 		00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListVC.swift; sourceTree = "<group>"; };
 		00A2654820B8471B00B80AE6 /* TourInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoVC.swift; sourceTree = "<group>"; };
 		00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkInfoVC.swift; sourceTree = "<group>"; };
-		00A2654C20B8474700B80AE6 /* TourCreateVC__.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateVC__.swift; sourceTree = "<group>"; };
 		3941FE870DFF7D3907971846 /* Pods_twiths_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twiths_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3423B820BAF7CD007B2D40 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateHelper.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 		5B94788620BD859B00EFD481 /* TourCreate */ = {
 			isa = PBXGroup;
 			children = (
-				00A2654C20B8474700B80AE6 /* TourCreateVC__.swift */,
 				5BF7A5E720BDB50800294AFF /* TourCreateVC.swift */,
 				5BFBBB1A20BE6BB400E24B4F /* LandmarkCreateVC.swift */,
 			);
@@ -386,22 +383,34 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-twiths_/Pods-twiths_-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -433,7 +442,6 @@
 				5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */,
 				00A2654520B846F700B80AE6 /* MainVC.swift in Sources */,
 				005A778020BF612B00151A55 /* TourInfoTourVC.swift in Sources */,
-				00A2654D20B8474700B80AE6 /* TourCreateVC__.swift in Sources */,
 				5B8AF55F20B6F7E900A92405 /* Tour_Landmarks.swift in Sources */,
 				5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */,
 				5B3423BB20BB0AF5007B2D40 /* TourCreateHelper.swift in Sources */,

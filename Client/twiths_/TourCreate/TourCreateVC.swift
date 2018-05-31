@@ -8,7 +8,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 import FirebaseAuth
 
 class TourNameCell: UITableViewCell {
@@ -148,46 +148,50 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         
         if segue.identifier == "createDone" {
             
-            let ref = Database.database().reference()
+            let db = Firestore.firestore()
+            
+            var tourRef: DocumentReference? = nil
             let userID = Auth.auth().currentUser?.uid
-
-            let tourRef = ref.child("Tours").childByAutoId()
             let tour = Tour_()
             tour.creator = userID!
             let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
             let cell3 = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! TourLimitTimeCell
-
+            
             tour.name = (cell1.tourNameField?.text)!
             tour.detail = (cell2.tourDetailField?.text)!
-        
+            
             if let day = cell3.limitDay.text, let hour = cell3.limitHour.text, let min = cell3.limitMin.text {
                 tour.timeLimit = makeLimitToMinite(day: Int(day)!, hour: Int(hour)!, min: Int(min)!)
             }
-
-//            tour.image = ImgUrl1.path
-//
-                tourRef.child("creator").setValue(tour.creator)
-                tourRef.child("name").setValue(tour.name)
-                tourRef.child("timeLimit").setValue(tour.timeLimit)
-                tourRef.child("detail").setValue(tour.detail)
-//                tourRef.child("image").setValue(tour.image)
-//
+            tourRef = db.collection("tours").addDocument(data: [
+                "name" : tour.name,
+                "creator" : tour.creator,
+                "timeLimit" : tour.timeLimit,
+                "detail" : tour.detail,
+                "createDate" : tour.createDate,
+                "updateDate" : tour.updateDate
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(tourRef!.documentID)")
+                }
+            }
             for landmark in landmarks {
                 let newLandmark = Landmark_()
-                newLandmark.tour = String(tourRef.key)
+                newLandmark.tour = (tourRef?.documentID)!
                 newLandmark.name = landmark.name
 //                newLandmark.image = ImgUrl2.path
                 newLandmark.detail = landmark.detail
 
-                let landmarkRef = ref.child("Landmarks").childByAutoId()
-                landmarkRef.child("tour").setValue(newLandmark.tour)
-                landmarkRef.child("name").setValue(newLandmark.name)
-                landmarkRef.child("detail").setValue(newLandmark.detail)
+                var ref = db.collection("landmarks").addDocument(data: [
+                    "tour" : newLandmark.tour,
+                    "name" : newLandmark.name,
+                    "detail": newLandmark.detail
+                ])
             }
-//                landmarkRef.child("image").setValue(landmark.image)
         }
-     }
-    
+    }
     
 }
