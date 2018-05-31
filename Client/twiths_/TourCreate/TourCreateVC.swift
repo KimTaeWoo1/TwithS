@@ -11,18 +11,13 @@ import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
 
-class TourCreateVC: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class TourCreateVC__: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet var ImgView1: UIImageView!
     @IBOutlet var ImgView2: UIImageView!
     var ImgUrl1:URL! = nil // 투어 이미지의 URL
     var ImgUrl2:URL! = nil // 랜드마크 이미지의 URL
 
-    @IBOutlet weak var TourNameField: UITextField!
-    @IBOutlet weak var detailTextField: UITextView!
-    @IBOutlet weak var landmarkDetailTextField: UITextView!
-    @IBOutlet weak var landmarkNameField: UITextField!
-    
     @IBOutlet weak var limitDay: UITextField!
     @IBOutlet weak var limitHour: UITextField!
     @IBOutlet weak var limitMin: UITextField!
@@ -31,16 +26,16 @@ class TourCreateVC: UITableViewController, UINavigationControllerDelegate, UIIma
     var IsTourUpload:Bool = true // 투어 이미지 업로드 시 true, 랜드마크 이미지 업로드 시 false
     
     // 투어에 있는 이미지 업로드 버튼 터치 시
-    @IBAction func TourImgUpload(_ sender: Any) {
-        IsTourUpload = true
-        showImgAlbum(imgPicker: imgPicker, TourCreate: self)
-    }
-    
+//    @IBAction func TourImgUpload(_ sender: Any) {
+//        IsTourUpload = true
+//        showImgAlbum(imgPicker: imgPicker, TourCreate: self)
+//    }
+//
     // 랜드마크 업로드에 있는 이미지 업로드 버튼 터치 시
-    @IBAction func LandmarkImgUpload(_ sender: Any) {
-        IsTourUpload = false
-        showImgAlbum(imgPicker: imgPicker, TourCreate: self)
-    }
+//    @IBAction func LandmarkImgUpload(_ sender: Any) {
+//        IsTourUpload = false
+//        showImgAlbum(imgPicker: imgPicker, TourCreate: self)
+//    }
     
     // 이미지를 선택 완료한 경우
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -60,9 +55,6 @@ class TourCreateVC: UITableViewController, UINavigationControllerDelegate, UIIma
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        makeBorderToTextField(detailTextField)
-        makeBorderToTextField(landmarkDetailTextField)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -90,8 +82,6 @@ class TourCreateVC: UITableViewController, UINavigationControllerDelegate, UIIma
             let landmarkRef = ref.child("Landmarks").childByAutoId()
             let tour = Tour_()
             tour.creator = userID!
-            tour.name = TourNameField.text!
-            tour.detail = detailTextField.text
             tour.image = ImgUrl1.path
             tour.timeLimit = makeLimitToMinite(day: Int(limitDay.text!)!, hour: Int(limitHour.text!)!, min: Int(limitMin.text!)!)
             
@@ -103,9 +93,9 @@ class TourCreateVC: UITableViewController, UINavigationControllerDelegate, UIIma
             
             let landmark = Landmark_()
             landmark.tour = String(tourRef.key)
-            landmark.name = landmarkNameField.text!
+            
             landmark.image = ImgUrl2.path
-            landmark.detail = landmarkDetailTextField.text
+            
 
             landmarkRef.child("tour").setValue(landmark.tour)
             landmarkRef.child("name").setValue(landmark.name)

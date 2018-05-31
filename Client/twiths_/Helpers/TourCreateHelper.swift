@@ -20,12 +20,12 @@ func makeLimitToMinite(day:Int, hour:Int, min:Int) -> Int {
 }
 
 // 사진 앨범을 띄우는 함수
-func showImgAlbum (imgPicker:UIImagePickerController, TourCreate:TourCreateVC) {
-    if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-        imgPicker.delegate = TourCreate
-        imgPicker.sourceType = .savedPhotosAlbum
-        imgPicker.allowsEditing = false
-        
-        TourCreate.present(imgPicker, animated: true, completion: nil)
-    }
-}
+//func showImgAlbum (imgPicker:UIImagePickerController, TourCreate:TourCreateVC) {
+//    if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+//        imgPicker.delegate = TourCreate
+//        imgPicker.sourceType = .savedPhotosAlbum
+//        imgPicker.allowsEditing = false
+//        
+//        TourCreate.present(imgPicker, animated: true, completion: nil)
+//    }
+//}

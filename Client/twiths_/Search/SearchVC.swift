@@ -24,6 +24,7 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
         ref.child("Tours").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary
+            var tourList:[Tour_] = []
             value?.forEach{ childSnapshot in
                 let childData = childSnapshot.value as? NSDictionary
                 let tour = Tour_()
@@ -32,8 +33,9 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
                 tour.creator = childData?["creator"] as? String ?? ""
                 tour.detail = childData?["detail"] as? String ?? ""
                 tour.image = childData?["image"] as? String ?? ""
-                self.tours.append(tour)
+                tourList.append(tour)
             }
+            self.tours = tourList
             
         }) { (error) in
             print(error.localizedDescription)
