@@ -16,7 +16,6 @@ class TourNameCell: UITableViewCell {
 }
 class TourDetailCell: UITableViewCell {
     @IBOutlet weak var tourDetailField: UITextView!
-    
 }
 class TourLimitTimeCell: UITableViewCell {
     @IBOutlet weak var limitDay: UITextField!
@@ -84,7 +83,6 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         
         cell.textLabel?.text = landmarks[indexPath.row].name
         cell.detailTextLabel?.text = landmarks[indexPath.row].detail
-
         
         return cell
     }
