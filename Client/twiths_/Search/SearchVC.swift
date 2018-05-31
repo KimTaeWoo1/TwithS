@@ -33,13 +33,36 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
                 tour.creator = childData?["creator"] as? String ?? ""
                 tour.detail = childData?["detail"] as? String ?? ""
                 tour.image = childData?["image"] as? String ?? ""
+
                 tourList.append(tour)
+
+                tour.landmarks = childData?["landmarks"] as? [Landmark_] ?? []
+                self.tours.append(tour)
             }
             self.tours = tourList
             
         }) { (error) in
             print(error.localizedDescription)
         }
+        
+        // TourInfoNotProceed 폴더 안에 있는 뷰에서 잘 나오는지 테스트하기 위한 더미 데이터. 서버에는 존재하지 않고, 이미지는 테스트하지 않음. 기본적인 테스트이기 때문에 일부 정보만 정상적으로 표시됨.
+        let dummyTour = Tour_()
+        dummyTour.name = "test tour 1"
+        dummyTour.creator = "test"
+        dummyTour.detail = "test detail 1"
+        
+        let dummy1 = Landmark_()
+        dummy1.name = "dummy landmark 1"
+        dummy1.tour = dummyTour.name
+        dummy1.detail = "dummy landmark detail 1"
+        
+        let dummy2 = Landmark_()
+        dummy2.name = "dummy landmark 2"
+        dummy2.tour = dummyTour.name
+        dummy2.detail = "dummy landmark detail 2"
+        
+        dummyTour.landmarks = [dummy1, dummy2]
+        self.tours.append(dummyTour)
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false

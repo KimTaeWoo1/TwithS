@@ -4,7 +4,6 @@
 //
 //  Created by ㅇㅇ on 2018. 5. 25..
 //
-// 임시로 이전 데이터베이스 양식을 이용하므로 나중에 수정이 필요함.
 
 import UIKit
 import FirebaseDatabase

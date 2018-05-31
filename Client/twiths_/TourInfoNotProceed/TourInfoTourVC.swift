@@ -1,14 +1,14 @@
 //
-//  TourInfoMainVC.swift
+//  TourInfoTourVC.swift
 //  twiths_
 //
-//  Created by yeon suk choi on 2018. 5. 29..
+//  Created by ㅇㅇ on 2018. 5. 31..
 //  Copyright © 2018년 Hanyang University Software Studio 1 TwithS Team. All rights reserved.
 //
 
 import UIKit
 
-class TourInfoMainVC: UITableViewController {
+class TourInfoTourVC: UITableViewController {
 
     var ThisTour:Tour_ = Tour_()
     
@@ -36,21 +36,58 @@ class TourInfoMainVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ThisTour.landmarks.count
-    }
-    
-    @IBAction func ToTourInfoMainSegue(segue: UIStoryboardSegue){
-        
+        return 9
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TITourInfo", for: indexPath)
 
-        let ThisLandmark:Landmark_ = ThisTour.landmarks[indexPath.row]
-        cell.textLabel!.text = ThisLandmark.name
-        cell.detailTextLabel!.text = ThisLandmark.detail
-        cell.imageView!.image = UIImage(named: ThisLandmark.image)
-        
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "투어 이름:"
+            cell.detailTextLabel?.text = ThisTour.name
+            break
+        case 1:
+            cell.textLabel?.text = "테마:"
+            cell.detailTextLabel?.text = ""
+            break
+        case 2:
+            cell.textLabel?.text = "만든이:"
+            cell.detailTextLabel?.text = ThisTour.creator
+            break
+        case 3:
+            cell.textLabel?.text = "만든 날짜:"
+            cell.detailTextLabel?.text = "\(ThisTour.createDate)"
+            break
+        case 4:
+            cell.textLabel?.text = "수정한 날짜:"
+            cell.detailTextLabel?.text = "\(ThisTour.updateDate)"
+            break
+        case 5:
+            cell.textLabel?.text = "제한시간:"
+            cell.detailTextLabel?.text = "\(ThisTour.timeLimit / 60)시간 \(ThisTour.timeLimit % 60)분"
+            break
+        case 6:
+            cell.textLabel?.text = "대표 사진"
+            cell.imageView?.image = UIImage(named: ThisTour.image)
+            cell.detailTextLabel?.text = ""
+            break
+        case 7:
+            cell.textLabel?.text = "투어 정보:"
+            cell.detailTextLabel?.text = ThisTour.detail
+            break
+        case 8:
+            /* Tour_ 클래스에 Review 배열이 없으므로 리뷰 목록에서 직접 찾아야 하는데,
+             전체 리뷰 목록을 저장하는 자료구조가 Model.swift에 없으므로 보류 */
+            cell.textLabel?.text = "별점:"
+            cell.detailTextLabel?.text = ""
+            break
+        default:
+            cell.textLabel?.text = ""
+            cell.detailTextLabel?.text = ""
+            break
+        }
+
         return cell
     }
 
@@ -89,26 +126,14 @@ class TourInfoMainVC: UITableViewController {
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        // 투어 정보 보기
-        if segue.identifier == "TIShowTourInfo" {
-            let dest = segue.destination as! UINavigationController
-            let destTarget = dest.topViewController as! TourInfoTourVC
-            destTarget.ThisTour = ThisTour
-        }
-            
-        // 랜드마크 정보 보기
-        else if segue.identifier == "TIShowLandmarkInfo" {
-            let dest = segue.destination as! UINavigationController
-            let destTarget = dest.topViewController as! TourInfoLandmarkVC
-            destTarget.ThisLandmark = ThisTour.landmarks[self.tableView.indexPathForSelectedRow!.row]
-        }
     }
+    */
 
 }
