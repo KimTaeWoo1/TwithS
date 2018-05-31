@@ -6,6 +6,9 @@
 //  Copyright © 2018년 yeon suk choi. All rights reserved.
 // asdfs
 
+// 투어 관계에서 state 값이 0이면 진행안함, 1이면 찜, 2면 진행중, 3이면 진행완료
+//
+
 import Foundation
 
 class Tour_ {
@@ -39,6 +42,7 @@ class Landmark_ {
 
 class UserTourLandMark_ {
     var id = ""
+    var user = ""
     var tour: String = ""
     var landmark: String = ""
     var state = 0
@@ -53,7 +57,7 @@ class UserTourLandMark_ {
 
 class UserProfile_{
     var user:Int = 0
-    var tours:[Int] = []
+    var createTours:[Int] = []
     var displayName:String = ""
     
     init(){}
@@ -63,6 +67,8 @@ class UserProfile_{
 class UserTourRelation_ {
     var id = ""
     var tour = ""
+    var user = ""
+    
     var state = 0
     var startTime: Date?
     var endTime: Date?

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xa7-RQ-g9G">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xa7-RQ-g9G">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -183,7 +183,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="static1" id="g4K-e1-6Hg" customClass="TourNameCell" customModule="twiths_" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TourNameCell" id="g4K-e1-6Hg" customClass="TourNameCell" customModule="twiths_" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g4K-e1-6Hg" id="ZFz-15-3i7">
@@ -210,7 +210,7 @@
                                     <outlet property="tourNameField" destination="iTz-aR-l3z" id="Cor-Q2-0km"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="static2" rowHeight="235" id="d25-nP-2Cj" customClass="TourDetailCell" customModule="twiths_" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TourDetailCell" rowHeight="235" id="d25-nP-2Cj" customClass="TourDetailCell" customModule="twiths_" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="116" width="375" height="235"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d25-nP-2Cj" id="T3C-eG-Oxu" customClass="TourDetailCell" customModule="twiths_" customModuleProvider="target">
@@ -234,10 +234,10 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="tourDetailField" destination="6Fy-HV-PoC" id="GVc-oV-Bee"/>
+                                    <outlet property="tourDetailField" destination="6Fy-HV-PoC" id="t0e-bl-lIe"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="static3" id="F2Z-CT-2dl" customClass="TourLimitTimeCell" customModule="twiths_" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TourLimitTimeCell" id="F2Z-CT-2dl" customClass="TourLimitTimeCell" customModule="twiths_" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="351" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F2Z-CT-2dl" id="zEd-ZS-qrt">
@@ -296,9 +296,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="limitDay" destination="TV2-6O-7ga" id="WOM-no-t0Z"/>
-                                    <outlet property="limitHour" destination="eQE-01-d8g" id="ZLz-ox-S39"/>
-                                    <outlet property="limitMin" destination="f8U-N3-Cc1" id="pdn-Fn-yBt"/>
+                                    <outlet property="limitDay" destination="TV2-6O-7ga" id="YTZ-wU-LUF"/>
+                                    <outlet property="limitHour" destination="eQE-01-d8g" id="VWm-af-2rW"/>
+                                    <outlet property="limitMin" destination="f8U-N3-Cc1" id="21A-nT-VQZ"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="static4" rowHeight="213" id="D6X-Yy-ZL9">

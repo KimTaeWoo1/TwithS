@@ -14,7 +14,7 @@
 		00A2654720B8470C00B80AE6 /* LandmarkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */; };
 		00A2654920B8471B00B80AE6 /* TourInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654820B8471B00B80AE6 /* TourInfoVC.swift */; };
 		00A2654B20B8472900B80AE6 /* LandmarkInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */; };
-		00A2654D20B8474700B80AE6 /* TourCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654C20B8474700B80AE6 /* TourCreateVC.swift */; };
+		00A2654D20B8474700B80AE6 /* TourCreateVC__.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654C20B8474700B80AE6 /* TourCreateVC__.swift */; };
 		35C8D8354440214168BB483B /* Pods_twiths_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3941FE870DFF7D3907971846 /* Pods_twiths_.framework */; };
 		5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423B820BAF7CD007B2D40 /* Model.swift */; };
 		5B3423BB20BB0AF5007B2D40 /* TourCreateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */; };
@@ -46,7 +46,7 @@
 		5BD85D1A20AD7D7E0065D9AA /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD85D1920AD7D7E0065D9AA /* Search.storyboard */; };
 		5BD85D1C20AD7E920065D9AA /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD85D1B20AD7E920065D9AA /* Mypage.storyboard */; };
 		5BD85D1F20ADF3EB0065D9AA /* Jjim.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD85D1E20ADF3EB0065D9AA /* Jjim.storyboard */; };
-		5BF7A5E820BDB50800294AFF /* TourCreateVC_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF7A5E720BDB50800294AFF /* TourCreateVC_.swift */; };
+		5BF7A5E820BDB50800294AFF /* TourCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF7A5E720BDB50800294AFF /* TourCreateVC.swift */; };
 		5BFBBB1B20BE6BB400E24B4F /* LandmarkCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFBBB1A20BE6BB400E24B4F /* LandmarkCreateVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +58,7 @@
 		00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListVC.swift; sourceTree = "<group>"; };
 		00A2654820B8471B00B80AE6 /* TourInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoVC.swift; sourceTree = "<group>"; };
 		00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkInfoVC.swift; sourceTree = "<group>"; };
-		00A2654C20B8474700B80AE6 /* TourCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateVC.swift; sourceTree = "<group>"; };
+		00A2654C20B8474700B80AE6 /* TourCreateVC__.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateVC__.swift; sourceTree = "<group>"; };
 		3941FE870DFF7D3907971846 /* Pods_twiths_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twiths_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3423B820BAF7CD007B2D40 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateHelper.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		5BD85D1920AD7D7E0065D9AA /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		5BD85D1B20AD7E920065D9AA /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
 		5BD85D1E20ADF3EB0065D9AA /* Jjim.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Jjim.storyboard; sourceTree = "<group>"; };
-		5BF7A5E720BDB50800294AFF /* TourCreateVC_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateVC_.swift; sourceTree = "<group>"; };
+		5BF7A5E720BDB50800294AFF /* TourCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateVC.swift; sourceTree = "<group>"; };
 		5BFBBB1A20BE6BB400E24B4F /* LandmarkCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkCreateVC.swift; sourceTree = "<group>"; };
 		713C8584B58D6E1B481B2317 /* Pods-twiths_.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twiths_.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twiths_/Pods-twiths_.debug.xcconfig"; sourceTree = "<group>"; };
 		FF71718479ABA4D089758DC6 /* Pods-twiths_.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twiths_.release.xcconfig"; path = "Pods/Target Support Files/Pods-twiths_/Pods-twiths_.release.xcconfig"; sourceTree = "<group>"; };
@@ -228,8 +228,8 @@
 		5B94788620BD859B00EFD481 /* TourCreate */ = {
 			isa = PBXGroup;
 			children = (
-				00A2654C20B8474700B80AE6 /* TourCreateVC.swift */,
-				5BF7A5E720BDB50800294AFF /* TourCreateVC_.swift */,
+				00A2654C20B8474700B80AE6 /* TourCreateVC__.swift */,
+				5BF7A5E720BDB50800294AFF /* TourCreateVC.swift */,
 				5BFBBB1A20BE6BB400E24B4F /* LandmarkCreateVC.swift */,
 			);
 			path = TourCreate;
@@ -422,7 +422,7 @@
 				5B8AF55B20B6F7E900A92405 /* ProceedTour.swift in Sources */,
 				5B8AF55C20B6F7E900A92405 /* SelectLandmark.swift in Sources */,
 				5B8AF56020B6F7E900A92405 /* Database_test.swift in Sources */,
-				5BF7A5E820BDB50800294AFF /* TourCreateVC_.swift in Sources */,
+				5BF7A5E820BDB50800294AFF /* TourCreateVC.swift in Sources */,
 				5B52E32020B5CE5800134C57 /* MyPageViewController.swift in Sources */,
 				5BAAC72820B5C53C00761C86 /* LoginViewController.swift in Sources */,
 				5B8AF55920B6F7E900A92405 /* TourCreate.swift in Sources */,
@@ -433,7 +433,7 @@
 				5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */,
 				00A2654520B846F700B80AE6 /* MainVC.swift in Sources */,
 				005A778020BF612B00151A55 /* TourInfoTourVC.swift in Sources */,
-				00A2654D20B8474700B80AE6 /* TourCreateVC.swift in Sources */,
+				00A2654D20B8474700B80AE6 /* TourCreateVC__.swift in Sources */,
 				5B8AF55F20B6F7E900A92405 /* Tour_Landmarks.swift in Sources */,
 				5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */,
 				5B3423BB20BB0AF5007B2D40 /* TourCreateHelper.swift in Sources */,
