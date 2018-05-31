@@ -1,17 +1,18 @@
 //
-//  TourInfoMainVC.swift
+//  TourInfoLandmarkVC.swift
 //  twiths_
 //
-//  Created by yeon suk choi on 2018. 5. 29..
+//  Created by ㅇㅇ on 2018. 5. 31..
 //  Copyright © 2018년 Hanyang University Software Studio 1 TwithS Team. All rights reserved.
 //
 
 import UIKit
 
-class TourInfoMainVC: UITableViewController {
-
-    var ThisTour:Tour_ = Tour_()
+class TourInfoLandmarkVC: UITableViewController {
     
+    // Tour_ 클래스에 있는 랜드마크의 자료형이 Landmark_가 아닌 Landmark이기 때문에 임시로 이렇게 함.
+    var ThisLandmark:Landmark_ = Landmark_()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,21 +37,37 @@ class TourInfoMainVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ThisTour.landmarks.count
-    }
-    
-    @IBAction func ToTourInfoMainSegue(segue: UIStoryboardSegue){
-        
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TILandmarkInfo", for: indexPath)
 
-        let ThisLandmark:Landmark_ = ThisTour.landmarks[indexPath.row]
-        cell.textLabel!.text = ThisLandmark.name
-        cell.detailTextLabel!.text = ThisLandmark.detail
-        cell.imageView!.image = UIImage(named: ThisLandmark.image)
-        
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "랜드마크 이름:"
+            cell.detailTextLabel?.text = ThisLandmark.name
+            break
+        case 1:
+            cell.textLabel?.text = "투어 이름:"
+            cell.detailTextLabel?.text = ThisLandmark.tour
+            break
+        case 2:
+            cell.textLabel?.text = "설명:"
+            cell.detailTextLabel?.text = ThisLandmark.detail
+            break
+        case 3:
+            cell.textLabel?.text = "랜드마크 이미지"
+            break
+        case 4:
+            cell.imageView?.image = UIImage(named: ThisLandmark.image)
+            break
+        default:
+            cell.textLabel?.text = ""
+            cell.detailTextLabel?.text = ""
+            break
+        }
+
         return cell
     }
 
@@ -89,26 +106,14 @@ class TourInfoMainVC: UITableViewController {
     }
     */
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        // 투어 정보 보기
-        if segue.identifier == "TIShowTourInfo" {
-            let dest = segue.destination as! UINavigationController
-            let destTarget = dest.topViewController as! TourInfoTourVC
-            destTarget.ThisTour = ThisTour
-        }
-            
-        // 랜드마크 정보 보기
-        else if segue.identifier == "TIShowLandmarkInfo" {
-            let dest = segue.destination as! UINavigationController
-            let destTarget = dest.topViewController as! TourInfoLandmarkVC
-            destTarget.ThisLandmark = ThisTour.landmarks[self.tableView.indexPathForSelectedRow!.row]
-        }
     }
+    */
 
 }

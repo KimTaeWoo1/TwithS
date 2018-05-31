@@ -21,7 +21,7 @@ class Tour_ {
     var createDate: Date = Date()
     var updateDate: Date = Date()
     
-    var landmarks:[Landmark] = []
+    var landmarks:[Landmark_] = []
     
     init(){}
 }

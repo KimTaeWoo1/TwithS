@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		005A778020BF612B00151A55 /* TourInfoTourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005A777F20BF612B00151A55 /* TourInfoTourVC.swift */; };
+		005A778220BF614200151A55 /* TourInfoLandmarkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005A778120BF614200151A55 /* TourInfoLandmarkVC.swift */; };
 		00A2654320B846DE00B80AE6 /* DBFindHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654220B846DE00B80AE6 /* DBFindHelper.swift */; };
 		00A2654520B846F700B80AE6 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654420B846F700B80AE6 /* MainVC.swift */; };
 		00A2654720B8470C00B80AE6 /* LandmarkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */; };
@@ -47,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		005A777F20BF612B00151A55 /* TourInfoTourVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoTourVC.swift; sourceTree = "<group>"; };
+		005A778120BF614200151A55 /* TourInfoLandmarkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoLandmarkVC.swift; sourceTree = "<group>"; };
 		00A2654220B846DE00B80AE6 /* DBFindHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBFindHelper.swift; sourceTree = "<group>"; };
 		00A2654420B846F700B80AE6 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListVC.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				5B3423C420BC581F007B2D40 /* TourInfoMainVC.swift */,
+				005A777F20BF612B00151A55 /* TourInfoTourVC.swift */,
+				005A778120BF614200151A55 /* TourInfoLandmarkVC.swift */,
 			);
 			path = TourInfoNotProceed;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				5B8AF55E20B6F7E900A92405 /* For_Create_Tour.swift in Sources */,
 				5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */,
 				00A2654520B846F700B80AE6 /* MainVC.swift in Sources */,
+				005A778020BF612B00151A55 /* TourInfoTourVC.swift in Sources */,
 				00A2654D20B8474700B80AE6 /* TourCreateVC.swift in Sources */,
 				5B8AF55F20B6F7E900A92405 /* Tour_Landmarks.swift in Sources */,
 				5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */,
@@ -420,6 +427,7 @@
 				5B8AF54C20B6F7CF00A92405 /* Tour_Review.swift in Sources */,
 				5B3423C520BC581F007B2D40 /* TourInfoMainVC.swift in Sources */,
 				5B8AF55720B6F7E900A92405 /* Tour_Find.swift in Sources */,
+				005A778220BF614200151A55 /* TourInfoLandmarkVC.swift in Sources */,
 				5B8AF55820B6F7E900A92405 /* TourInfo.swift in Sources */,
 				00A2654920B8471B00B80AE6 /* TourInfoVC.swift in Sources */,
 				5B8AF55D20B6F7E900A92405 /* LandmarkInfo.swift in Sources */,
