@@ -19,7 +19,8 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    override func viewDidAppear(_ animated: Bool) {
         let db = Firestore.firestore()
         var ref = db.collection("tours").getDocuments() { (querySnapshot, err) in
             if let err = err {
