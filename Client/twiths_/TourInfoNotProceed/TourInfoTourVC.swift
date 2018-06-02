@@ -7,14 +7,28 @@
 //
 
 import UIKit
+import Firebase
 
 class TourInfoTourVC: UITableViewController {
-
+    @IBOutlet var imgView: UIImageView!
     var ThisTour:Tour_ = Tour_()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+        let imgName = ThisTour.image
+        let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+        
+        // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+        storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+            if Error != nil {
+                // 오류가 발생함.
+            } else {
+                self.imgView.image = UIImage(data: Data!)
+            }
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -65,7 +79,7 @@ class TourInfoTourVC: UITableViewController {
             break
         case 5:
             cell.textLabel?.text = "제한시간:"
-            cell.detailTextLabel?.text = "\(ThisTour.timeLimit / 60)시간 \(ThisTour.timeLimit % 60)분"
+            cell.detailTextLabel?.text = "\(ThisTour.timeLimit / 1440)일 \((ThisTour.timeLimit / 60) % 24)시간 \(ThisTour.timeLimit % 60)분"
             break
         case 6:
             cell.textLabel?.text = "대표 사진"

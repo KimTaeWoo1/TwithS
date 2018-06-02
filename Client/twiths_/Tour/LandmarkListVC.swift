@@ -7,6 +7,7 @@
 // 임시로 이전 데이터베이스 양식을 이용하므로 나중에 수정이 필요함.
 
 import UIKit
+import Firebase
 
 class LandmarkCell: UITableViewCell {
     @IBOutlet var LandmarkImage: UIImageView!
@@ -19,8 +20,33 @@ class LandmarkListVC: UITableViewController {
     var ID:Int = 0
     var userTourRelation = UserTourRelation_()
     
+    let db = Firestore.firestore()
+    let uid = Auth.auth().currentUser?.uid
+    var landmarkList:[Landmark_] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 랜드마크 목록에서 투어가 userTourRelation의 투어와 같은 것을 찾아서 랜드마크 정보에 추가한다.
+        db.collection("landmarks").whereField("tour", isEqualTo: self.userTourRelation.tour.id).getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else if let documents = querySnapshot?.documents {
+                
+                print("namuwiki ggeora")
+                var landmarks:[Landmark_] = []
+                for document in documents {
+                    let landmark = Landmark_()
+                    landmark.tour.id = document.data()["tour"] as! String
+                    landmark.detail = document.data()["detail"] as! String
+                    landmark.image = document.data()["image"] as! String
+                    landmark.name = document.data()["name"] as! String
+                    landmarks.append(landmark)
+                }
+                self.landmarkList = landmarks
+                self.tableView.reloadData()
+            }
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -43,15 +69,28 @@ class LandmarkListVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return landmarkList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkListREUSE", for: indexPath) as! LandmarkCell
 
+        let ThisLandmark = landmarkList[indexPath.row]
+        cell.LandmarkTitle.text = ThisLandmark.name
+        cell.LandmarkDescription.text = ThisLandmark.detail
         
-        // 실제로 이미지를 적용하려면 Assets.xcassets에 추가해야 함
+        // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+        let imgName = ThisLandmark.image
+        let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
         
+        // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+        storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+            if Error != nil {
+                // 오류가 발생함.
+            } else {
+                cell.LandmarkImage.image = UIImage(data: Data!)
+            }
+        }
 
         return cell
     }

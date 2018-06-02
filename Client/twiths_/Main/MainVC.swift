@@ -148,6 +148,7 @@ class MainVC: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tour_detail" {
             let dest = segue.destination as! LandmarkListVC
+            dest.userTourRelation = proceedTours[self.tableView.indexPathForSelectedRow!.row]
 //            let selindex = self.tableView.indexPathForSelectedRow?.section as! Int
 //            dest.userTourRelation = proceedTours[selindex]
         }

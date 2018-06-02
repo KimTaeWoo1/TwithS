@@ -23,9 +23,15 @@ class TourLimitTimeCell: UITableViewCell {
     @IBOutlet weak var limitMin: UITextField!
 }
 
-class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
+class static4: UITableViewCell {
+    @IBOutlet var imgView: UIImageView!
+}
+
+class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var landmarks:[Landmark_] = []
     var tour = Tour_()
+    var imgURL:URL! = nil // 업로드할 이미지의 URL
+    var imageCell:static4 = static4()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +74,11 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourLimitTimeCell
                 return cell
                 
+            case 3:
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! static4
+                imageCell = cell
+                return cell
+                
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath)
                 return cell
@@ -80,6 +91,28 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         cell.detailTextLabel?.text = landmarks[indexPath.row].detail
         
         return cell
+    }
+    
+    // '사진 올리기' 버튼 클릭 시 실행
+    @IBAction func TourImgUpload(_ sender: Any) {
+        var imgPick = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            imgPick.delegate = self
+            imgPick.sourceType = .savedPhotosAlbum
+            imgPick.allowsEditing = false
+            
+            self.present(imgPick, animated: true, completion: nil)
+        }
+    }
+    
+    // 이미지를 선택 완료한 경우
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let url = info[UIImagePickerControllerReferenceURL] as? URL, let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageCell.imgView.image = image
+            imgURL = url
+            print(imgURL.absoluteString)
+        }
+        dismiss(animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -149,6 +182,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         if segue.identifier == "createDone" {
             
             let db = Firestore.firestore()
+            let imageName = "T\(Date().timeIntervalSince1970).jpg" // 이미지 이름을 지정
             
             var tourRef: DocumentReference? = nil
             let userID = Auth.auth().currentUser?.uid
@@ -160,6 +194,21 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             
             tour.name = (cell1.tourNameField?.text)!
             tour.detail = (cell2.tourDetailField?.text)!
+            tour.image = imageName
+            
+            // 투어 이미지 올리기
+            let storRef = Storage.storage().reference()
+            let data = UIImagePNGRepresentation(imageCell.imgView.image!)
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            let ImgRef = storRef.child(imageName)
+            _ = ImgRef.putData(data!, metadata:metadata, completion: { (metadata, error) in
+                if let metadata = metadata {
+                    print("Success")
+                } else {
+                    print("Error")
+                }
+            })
             
             if let day = cell3.limitDay.text, let hour = cell3.limitHour.text, let min = cell3.limitMin.text {
                 tour.timeLimit = makeLimitToMinite(day: Int(day)!, hour: Int(hour)!, min: Int(min)!)
@@ -169,6 +218,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 "creator" : tour.creator,
                 "timeLimit" : tour.timeLimit,
                 "detail" : tour.detail,
+                "image" : tour.image,
                 "createDate" : tour.createDate,
                 "updateDate" : tour.updateDate
             ]) { err in
@@ -182,12 +232,13 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 let newLandmark = Landmark_()
                 newLandmark.tour.id = (tourRef?.documentID)!
                 newLandmark.name = landmark.name
-//                newLandmark.image = ImgUrl2.path
+                newLandmark.image = landmark.image
                 newLandmark.detail = landmark.detail
 
                 var ref = db.collection("landmarks").addDocument(data: [
                     "tour" : newLandmark.tour.id,
                     "name" : newLandmark.name,
+                    "image": newLandmark.image,
                     "detail": newLandmark.detail
                 ])
             }

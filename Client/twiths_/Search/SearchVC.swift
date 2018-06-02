@@ -16,11 +16,11 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
     var tours:[Tour_]  = []
     var filteredTours:[Tour_] = []
     let searchController = UISearchController(searchResultsController: nil)
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let db = Firestore.firestore()
         var ref = db.collection("tours").addSnapshotListener { (querySnapshot, err) in
             if let err = err, let documents = querySnapshot?.documents {
                 print("Error getting documents: \(err)")
@@ -33,6 +33,9 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
                     tour.createDate = document.data()["createDate"] as! Date
                     tour.updateDate = document.data()["updateDate"] as! Date
                     tour.creator = document.data()["creator"] as! String
+                    if let img = document.data()["image"] as? String {
+                        tour.image = document.data()["image"] as! String
+                    }
                     tour.detail = document.data()["detail"] as! String
                     tour.timeLimit = document.data()["timeLimit"] as! Int
                     tourList.append(tour)
@@ -148,6 +151,23 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
             let dest = segue.destination as! TourInfoMainVC
             dest.ThisTour = filteredTours[self.tableView.indexPathForSelectedRow!.row]
             
+            // 랜드마크 데이터베이스에서 tour의 값이 ThisTour의 ID와 일치하는 것만 랜드마크 리스트에 추가
+            let ref = db.collection("landmarks").whereField("tour", isEqualTo: dest.ThisTour.id).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let landmark = Landmark_()
+                        landmark.id = document.documentID
+                        landmark.detail = document.data()["detail"] as! String
+                        landmark.image = document.data()["image"] as! String
+                        landmark.name = document.data()["name"] as! String
+                        landmark.tour.id = document.data()["tour"] as! String
+                        dest.landmarkList.append(landmark)
+                        dest.tableView.reloadData()
+                    }
+                }
+            }
         }
     }
     

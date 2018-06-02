@@ -15,6 +15,7 @@ class TourInfoMainVC: UITableViewController {
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid as! String
     var ThisTour = Tour_()
+    var landmarkList:[Landmark_] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class TourInfoMainVC: UITableViewController {
         if section == 0 {
             return 1
         }
-        return 1
+        return landmarkList.count
     }
     
     @IBAction func ToTourInfoMainSegue(segue: UIStoryboardSegue){
@@ -55,6 +56,23 @@ class TourInfoMainVC: UITableViewController {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath)
+        
+        let ThisLandmark:Landmark_ = landmarkList[indexPath.row]
+        cell.textLabel!.text = ThisLandmark.name
+        cell.detailTextLabel!.text = ThisLandmark.detail
+        
+        // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+        let imgName = ThisLandmark.image
+        let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+        
+        // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+        storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+            if Error != nil {
+                // 오류가 발생함.
+            } else {
+                cell.imageView?.image = UIImage(data: Data!)
+            }
+        }
         
 //        let ThisLandmark:Landmark_ = ThisTour.landmarks[indexPath.row]
 //        cell.textLabel!.text = ThisLandmark.name
@@ -131,6 +149,7 @@ class TourInfoMainVC: UITableViewController {
         else if segue.identifier == "TIShowLandmarkInfo" {
             let dest = segue.destination as! UINavigationController
             let destTarget = dest.topViewController as! TourInfoLandmarkVC
+            destTarget.ThisLandmark = landmarkList[self.tableView.indexPathForSelectedRow!.row]
         }
     }
     

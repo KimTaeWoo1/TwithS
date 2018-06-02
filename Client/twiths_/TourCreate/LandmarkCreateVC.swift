@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
-class LandmarkCreateVC: UITableViewController {
+class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @IBOutlet weak var landmarkNameFIeld: UITextField!
     @IBOutlet weak var landmarkDetailField: UITextView!
     
     let landmark = Landmark_()
+    @IBOutlet var imgView1: UIImageView! // 랜드마크 사진 올리기 이미지뷰
+    var imgURL:URL! = nil // 업로드할 이미지의 URL
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,27 @@ class LandmarkCreateVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func LandmarkImgUpload(_ sender: Any) {
+        
+        var imgPick = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            imgPick.delegate = self
+            imgPick.sourceType = .savedPhotosAlbum
+            imgPick.allowsEditing = false
+            
+            self.present(imgPick, animated: true, completion: nil)
+        }
+    }
+    
+    // 이미지를 선택 완료한 경우
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let url = info[UIImagePickerControllerReferenceURL] as? URL, let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imgView1.image = image
+            imgURL = url
+        }
+        dismiss(animated: true)
+    }
+    
     // MARK: - Table view data source
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,10 +108,28 @@ class LandmarkCreateVC: UITableViewController {
         guard let name = landmarkNameFIeld.text, let detail = landmarkDetailField.text else {
             return
         }
+        
+        let imageName = "L\(Date().timeIntervalSince1970).jpg" // 이미지 이름을 지정
+        
         landmark.name = name
         landmark.detail = detail
+        landmark.image = imageName
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        // 랜드마크 이미지 올리기
+        let storRef = Storage.storage().reference()
+        let data = UIImagePNGRepresentation(imgView1.image!)
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        let ImgRef = storRef.child(imageName)
+        _ = ImgRef.putData(data!, metadata:metadata, completion: { (metadata, error) in
+            if let metadata = metadata {
+                print("Success")
+            } else {
+                print("Error")
+            }
+        })
         
     }
     
