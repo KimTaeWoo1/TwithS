@@ -149,6 +149,7 @@ class TourInfoMainVC: UITableViewController {
         else if segue.identifier == "TIShowLandmarkInfo" {
             let dest = segue.destination as! UINavigationController
             let destTarget = dest.topViewController as! TourInfoLandmarkVC
+            destTarget.TourName = ThisTour.name
             destTarget.ThisLandmark = landmarkList[self.tableView.indexPathForSelectedRow!.row]
         }
     }

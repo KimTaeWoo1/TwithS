@@ -14,6 +14,7 @@ class TourInfoLandmarkVC: UITableViewController {
     
     // Tour_ 클래스에 있는 랜드마크의 자료형이 Landmark_가 아닌 Landmark이기 때문에 임시로 이렇게 함.
     var ThisLandmark:Landmark_ = Landmark_()
+    var TourName:String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +66,7 @@ class TourInfoLandmarkVC: UITableViewController {
             break
         case 1:
             cell.textLabel?.text = "투어 이름:"
-            cell.detailTextLabel?.text = ThisLandmark.tour.name
+            cell.detailTextLabel?.text = TourName
             break
         case 2:
             cell.textLabel?.text = "설명:"

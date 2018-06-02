@@ -12,6 +12,7 @@ import Firebase
 class TourInfoTourVC: UITableViewController {
     @IBOutlet var imgView: UIImageView!
     var ThisTour:Tour_ = Tour_()
+    let cal = NSCalendar.init(calendarIdentifier: NSCalendar.Identifier.gregorian)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ class TourInfoTourVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 9
+        return 8
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,29 +71,33 @@ class TourInfoTourVC: UITableViewController {
             cell.detailTextLabel?.text = ThisTour.creator
             break
         case 3:
+            let date = ThisTour.createDate
+            let year = cal!.component(NSCalendar.Unit.year, from: date)
+            let month = cal!.component(NSCalendar.Unit.month, from: date)
+            let day = cal!.component(NSCalendar.Unit.day, from: date)
+            
             cell.textLabel?.text = "만든 날짜:"
-            cell.detailTextLabel?.text = "\(ThisTour.createDate)"
+            cell.detailTextLabel?.text = "\(year)년 \(month)월 \(day)일"
             break
         case 4:
+            
+            let date = ThisTour.updateDate
+            let year = cal!.component(NSCalendar.Unit.year, from: date)
+            let month = cal!.component(NSCalendar.Unit.month, from: date)
+            let day = cal!.component(NSCalendar.Unit.day, from: date)
+            
             cell.textLabel?.text = "수정한 날짜:"
-            cell.detailTextLabel?.text = "\(ThisTour.updateDate)"
+            cell.detailTextLabel?.text = "\(year)년 \(month)월 \(day)일"
             break
         case 5:
             cell.textLabel?.text = "제한시간:"
             cell.detailTextLabel?.text = "\(ThisTour.timeLimit / 1440)일 \((ThisTour.timeLimit / 60) % 24)시간 \(ThisTour.timeLimit % 60)분"
             break
         case 6:
-            cell.textLabel?.text = "대표 사진"
-            cell.imageView?.image = UIImage(named: ThisTour.image)
-            cell.detailTextLabel?.text = ""
-            break
-        case 7:
             cell.textLabel?.text = "투어 정보:"
             cell.detailTextLabel?.text = ThisTour.detail
             break
-        case 8:
-            /* Tour_ 클래스에 Review 배열이 없으므로 리뷰 목록에서 직접 찾아야 하는데,
-             전체 리뷰 목록을 저장하는 자료구조가 Model.swift에 없으므로 보류 */
+        case 7:
             cell.textLabel?.text = "별점:"
             cell.detailTextLabel?.text = ""
             break
