@@ -17,8 +17,7 @@ class LandmarkCell: UITableViewCell {
 class LandmarkListVC: UITableViewController {
 
     var ID:Int = 0
-    var This_Tour:Tour = Empty_Tour
-    var Landmark_List:[Landmark] = []
+    var userTourRelation = UserTourRelation_()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,18 +43,15 @@ class LandmarkListVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Landmark_List.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkListREUSE", for: indexPath) as! LandmarkCell
 
-        let This_Landmark:Landmark = Landmark_List[indexPath.row]
-        cell.LandmarkTitle.text = This_Landmark.Name
-        cell.LandmarkDescription.text = This_Landmark.description
         
         // 실제로 이미지를 적용하려면 Assets.xcassets에 추가해야 함
-        if This_Landmark.Image.count > 0 { cell.LandmarkImage.image = UIImage(named: This_Landmark.Image[0]) }
+        
 
         return cell
     }
@@ -113,14 +109,14 @@ class LandmarkListVC: UITableViewController {
         if segue.identifier == "TourInfoGO" {
             let dest = segue.destination as! UINavigationController
             let destTarget = dest.topViewController as! TourInfoVC  
-            destTarget.This_Tour = find_tour(tourID: ID)
+            
         }
             
         // 랜드마크 정보 보기
         else if segue.identifier == "LandmarkInfoGO" {
             let dest = segue.destination as! UINavigationController
             let destTarget = dest.topViewController as! LandmarkInfoVC
-            destTarget.This_Landmark = Landmark_List[(self.tableView.indexPathForSelectedRow?.row)!]
+            
         }
     }
 

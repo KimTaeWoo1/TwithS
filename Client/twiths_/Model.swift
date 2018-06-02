@@ -24,14 +24,12 @@ class Tour_ {
     var createDate: Date = Date()
     var updateDate: Date = Date()
     
-    var landmarks:[Landmark_] = []
-    
     init(){}
 }
 
 class Landmark_ {
     var id = ""
-    var tour: String = ""
+    var tour = Tour_()
     var name: String = ""
     var detail:String = ""
     var image: String = ""
@@ -43,8 +41,7 @@ class Landmark_ {
 class UserTourLandMark_ {
     var id = ""
     var user = ""
-    var tour: String = ""
-    var landmark: String = ""
+    var userTourRelation = UserTourRelation_()
     var state = 0
     var image: String = ""
     var comment = ""
@@ -66,12 +63,12 @@ class UserProfile_{
 
 class UserTourRelation_ {
     var id = ""
-    var tour = ""
+    var tour = Tour_()
     var user = ""
     
     var state = 0
-    var startTime: Date?
-    var endTime: Date?
+    var startTime: Date = Date()
+    var endTime: Date = Date()
     
     init(){}
 }
@@ -80,7 +77,7 @@ class UserTourRelation_ {
 class Review_ {
     var id = 0
     var creator = ""
-    var tour = ""
+    var tour = Tour_()
     var stars = 0
     var createTime:Date = Date()
     var updateTime:Date = Date()

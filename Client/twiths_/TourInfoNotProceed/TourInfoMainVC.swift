@@ -13,6 +13,7 @@ import FirebaseAuth
 class TourInfoMainVC: UITableViewController {
     
     let db = Firestore.firestore()
+    let uid = Auth.auth().currentUser?.uid as! String
     var ThisTour = Tour_()
     
     override func viewDidLoad() {
@@ -37,7 +38,7 @@ class TourInfoMainVC: UITableViewController {
         if section == 0 {
             return 1
         }
-        return ThisTour.landmarks.count
+        return 1
     }
     
     @IBAction func ToTourInfoMainSegue(segue: UIStoryboardSegue){
@@ -55,11 +56,11 @@ class TourInfoMainVC: UITableViewController {
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath)
         
-        let ThisLandmark:Landmark_ = ThisTour.landmarks[indexPath.row]
-        cell.textLabel!.text = ThisLandmark.name
-        cell.detailTextLabel!.text = ThisLandmark.detail
-        cell.imageView!.image = UIImage(named: ThisLandmark.image)
-        
+//        let ThisLandmark:Landmark_ = ThisTour.landmarks[indexPath.row]
+//        cell.textLabel!.text = ThisLandmark.name
+//        cell.detailTextLabel!.text = ThisLandmark.detail
+//        cell.imageView!.image = UIImage(named: ThisLandmark.image)
+
         return cell
     }
     
@@ -130,12 +131,10 @@ class TourInfoMainVC: UITableViewController {
         else if segue.identifier == "TIShowLandmarkInfo" {
             let dest = segue.destination as! UINavigationController
             let destTarget = dest.topViewController as! TourInfoLandmarkVC
-            destTarget.ThisLandmark = ThisTour.landmarks[self.tableView.indexPathForSelectedRow!.row]
         }
     }
     
     @IBAction func JjimButtonClicked(_ sender: Any) {
-        let uid = Auth.auth().currentUser?.uid as! String
         var ref = db.collection("userTourRelations").whereField("tour", isEqualTo: self.ThisTour.id)
             .whereField("user", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -148,12 +147,13 @@ class TourInfoMainVC: UITableViewController {
                     alertController.addAction(defaultAction)
                     self.present(alertController, animated: true, completion: nil)
                 } else {
+                    print(self.ThisTour.id)
                     let cUtr = UserTourRelation_()
-                    cUtr.tour = self.ThisTour.id
-                    cUtr.user = uid
+                    cUtr.tour.id = self.ThisTour.id
+                    cUtr.user = self.uid
                     cUtr.state = 1
                     self.db.collection("userTourRelations").addDocument(data: [
-                        "tour" : cUtr.tour,
+                        "tour" : cUtr.tour.id,
                         "user" : cUtr.user,
                         "state" : cUtr.state,
                         "startTime" : cUtr.startTime,
@@ -163,6 +163,81 @@ class TourInfoMainVC: UITableViewController {
                     let vc = storyboard.instantiateViewController(withIdentifier: "Home") as UIViewController
                     self.present(vc, animated: true, completion: nil)
                     
+                }
+            }
+        }
+    }
+    
+    @IBAction func proceedButtonClicked(_ sender: Any) {
+        var ref = db.collection("userTourRelations").whereField("tour", isEqualTo: self.ThisTour.id)
+            .whereField("user", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if let documents = querySnapshot?.documents, documents.count != 0 {
+                        for document in documents {
+                            if let state = document.data()["state"] as? Int, state == 1 {
+                                self.db.collection("userTourRelations").document(document.documentID).updateData([
+                                    "state" : 2,
+                                    "startTime" : Date()
+                                ])
+                                self.makeUserTourLandmark(document.documentID)
+                                
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let vc = storyboard.instantiateViewController(withIdentifier: "Home") as UIViewController
+                                self.present(vc, animated: true, completion: nil)
+                                
+                            } else {
+                                let alertController = UIAlertController(title: "Error", message: "진행 중이거나 진행 완료한 투어입니다.", preferredStyle: .alert)
+                                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                                
+                                alertController.addAction(defaultAction)
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                        }
+                    } else {
+                        let cUtr = UserTourRelation_()
+                        cUtr.tour.id = self.ThisTour.id
+                        cUtr.user = self.uid
+                        cUtr.state = 2
+                        cUtr.startTime = Date()
+                        let cUtrRef = self.db.collection("userTourRelations").addDocument(data: [
+                            "tour" : cUtr.tour.id,
+                            "user" : cUtr.user,
+                            "state" : cUtr.state,
+                            "startTime" : cUtr.startTime,
+                            "endTime" : cUtr.endTime
+                            ])
+                        
+                        self.makeUserTourLandmark(cUtrRef.documentID)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let vc = storyboard.instantiateViewController(withIdentifier: "Home") as UIViewController
+                        self.present(vc, animated: true, completion: nil)
+                        
+                    }
+                }
+        }
+    }
+    func makeUserTourLandmark(_ utrID:String) {
+        var landmarkRef = self.db.collection("landmarks").whereField("tour", isEqualTo: self.ThisTour.id).getDocuments() { (snapshot, err) in
+            if let err = err {
+                print(err.localizedDescription)
+            } else {
+                if let documents = snapshot?.documents {
+                    for document in documents {
+                        //UserTourLandmark 추가
+                        let utl = UserTourLandMark_()
+                        utl.userTourRelation.id = utrID
+                        utl.user = self.uid
+                        
+                        let utlRef = self.db.collection("userTourLandmarks").addDocument(data: [
+                            "userTourRelation" : utl.userTourRelation.id,
+                            "user" : utl.user,
+                            "state" : utl.state,
+                            "comment" : utl.comment,
+                            "successTime" : utl.successTime
+                            ])
+                    }
                 }
             }
         }

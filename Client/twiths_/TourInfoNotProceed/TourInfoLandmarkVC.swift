@@ -50,7 +50,7 @@ class TourInfoLandmarkVC: UITableViewController {
             break
         case 1:
             cell.textLabel?.text = "투어 이름:"
-            cell.detailTextLabel?.text = ThisLandmark.tour
+            cell.detailTextLabel?.text = ThisLandmark.tour.name
             break
         case 2:
             cell.textLabel?.text = "설명:"

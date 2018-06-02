@@ -180,13 +180,13 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             }
             for landmark in landmarks {
                 let newLandmark = Landmark_()
-                newLandmark.tour = (tourRef?.documentID)!
+                newLandmark.tour.id = (tourRef?.documentID)!
                 newLandmark.name = landmark.name
 //                newLandmark.image = ImgUrl2.path
                 newLandmark.detail = landmark.detail
 
                 var ref = db.collection("landmarks").addDocument(data: [
-                    "tour" : newLandmark.tour,
+                    "tour" : newLandmark.tour.id,
                     "name" : newLandmark.name,
                     "detail": newLandmark.detail
                 ])

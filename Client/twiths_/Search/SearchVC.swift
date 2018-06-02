@@ -19,11 +19,10 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    override func viewDidAppear(_ animated: Bool) {
+        
         let db = Firestore.firestore()
-        var ref = db.collection("tours").getDocuments() { (querySnapshot, err) in
-            if let err = err {
+        var ref = db.collection("tours").addSnapshotListener { (querySnapshot, err) in
+            if let err = err, let documents = querySnapshot?.documents {
                 print("Error getting documents: \(err)")
             } else {
                 var tourList:[Tour_] = []
@@ -41,6 +40,7 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
                 self.tours = tourList
             }
         }
+        
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -147,7 +147,7 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
         if segue.identifier == "ShowLandmark" {
             let dest = segue.destination as! TourInfoMainVC
             dest.ThisTour = filteredTours[self.tableView.indexPathForSelectedRow!.row]
-            print(dest.ThisTour.landmarks)
+            
         }
     }
     
