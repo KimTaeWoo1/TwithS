@@ -102,12 +102,12 @@
                     <navigationItem key="navigationItem" title="랜드마크 추가" id="vRc-xL-UDx">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lp6-kd-TnE">
                             <connections>
-                                <segue destination="CiO-HI-rjk" kind="unwind" unwindAction="LandmarkCreateToTourCreateSegueWithSegue:" id="DBy-Cp-Zsb"/>
+                                <segue destination="CiO-HI-rjk" kind="unwind" identifier="LandmarkCancel" unwindAction="LandmarkCreateToTourCreateSegueWithSegue:" id="DBy-Cp-Zsb"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="yre-6S-UzW">
                             <connections>
-                                <segue destination="CiO-HI-rjk" kind="unwind" unwindAction="LandmarkCreateToTourCreateSegueWithSender:" id="afQ-QL-IWa"/>
+                                <segue destination="CiO-HI-rjk" kind="unwind" identifier="LandmarkDone" unwindAction="LandmarkCreateToTourCreateSegueWithSender:" id="afQ-QL-IWa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

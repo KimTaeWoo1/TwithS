@@ -135,26 +135,39 @@ class MainVC: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             
-            // 먼저 문서의 ID를 얻은 다음,
-            let delTour = proceedTours[indexPath.row]
-            var docID = ""
+            // 투어 삭제 확인 창 띄우기
+            let alertController = UIAlertController(title: "Confirm", message: "이 투어를 정말로 삭제하시겠습니까?", preferredStyle: .alert)
             
-            db.collection("userTourRelations").whereField("user", isEqualTo: Auth.auth().currentUser!.uid).whereField("tour", isEqualTo: delTour.tour.id).getDocuments { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else if let documents = querySnapshot?.documents {
-                    for document in querySnapshot!.documents {
-                        docID = document.documentID
-                        
-                        // 그 ID에 해당하는 문서를 userTourRelations에서 삭제
-                        self.db.collection("userTourRelations").document(docID).delete()
+            // 투어 삭제 확인 창에서 '예'를 클릭하면
+            alertController.addAction(UIAlertAction(title: "예", style: .default, handler: {
+                action in
+                
+                // 먼저 문서의 ID를 얻은 다음,
+                let delTour = self.proceedTours[indexPath.row]
+                var docID = ""
+                
+                self.db.collection("userTourRelations").whereField("user", isEqualTo: Auth.auth().currentUser!.uid).whereField("tour", isEqualTo: delTour.tour.id).getDocuments { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else if let documents = querySnapshot?.documents {
+                        for document in querySnapshot!.documents {
+                            docID = document.documentID
+                            
+                            // 그 ID에 해당하는 문서를 userTourRelations에서 삭제
+                            self.db.collection("userTourRelations").document(docID).delete()
+                        }
                     }
                 }
-            }
+                
+                // 테이블뷰에서 해당 투어를 삭제
+                self.proceedTours.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }))
             
-            // 테이블뷰에서 해당 투어를 삭제
-            self.proceedTours.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            // '아니오'를 클릭하면
+            alertController.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
         }
      }
     
