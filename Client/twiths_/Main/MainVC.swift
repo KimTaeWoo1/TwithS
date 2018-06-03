@@ -4,7 +4,6 @@
 //
 //  Created by ㅇㅇ on 2018. 5. 25..
 //
-// 임시로 이전 데이터베이스 양식을 이용하므로 나중에 수정이 필요함.
 
 import UIKit
 import Firebase
@@ -23,6 +22,18 @@ class MainVC: UITableViewController {
     
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid
+    @IBOutlet var editButton: UIBarButtonItem!
+    
+    // 편집 버튼을 클릭하면 진행 중인 투어를 삭제(테이블뷰와 데이터베이스 모두에서)
+    @IBAction func ProceedTourEdit(_ sender: Any) {
+        if self.tableView.isEditing == false {
+            self.tableView.setEditing(true, animated: true)
+            editButton.title = "완료"
+        } else {
+            self.tableView.setEditing(false, animated: true)
+            editButton.title = "편집"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,17 +126,35 @@ class MainVC: UITableViewController {
      }
      */
     
-    /*
      // Override to support editing the table view.
+    
+     // 진행 중인 투어를 삭제하기(userTourRelations에서 해당 투어의 데이터를 삭제)
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            
+            // 먼저 문서의 ID를 얻은 다음,
+            let delTour = proceedTours[indexPath.row]
+            var docID = ""
+            
+            db.collection("userTourRelations").whereField("user", isEqualTo: Auth.auth().currentUser!.uid).whereField("tour", isEqualTo: delTour.tour.id).getDocuments { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else if let documents = querySnapshot?.documents {
+                    for document in querySnapshot!.documents {
+                        docID = document.documentID
+                        
+                        // 그 ID에 해당하는 문서를 userTourRelations에서 삭제
+                        self.db.collection("userTourRelations").document(docID).delete()
+                    }
+                }
+            }
+            
+            // 테이블뷰에서 해당 투어를 삭제
+            self.proceedTours.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
      }
-     }
-     */
     
     /*
      // Override to support rearranging the table view.

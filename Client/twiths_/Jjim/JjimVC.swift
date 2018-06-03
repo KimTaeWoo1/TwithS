@@ -13,6 +13,18 @@ import Firebase
 class JjimVC: UITableViewController {
     var tours:[Tour_] = []
     let db = Firestore.firestore()
+    @IBOutlet var editButton: UIBarButtonItem!
+    
+    // 편집 버튼을 클릭하면 진행 중인 투어를 삭제(테이블뷰와 데이터베이스 모두에서)
+    @IBAction func JjimTourEdit(_ sender: Any) {
+        if self.tableView.isEditing == false {
+            self.tableView.setEditing(true, animated: true)
+            editButton.title = "완료"
+        } else {
+            self.tableView.setEditing(false, animated: true)
+            editButton.title = "편집"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +43,7 @@ class JjimVC: UITableViewController {
                             tour.id = query.documentID
                             tour.name = query.data()!["name"] as! String
                             tour.creator = query.data()!["creator"] as! String
+                            tour.image = query.data()!["image"] as! String
                             tour.timeLimit = query.data()!["timeLimit"] as! Int
                             tour.detail = query.data()!["detail"] as! String
                             tour.createDate = query.data()!["createDate"] as! Date
@@ -80,6 +93,19 @@ class JjimVC: UITableViewController {
         cell.textLabel?.text = self.tours[indexPath.row].name
         cell.detailTextLabel?.text = self.tours[indexPath.row].detail
         
+        // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+        let imgName = self.tours[indexPath.row].image
+        let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+        
+        // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+        storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+            if Error != nil {
+                // 오류가 발생함.
+            } else {
+                cell.imageView?.image = UIImage(data: Data!)
+            }
+        }
+        
         return cell
     }
     /*
@@ -90,17 +116,34 @@ class JjimVC: UITableViewController {
      }
      */
     
-    /*
      // Override to support editing the table view.
+    
+     // 찜한 투어를 삭제하기(userTourRelations에서 해당 투어의 데이터를 삭제)
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        if editingStyle == .delete {
+            
+            // 먼저 문서의 ID를 얻은 다음,
+            let delTour = tours[indexPath.row]
+            var docID = ""
+            
+            db.collection("userTourRelations").whereField("user", isEqualTo: Auth.auth().currentUser!.uid).whereField("tour", isEqualTo: delTour.id).getDocuments { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else if let documents = querySnapshot?.documents {
+                    for document in querySnapshot!.documents {
+                        docID = document.documentID
+                        
+                        // 그 ID에 해당하는 문서를 userTourRelations에서 삭제
+                        self.db.collection("userTourRelations").document(docID).delete()
+                    }
+                }
+            }
+            
+            // 테이블뷰에서 해당 투어를 삭제
+            self.tours.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
      }
-     }
-     */
     
     /*
      // Override to support rearranging the table view.

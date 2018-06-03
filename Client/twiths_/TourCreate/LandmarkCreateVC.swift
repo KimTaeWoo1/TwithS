@@ -14,6 +14,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var landmarkDetailField: UITextView!
     
     let landmark = Landmark_()
+    var imageUploaded = false
     @IBOutlet var imgView1: UIImageView! // 랜드마크 사진 올리기 이미지뷰
     var imgURL:URL! = nil // 업로드할 이미지의 URL
     
@@ -51,6 +52,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
             imgView1.image = image
             imgURL = url
         }
+        imageUploaded = true
         dismiss(animated: true)
     }
     
@@ -100,11 +102,30 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     }
     */
 
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        // 모든 정보를 입력하지 않은 경우 오류 메시지 출력
+        let info1 = (self.landmarkNameFIeld.text != "")
+        let info2 = (self.landmarkDetailField.text != "")
+        let infoFinish = info1 && info2 && imageUploaded
+        
+        if infoFinish == false {
+            let alertController = UIAlertController(title: "Error", message: "랜드마크에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            return false
+        }
+        
+        return true
+    }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         guard let name = landmarkNameFIeld.text, let detail = landmarkDetailField.text else {
             return
         }
