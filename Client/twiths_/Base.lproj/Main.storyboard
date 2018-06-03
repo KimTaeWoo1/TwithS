@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wAr-r5-UCX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wAr-r5-UCX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -74,8 +74,15 @@
                                 <segue destination="Ulq-7T-ZiY" kind="presentation" identifier="" id="L98-cQ-S6C"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="편집" id="cHa-eo-2Js"/>
+                        <barButtonItem key="rightBarButtonItem" title="편집" id="cHa-eo-2Js">
+                            <connections>
+                                <action selector="ProceedTourEdit:" destination="yV4-9H-Ohk" id="IXb-us-uli"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="editButton" destination="cHa-eo-2Js" id="kb3-Kh-kMQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ov4-Dl-lze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
