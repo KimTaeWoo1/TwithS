@@ -33,7 +33,6 @@ class LandmarkListVC: UITableViewController {
                 print("Error getting documents: \(err)")
             } else if let documents = querySnapshot?.documents {
                 
-                print("namuwiki ggeora")
                 var landmarks:[Landmark_] = []
                 for document in documents {
                     let landmark = Landmark_()
@@ -147,8 +146,9 @@ class LandmarkListVC: UITableViewController {
         // 투어 정보 보기
         if segue.identifier == "TourInfoGO" {
             let dest = segue.destination as! UINavigationController
-            let destTarget = dest.topViewController as! TourInfoVC  
+            let destTarget = dest.topViewController as! TourInfoVC
             
+            destTarget.ThisTour = self.userTourRelation.tour
         }
             
         // 랜드마크 정보 보기
@@ -156,6 +156,8 @@ class LandmarkListVC: UITableViewController {
             let dest = segue.destination as! UINavigationController
             let destTarget = dest.topViewController as! LandmarkInfoVC
             
+            destTarget.tourName = self.userTourRelation.tour.name
+            destTarget.ThisLandmark = self.landmarkList[(self.tableView.indexPathForSelectedRow?.row)!]
         }
     }
 

@@ -6,19 +6,29 @@
 //
 
 import UIKit
-
-class LDMK_Image_Cell : UITableViewCell {
-    
-    @IBOutlet var LDMK_img: UIImageView!
-    @IBOutlet var LDMK_text: UILabel!
-}
+import Firebase
 
 class LandmarkInfoVC: UITableViewController {
 
-    var This_Landmark:Landmark = DummyData.Landmarks[0]
+    var ThisLandmark:Landmark_ = Landmark_()
+    var tourName = ""
+    @IBOutlet var imgView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+        let imgName = ThisLandmark.image
+        let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+        
+        // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+        storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+            if Error != nil {
+                // 오류가 발생함.
+            } else {
+                self.imgView.image = UIImage(data: Data!)
+            }
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -41,52 +51,31 @@ class LandmarkInfoVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return This_Landmark.Image.count + 6
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if indexPath.row < 6 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkInfo_Table", for: indexPath)
-            switch indexPath.row {
-            case 0:
-                cell.textLabel?.text = "랜드마크 이름:"
-                cell.detailTextLabel?.text = This_Landmark.Name
-                break
-            case 1:
-                cell.textLabel?.text = "투어 이름:"
-                cell.detailTextLabel?.text = This_Landmark.Tour.Name
-                break
-            case 2:
-                cell.textLabel?.text = "랜드마크의 위치:"
-                cell.detailTextLabel?.text = This_Landmark.Location
-                break
-            case 3:
-                let GPS = This_Landmark.GPSAddress
-                cell.textLabel?.text = "GPS 좌표:"
-                cell.detailTextLabel?.text = "위도: \(GPS.WD), 경도: \(GPS.KD)"
-                break
-            case 4:
-                cell.textLabel?.text = "설명:"
-                cell.detailTextLabel?.text = This_Landmark.description
-                break
-            case 5:
-                cell.textLabel?.text = "이미지"
-                cell.detailTextLabel?.text = ""
-                break
-            default:
-                cell.textLabel?.text = ""
-                cell.detailTextLabel?.text = ""
-                break
-            }
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkInfo_Table", for: indexPath)
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "랜드마크 이름:"
+            cell.detailTextLabel?.text = ThisLandmark.name
+            break
+        case 1:
+            cell.textLabel?.text = "투어 이름:"
+            cell.detailTextLabel?.text = tourName
+            break
+        case 2:
+            cell.textLabel?.text = "랜드마크 설명:"
+            cell.detailTextLabel?.text = ThisLandmark.detail
+            break
+        default:
+            cell.textLabel?.text = ""
+            cell.detailTextLabel?.text = ""
+            break
         }
-        else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkInfo_Images", for: indexPath) as! LDMK_Image_Cell
-            cell.LDMK_img.image = UIImage(named: This_Landmark.Image[indexPath.row-6])
-            cell.LDMK_text.text = This_Landmark.Image[indexPath.row-6]
-            return cell
-        }
+        return cell
     }
 
     /*

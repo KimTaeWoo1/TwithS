@@ -53,6 +53,7 @@ class MainVC: UITableViewController {
                             tour.createDate = query.data()!["createDate"] as! Date
                             tour.updateDate = query.data()!["updateDate"] as! Date
                             tour.timeLimit = query.data()!["timeLimit"] as! Int
+                            tour.image = query.data()!["image"] as! String
                             utr.tour = tour
                             self.proceedTours.append(utr)
                             dGroup.leave()
