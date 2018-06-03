@@ -32,6 +32,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
     var tour = Tour_()
     var imgURL:URL! = nil // 업로드할 이미지의 URL
     var imageCell:static4 = static4()
+    var imageUploaded:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,6 +113,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             imgURL = url
             print(imgURL.absoluteString)
         }
+        self.imageUploaded = true
         dismiss(animated: true)
     }
     
@@ -171,6 +173,34 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
      }
      */
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "createDone" {
+            // 모든 정보를 입력하지 않은 경우 오류 메시지 출력
+            let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
+            let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
+            let cell3 = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! TourLimitTimeCell
+            
+            let info1 = (cell1.tourNameField.text != "")
+            let info2 = (cell2.tourDetailField.text != "")
+            let info3 = (cell3.limitDay.text != "")
+            let info4 = (cell3.limitHour.text != "")
+            let info5 = (cell3.limitMin.text != "")
+            let info6 = (landmarks.count > 0)
+            
+            let infoFinish = info1 && info2 && info3 && info4 && info5 && info6 && imageUploaded
+            
+            if infoFinish == false {
+                let alertController = UIAlertController(title: "Error", message: "랜드마크를 1개 이상 포함하여, 투어에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+                return false
+            }
+        }
+        return true
+    }
     
      // MARK: - Navigation
      
@@ -181,17 +211,19 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         
         if segue.identifier == "createDone" {
             
+            // 투어 생성
             let db = Firestore.firestore()
             let imageName = "T\(Date().timeIntervalSince1970).jpg" // 이미지 이름을 지정
             
             var tourRef: DocumentReference? = nil
             let userID = Auth.auth().currentUser?.uid
             let tour = Tour_()
-            tour.creator = userID!
+            
             let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
             let cell3 = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! TourLimitTimeCell
             
+            tour.creator = userID!
             tour.name = (cell1.tourNameField?.text)!
             tour.detail = (cell2.tourDetailField?.text)!
             tour.image = imageName
