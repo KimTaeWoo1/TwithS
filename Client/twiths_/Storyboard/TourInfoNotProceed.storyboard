@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lLv-SQ-Nyy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lLv-SQ-Nyy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -111,12 +111,19 @@
                             <outlet property="delegate" destination="Sx3-6V-r92" id="BZL-fb-sXp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="랜드마크 정보" id="fQV-wn-BSz"/>
+                    <navigationItem key="navigationItem" title="랜드마크 정보" id="bct-qr-2cF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="haZ-cl-dCY">
+                            <connections>
+                                <segue destination="1L4-fi-g9Q" kind="unwind" unwindAction="ToTourInfoMainSegueWithSegue:" id="Y2C-yr-g4J"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imgView" destination="gjD-ls-6CC" id="h1c-OP-elM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3B-Dz-muh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1L4-fi-g9Q" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4372" y="-744.3778110944528"/>
         </scene>

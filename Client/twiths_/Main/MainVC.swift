@@ -34,7 +34,6 @@ class MainVC: UITableViewController {
             } else if let documents = querySnapshot?.documents {
                 for document in documents {
                     dGroup.enter()
-                    print(document.documentID)
                     let utr = UserTourRelation_()
                     utr.id = document.documentID
                     utr.state = document.data()["state"] as! Int
