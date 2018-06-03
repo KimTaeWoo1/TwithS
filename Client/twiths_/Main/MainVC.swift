@@ -111,6 +111,8 @@ class MainVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentTourCell", for: indexPath) as! CurrentProceedTourCell
         
         cell.nameLabel?.text = String(proceedTours[indexPath.row].tour.name)
+        
+        
         return cell
     }
     

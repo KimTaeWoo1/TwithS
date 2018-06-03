@@ -19,7 +19,7 @@ class CompleteTourVC: UITableViewController {
         super.viewDidLoad()
         let dGroup = DispatchGroup()
         
-        db.collection("userTourRelations").whereField("user", isEqualTo: self.uid).whereField("state", isEqualTo: 2).getDocuments { (querySnapshot, err) in
+        db.collection("userTourRelations").whereField("user", isEqualTo: self.uid).whereField("state", isEqualTo: 3).getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if let documents = querySnapshot?.documents {
