@@ -8,24 +8,49 @@
 
 import UIKit
 import Firebase
+import MapKit
+import CoreLocation
+import GoogleMaps
+
+protocol YourCellDelegate : class {
+    func didPressButton(_ tag: Int)
+}
 
 class LandmarkCell: UITableViewCell {
     @IBOutlet var LandmarkImage: UIImageView!
     @IBOutlet var LandmarkTitle: UILabel!
     @IBOutlet var LandmarkDescription: UILabel!
+    weak var cellDelegate: YourCellDelegate?
+    
+    @IBAction func submitButtonClicked(_ sender: UIButton) {
+        cellDelegate?.didPressButton(sender.tag)
+    }
+    
 }
-
-class LandmarkListVC: UITableViewController {
+class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManagerDelegate {
 
     var ID:Int = 0
     var userTourRelation = UserTourRelation_()
     
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid
+    let locationManager = CLLocationManager()
     var landmarkList:[Landmark_] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
         
         // 랜드마크 목록에서 투어가 userTourRelation의 투어와 같은 것을 찾아서 랜드마크 정보에 추가한다.
         db.collection("landmarks").whereField("tour", isEqualTo: self.userTourRelation.tour.id).getDocuments { (querySnapshot, err) in
@@ -40,18 +65,18 @@ class LandmarkListVC: UITableViewController {
                     landmark.detail = document.data()["detail"] as! String
                     landmark.image = document.data()["image"] as! String
                     landmark.name = document.data()["name"] as! String
+                    
+                    landmark.location.append((document.data()["lati1"] as! Double, document.data()["longi1"] as! Double))
+                    landmark.location.append((document.data()["lati2"] as! Double, document.data()["longi2"] as! Double))
+                    landmark.location.append((document.data()["lati3"] as! Double, document.data()["longi3"] as! Double))
+                    landmark.location.append((document.data()["lati4"] as! Double, document.data()["longi4"] as! Double))
+ 
                     landmarks.append(landmark)
                 }
                 self.landmarkList = landmarks
                 self.tableView.reloadData()
             }
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,10 +98,14 @@ class LandmarkListVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkListREUSE", for: indexPath) as! LandmarkCell
-
+        
+        
         let ThisLandmark = landmarkList[indexPath.row]
         cell.LandmarkTitle.text = ThisLandmark.name
         cell.LandmarkDescription.text = ThisLandmark.detail
+        
+        cell.cellDelegate = self
+        cell.tag = indexPath.row
         
         // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
         let imgName = ThisLandmark.image
@@ -94,6 +123,26 @@ class LandmarkListVC: UITableViewController {
         return cell
     }
     
+    func didPressButton(_ tag: Int) {
+        let landmark = landmarkList[tag]
+        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+        
+        let rect = GMSMutablePath()
+        for marker in landmark.location {
+            rect.add(CLLocationCoordinate2D(latitude: marker.0, longitude: marker.1))
+        }
+        let polygon = GMSPolygon(path: rect)
+        if GMSGeometryContainsLocation(locValue, polygon.path!, true) {
+            let alertController = UIAlertController(title: "Info", message: "4개의 핀이 찍혀야합니다.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else {
+        }
+    }
+    
     // 테이블 뷰 셀의 세로 길이 설정
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 127.0
@@ -102,42 +151,6 @@ class LandmarkListVC: UITableViewController {
     @IBAction func TourListToLandmarkInfo(segue: UIStoryboardSegue){
         
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

@@ -22,6 +22,7 @@
 		5B3423C520BC581F007B2D40 /* TourInfoMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423C420BC581F007B2D40 /* TourInfoMainVC.swift */; };
 		5B3516DB20B5C68E00DD4644 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */; };
 		5B40AB4120C053FA00F97F0D /* JjimVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B40AB4020C053FA00F97F0D /* JjimVC.swift */; };
+		5B4F2D7E20C517370089F750 /* CreateLandmarkLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F2D7D20C517370089F750 /* CreateLandmarkLocationVC.swift */; };
 		5B52E32020B5CE5800134C57 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52E31F20B5CE5800134C57 /* MyPageViewController.swift */; };
 		5B6AC1D020A980A3006EF078 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6AC1CF20A980A3006EF078 /* AppDelegate.swift */; };
 		5B6AC1D220A980A3006EF078 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6AC1D120A980A3006EF078 /* ViewController.swift */; };
@@ -68,6 +69,7 @@
 		5B3423C420BC581F007B2D40 /* TourInfoMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoMainVC.swift; sourceTree = "<group>"; };
 		5B3516DA20B5C68E00DD4644 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		5B40AB4020C053FA00F97F0D /* JjimVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JjimVC.swift; sourceTree = "<group>"; };
+		5B4F2D7D20C517370089F750 /* CreateLandmarkLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLandmarkLocationVC.swift; sourceTree = "<group>"; };
 		5B52E31F20B5CE5800134C57 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		5B6AC1CC20A980A3006EF078 /* twiths_.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twiths_.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B6AC1CF20A980A3006EF078 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				5BF7A5E720BDB50800294AFF /* TourCreateVC.swift */,
 				5BFBBB1A20BE6BB400E24B4F /* LandmarkCreateVC.swift */,
+				5B4F2D7D20C517370089F750 /* CreateLandmarkLocationVC.swift */,
 			);
 			path = TourCreate;
 			sourceTree = "<group>";
@@ -381,10 +384,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-twiths_/Pods-twiths_-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +465,7 @@
 				5BCBA27F20C3BA380000F345 /* CompleteTourVC.swift in Sources */,
 				5B8AF55E20B6F7E900A92405 /* For_Create_Tour.swift in Sources */,
 				5BFBBB1B20BE6BB400E24B4F /* LandmarkCreateVC.swift in Sources */,
+				5B4F2D7E20C517370089F750 /* CreateLandmarkLocationVC.swift in Sources */,
 				5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */,
 				00A2654520B846F700B80AE6 /* MainVC.swift in Sources */,
 				005A778020BF612B00151A55 /* TourInfoTourVC.swift in Sources */,

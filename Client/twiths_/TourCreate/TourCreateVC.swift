@@ -266,12 +266,21 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 newLandmark.name = landmark.name
                 newLandmark.image = landmark.image
                 newLandmark.detail = landmark.detail
+                newLandmark.location = landmark.location
 
                 var ref = db.collection("landmarks").addDocument(data: [
                     "tour" : newLandmark.tour.id,
                     "name" : newLandmark.name,
                     "image": newLandmark.image,
-                    "detail": newLandmark.detail
+                    "detail": newLandmark.detail,
+                    "lati1" : newLandmark.location[0].0,
+                    "longi1" : newLandmark.location[0].1,
+                    "lati2" : newLandmark.location[1].0,
+                    "longi2" : newLandmark.location[1].1,
+                    "lati3" : newLandmark.location[2].0,
+                    "longi3" : newLandmark.location[2].1,
+                    "lati4" : newLandmark.location[3].0,
+                    "longi4" : newLandmark.location[3].1
                 ])
             }
         }

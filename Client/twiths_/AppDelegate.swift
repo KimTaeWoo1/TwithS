@@ -11,6 +11,8 @@ import Firebase
 import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         let db = Firestore.firestore()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        GMSServices.provideAPIKey("AIzaSyCRVhwN2JA33ZaZjnSFEmtPVhgZ7m4ML9M")
+        GMSPlacesClient.provideAPIKey("AIzaSyCRVhwN2JA33ZaZjnSFEmtPVhgZ7m4ML9M")
         
         return true
     }

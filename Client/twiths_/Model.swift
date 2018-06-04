@@ -34,6 +34,7 @@ class Landmark_ {
     var detail:String = ""
     var image: String = ""
     
+    var location:[(Double,Double)] = []
     init(){}
 }
 

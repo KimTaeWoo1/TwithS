@@ -12,6 +12,7 @@ import Firebase
 class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @IBOutlet weak var landmarkNameFIeld: UITextField!
     @IBOutlet weak var landmarkDetailField: UITextView!
+    @IBOutlet weak var CheckLocationSelectedLabel: UILabel!
     
     let landmark = Landmark_()
     var imageUploaded = false
@@ -21,12 +22,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         makeBorderToTextField(landmarkDetailField)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        CheckLocationSelectedLabel?.text = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,52 +51,6 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
         imageUploaded = true
         dismiss(animated: true)
     }
-    
-    // MARK: - Table view data source
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         // 모든 정보를 입력하지 않은 경우 오류 메시지 출력
@@ -121,6 +71,20 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
         }
         
         return true
+    }
+
+    @IBAction func MapToCreateLandmark(sender:UIStoryboardSegue){
+        if sender.source is CreateLandmarkLocationVC {
+            if let senderVC = sender.source as? CreateLandmarkLocationVC {
+                for marker in senderVC.allMarkers {
+                    landmark.location.append((marker.position.latitude, marker.position.longitude))
+                }
+                CheckLocationSelectedLabel?.text = "설정 완료"
+            }
+        }
+    }
+    
+    @IBAction func MapToCreateLandmark(segue:UIStoryboardSegue){
     }
     
     // MARK: - Navigation
