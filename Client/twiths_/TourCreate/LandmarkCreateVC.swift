@@ -105,19 +105,6 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
             // Get the new view controller using segue.destinationViewController.
             // Pass the selected object to the new view controller.
             
-            // 랜드마크 이미지 올리기
-            let storRef = Storage.storage().reference()
-            let data = UIImagePNGRepresentation(imgView1.image!)
-            let metadata = StorageMetadata()
-            metadata.contentType = "image/jpeg"
-            let ImgRef = storRef.child(imageName)
-            _ = ImgRef.putData(data!, metadata:metadata, completion: { (metadata, error) in
-                if let metadata = metadata {
-                    print("Success")
-                } else {
-                    print("Error")
-                }
-            })
         }
         
     }
