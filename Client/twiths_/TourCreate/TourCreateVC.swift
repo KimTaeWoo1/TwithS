@@ -29,6 +29,7 @@ class static4: UITableViewCell {
 
 class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var landmarks:[Landmark_] = []
+    var images:[UIImage] = []
     var tour = Tour_()
     var imgURL:URL! = nil // 업로드할 이미지의 URL
     var imageCell:static4 = static4()
@@ -90,6 +91,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         
         cell.textLabel?.text = landmarks[indexPath.row].name
         cell.detailTextLabel?.text = landmarks[indexPath.row].detail
+        cell.imageView?.image = images[indexPath.row]
         
         return cell
     }
@@ -134,6 +136,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         if sender.source is LandmarkCreateVC {
             if let senderVC = sender.source as? LandmarkCreateVC {
                 landmarks.append(senderVC.landmark)
+                images.append(senderVC.imgView1.image!)
             }
             tableView.reloadData()
         }
@@ -260,12 +263,27 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                     print("Document added with ID: \(tourRef!.documentID)")
                 }
             }
-            for landmark in landmarks {
+            for i in 0..<landmarks.count {
+                let landmark = landmarks[i]
                 let newLandmark = Landmark_()
                 newLandmark.tour.id = (tourRef?.documentID)!
                 newLandmark.name = landmark.name
                 newLandmark.image = landmark.image
                 newLandmark.detail = landmark.detail
+                
+                // 랜드마크 이미지 올리기
+                let storRef = Storage.storage().reference()
+                let data = UIImagePNGRepresentation(images[i])
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpeg"
+                let ImgRef = storRef.child(landmark.image)
+                _ = ImgRef.putData(data!, metadata:metadata, completion: { (metadata, error) in
+                    if let metadata = metadata {
+                        print("Success")
+                    } else {
+                        print("Error")
+                    }
+                })
 
                 var ref = db.collection("landmarks").addDocument(data: [
                     "tour" : newLandmark.tour.id,
