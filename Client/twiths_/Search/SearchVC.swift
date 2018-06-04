@@ -10,6 +10,12 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
+class SearchCell:UITableViewCell {
+    @IBOutlet var titleText: UILabel!
+    @IBOutlet var subtitleText: UILabel!
+    @IBOutlet var imgView: UIImageView!
+}
+
 class SearchVC: UITableViewController, UISearchResultsUpdating {
     
     
@@ -81,11 +87,16 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
         return self.filteredTours.count
     }
     
+    // 테이블 뷰 셀의 세로 길이 설정
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65.0
+    }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
-        cell.textLabel?.text = filteredTours[indexPath.row].name
-        cell.detailTextLabel?.text = filteredTours[indexPath.row].detail
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
+        cell.titleText.text = filteredTours[indexPath.row].name
+        cell.subtitleText.text = filteredTours[indexPath.row].detail
         
         // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
         let imgName = filteredTours[indexPath.row].image
@@ -96,7 +107,7 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
             if Error != nil {
                 // 오류가 발생함.
             } else {
-                cell.imageView?.image = UIImage(data: Data!)
+                cell.imgView.image = UIImage(data: Data!)
             }
         }
         

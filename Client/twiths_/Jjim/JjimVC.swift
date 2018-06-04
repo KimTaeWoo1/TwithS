@@ -9,6 +9,11 @@
 import UIKit
 import Firebase
 
+class JjimCell:UITableViewCell {
+    @IBOutlet var titleCell: UILabel!
+    @IBOutlet var subtitleCell: UILabel!
+    @IBOutlet var imgView: UIImageView!
+}
 
 class JjimVC: UITableViewController {
     var tours:[Tour_] = []
@@ -85,13 +90,17 @@ class JjimVC: UITableViewController {
         return self.tours.count
     }
     
+    // 테이블 뷰 셀의 세로 길이 설정
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65.0
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "JjimCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JjimCell", for: indexPath) as! JjimCell
         
         // Configure the cell...
-        cell.textLabel?.text = self.tours[indexPath.row].name
-        cell.detailTextLabel?.text = self.tours[indexPath.row].detail
+        cell.titleCell.text = self.tours[indexPath.row].name
+        cell.subtitleCell.text = self.tours[indexPath.row].detail
         
         // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
         let imgName = self.tours[indexPath.row].image
@@ -102,7 +111,7 @@ class JjimVC: UITableViewController {
             if Error != nil {
                 // 오류가 발생함.
             } else {
-                cell.imageView?.image = UIImage(data: Data!)
+                cell.imgView.image = UIImage(data: Data!)
             }
         }
         

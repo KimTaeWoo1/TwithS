@@ -10,6 +10,13 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
+class TourInfoMain: UITableViewCell {
+    
+    @IBOutlet var titleText: UILabel!
+    @IBOutlet var subtitleText: UILabel!
+    @IBOutlet var imgView: UIImageView!
+}
+
 class TourInfoMainVC: UITableViewController {
     
     let db = Firestore.firestore()
@@ -55,11 +62,11 @@ class TourInfoMainVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TourTabBarCell", for: indexPath)
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMain
         
         let ThisLandmark:Landmark_ = landmarkList[indexPath.row]
-        cell.textLabel!.text = ThisLandmark.name
-        cell.detailTextLabel!.text = ThisLandmark.detail
+        cell.titleText.text = ThisLandmark.name
+        cell.subtitleText.text = ThisLandmark.detail
         
         // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
         let imgName = ThisLandmark.image
@@ -70,7 +77,7 @@ class TourInfoMainVC: UITableViewController {
             if Error != nil {
                 // 오류가 발생함.
             } else {
-                cell.imageView?.image = UIImage(data: Data!)
+                cell.imgView.image = UIImage(data: Data!)
             }
         }
         
@@ -96,6 +103,12 @@ class TourInfoMainVC: UITableViewController {
         }
         return 0
     }
+    
+    // 테이블 뷰 셀의 세로 길이 설정
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65.0
+    }
+    
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
