@@ -142,19 +142,37 @@ class MainVC: UITableViewController {
             alertController.addAction(UIAlertAction(title: "예", style: .default, handler: {
                 action in
                 
-                // 먼저 문서의 ID를 얻은 다음,
+                // 1. UserTourRelation의 데이터 삭제
+                // 먼저 UserTourRelation 문서의 ID를 얻은 다음,
                 let delTour = self.proceedTours[indexPath.row]
-                var docID = ""
+                var UTRdocID = ""
                 
                 self.db.collection("userTourRelations").whereField("user", isEqualTo: Auth.auth().currentUser!.uid).whereField("tour", isEqualTo: delTour.tour.id).getDocuments { (querySnapshot, err) in
                     if let err = err {
                         print("Error getting documents: \(err)")
                     } else if let documents = querySnapshot?.documents {
                         for document in querySnapshot!.documents {
-                            docID = document.documentID
+                            UTRdocID = document.documentID
                             
                             // 그 ID에 해당하는 문서를 userTourRelations에서 삭제
-                            self.db.collection("userTourRelations").document(docID).delete()
+                            self.db.collection("userTourRelations").document(UTRdocID).delete()
+                            
+                            // 2. UserTourLandmark의 데이터 삭제
+                            // 먼저 UserTourLandmark 문서의 ID를 얻은 다음,
+                            var UTLdocID = ""
+                            
+                            self.db.collection("userTourLandmarks").whereField("user", isEqualTo: Auth.auth().currentUser!.uid).whereField("userTourRelation", isEqualTo: UTRdocID).getDocuments { (querySnapshot, err) in
+                                if let err = err {
+                                    print("Error getting documents: \(err)")
+                                } else if let documents = querySnapshot?.documents {
+                                    for document in querySnapshot!.documents {
+                                        UTLdocID = document.documentID
+                                        
+                                        // 그 ID에 해당하는 문서를 userTourLandmark에서 삭제
+                                        self.db.collection("userTourLandmarks").document(UTLdocID).delete()
+                                    }
+                                }
+                            }
                         }
                     }
                 }
