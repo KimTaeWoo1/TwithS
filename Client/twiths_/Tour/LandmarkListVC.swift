@@ -233,6 +233,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         
         let rect = GMSMutablePath()
         for marker in landmark.location {
+            print("\(marker.0)   \(marker.1)")
             rect.add(CLLocationCoordinate2D(latitude: marker.0, longitude: marker.1))
         }
         let polygon = GMSPolygon(path: rect)
