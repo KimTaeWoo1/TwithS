@@ -10,11 +10,25 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
+// 목록
 class TourInfoMain: UITableViewCell {
     
     @IBOutlet var titleText: UILabel!
     @IBOutlet var subtitleText: UILabel!
     @IBOutlet var imgView: UIImageView!
+}
+
+// 지도
+class TourInfoMMap: UITableViewCell {
+    // 지도를 띄우기 위한 커스텀 테이블 뷰 셀
+}
+
+// 리뷰
+class TourInfoMReview: UITableViewCell {
+    
+    @IBOutlet var ReviewImg: UIImageView!
+    @IBOutlet var ReviewTitle: UILabel!
+    @IBOutlet var ReviewSubtitle: UILabel!
 }
 
 class TourInfoMainVC: UITableViewController {
@@ -27,6 +41,26 @@ class TourInfoMainVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ThisTour.name
+    }
+    
+    var mode:Int = 0 // 0은 목록, 1은 지도, 2는 리뷰
+    
+    @IBAction func selectChanged(_ sender: UISegmentedControl) {
+        // 목록
+        if sender.selectedSegmentIndex == 0 {
+            mode = 0
+            self.tableView.reloadData()
+        }
+        // 지도
+        else if sender.selectedSegmentIndex == 1 {
+            mode = 1
+            self.tableView.reloadData()
+        }
+        // 리뷰
+        else {
+            mode = 2
+            self.tableView.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +80,9 @@ class TourInfoMainVC: UITableViewController {
         if section == 0 {
             return 1
         }
-        return landmarkList.count
+        if mode == 0 { return landmarkList.count } // 목록
+        else if mode == 1 { return 1 } // 지도
+        else { return 3 } // 리뷰. 임시로 3개로 테스트
     }
     
     @IBAction func ToTourInfoMainSegue(segue: UIStoryboardSegue){
@@ -62,31 +98,49 @@ class TourInfoMainVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TourTabBarCell", for: indexPath)
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMain
         
-        let ThisLandmark:Landmark_ = landmarkList[indexPath.row]
-        cell.titleText.text = ThisLandmark.name
-        cell.subtitleText.text = ThisLandmark.detail
-        
-        // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
-        let imgName = ThisLandmark.image
-        let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
-        
-        // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
-        storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
-            if Error != nil {
-                // 오류가 발생함.
-            } else {
-                cell.imgView.image = UIImage(data: Data!)
+        // 목록
+        if mode == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMain
+            
+            let ThisLandmark:Landmark_ = landmarkList[indexPath.row]
+            cell.titleText.text = ThisLandmark.name
+            cell.subtitleText.text = ThisLandmark.detail
+            
+            // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+            let imgName = ThisLandmark.image
+            let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+            
+            // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+            storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+                if Error != nil {
+                    // 오류가 발생함.
+                } else {
+                    cell.imgView.image = UIImage(data: Data!)
+                }
             }
+            
+    //        let ThisLandmark:Landmark_ = ThisTour.landmarks[indexPath.row]
+    //        cell.textLabel!.text = ThisLandmark.name
+    //        cell.detailTextLabel!.text = ThisLandmark.detail
+    //        cell.imageView!.image = UIImage(named: ThisLandmark.image)
+
+            return cell
         }
         
-//        let ThisLandmark:Landmark_ = ThisTour.landmarks[indexPath.row]
-//        cell.textLabel!.text = ThisLandmark.name
-//        cell.detailTextLabel!.text = ThisLandmark.detail
-//        cell.imageView!.image = UIImage(named: ThisLandmark.image)
-
-        return cell
+        // 지도
+        else if mode == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMMap", for: indexPath) as! TourInfoMMap
+            
+            return cell
+        }
+        
+        // 리뷰
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMReview", for: indexPath) as! TourInfoMReview
+            
+            return cell
+        }
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -106,7 +160,9 @@ class TourInfoMainVC: UITableViewController {
     
     // 테이블 뷰 셀의 세로 길이 설정
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 65.0
+        if mode == 0 { return 65.0 } // 목록
+        else if mode == 1 { return 250.0 } // 지도
+        else { return 70.0 } // 리뷰
     }
     
     /*
