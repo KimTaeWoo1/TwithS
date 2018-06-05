@@ -98,6 +98,10 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
         cell.titleText.text = filteredTours[indexPath.row].name
         cell.subtitleText.text = filteredTours[indexPath.row].detail
         
+        // 이미지 뷰를 원형으로
+        cell.imgView.layer.cornerRadius = cell.imgView.frame.size.width / 2
+        cell.imgView.layer.masksToBounds = true
+        
         // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
         let imgName = filteredTours[indexPath.row].image
         let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)

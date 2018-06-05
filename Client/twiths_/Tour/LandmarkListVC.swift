@@ -229,6 +229,10 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         // 코스
         if mode == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkListREUSE", for: indexPath) as! LandmarkCell
+            
+            // 이미지 뷰를 원형으로
+            cell.LandmarkImage.layer.cornerRadius = cell.LandmarkImage.frame.size.width / 2
+            cell.LandmarkImage.layer.masksToBounds = true
         
             let userLandmark = self.userTourLandmarks[indexPath.row]
             if userLandmark.state == 0 {
@@ -275,6 +279,10 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             let ThisReview = Reviews[indexPath.row]
             
             cell.reviewTitle.text = ThisReview.creator
+            
+            // 이미지 뷰를 원형으로
+            cell.reviewImg.layer.cornerRadius = cell.reviewImg.frame.size.width / 2
+            cell.reviewImg.layer.masksToBounds = true
             
             var starText = ""
             for _ in 0..<ThisReview.stars { starText += "★" }
