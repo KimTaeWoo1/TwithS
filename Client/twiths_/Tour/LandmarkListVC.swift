@@ -319,8 +319,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             
             self.navigationController?.popViewController(animated: true)
             let alertController = UIAlertController(title: "Info", message: "아직 위치에 도달하지 않으셨군요!!\n좀 더 가까이 가서 인증해보세요!!", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: { (alert: UIAlertAction!) in
-            })
+            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
             
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
@@ -333,9 +332,45 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         else if mode == 1 { return 250.0 } // 지도
         else { return 65.0 } // 리뷰
     }
-    
     @IBAction func TourListToLandmarkInfo(segue: UIStoryboardSegue){
-        if segue.identifier == "locationCertificateDone" {
+    }
+    @IBAction func TourListToLandmarkInfo(sender: UIStoryboardSegue){
+        var utlID = ""
+        if sender.identifier == "locationCertificateDone" {
+            if sender.source is LocationCertificationVC {
+                if let senderVC = sender.source as? LocationCertificationVC {
+                    utlID = senderVC.utl.id
+                }
+            }
+            var isClear = true
+            for utl in userTourLandmarks {
+                if utl.id == utlID { continue }
+                if utl.state == 0 {
+                    isClear = false
+                    break;
+                }
+            }
+            if isClear == true {
+                userTourRelation.state = 3
+                let utrRef = db.collection("userTourRelations").document(userTourRelation.id)
+                utrRef.updateData([
+                    "state" : 3,
+                    "endTime" : Date()
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+                let alertController = UIAlertController(title: "Info", message: "축하합니다!!!\n투어를 완료하셨습니다.\n걸린시간 : ", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: { (alert: UIAlertAction!) in
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+                
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
             self.tableView.reloadData()
         }
     }

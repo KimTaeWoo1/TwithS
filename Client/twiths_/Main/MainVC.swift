@@ -39,10 +39,12 @@ class MainVC: UITableViewController {
         super.viewDidLoad()
         let dGroup = DispatchGroup()
         
-        db.collection("userTourRelations").whereField("user", isEqualTo: self.uid).whereField("state", isEqualTo: 2).getDocuments { (querySnapshot, err) in
+        var tours:[UserTourRelation_] = []
+        db.collection("userTourRelations").whereField("user", isEqualTo: self.uid).whereField("state", isEqualTo: 2).addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if let documents = querySnapshot?.documents {
+                tours = []
                 for document in documents {
                     dGroup.enter()
                     let utr = UserTourRelation_()
@@ -51,7 +53,7 @@ class MainVC: UITableViewController {
                     utr.startTime = document.data()["startTime"] as! Date
                     utr.user = self.uid!
                     
-                    self.db.collection("tours").document(document.data()["tour"] as! String).getDocument { query, err in
+                    self.db.collection("tours").document(document.data()["tour"] as! String).addSnapshotListener { query, err in
                         if let err = err {
                             print(err.localizedDescription)
                         } else if let query = query, query.exists {
@@ -65,7 +67,7 @@ class MainVC: UITableViewController {
                             tour.timeLimit = query.data()!["timeLimit"] as! Int
                             tour.image = query.data()!["image"] as! String
                             utr.tour = tour
-                            self.proceedTours.append(utr)
+                            tours.append(utr)
                             dGroup.leave()
                         } else {
                             print("Document does not exist")
@@ -74,6 +76,7 @@ class MainVC: UITableViewController {
                 }
             }
             dGroup.notify(queue: .main) {   //// 4
+                self.proceedTours = tours
                 self.tableView.reloadData()
             }
         }
@@ -117,6 +120,7 @@ class MainVC: UITableViewController {
     }
     
     @IBAction func TourListToTourCreate(segue:UIStoryboardSegue){
+    
     }
     
     
