@@ -107,6 +107,10 @@ class TourInfoMainVC: UITableViewController {
             cell.titleText.text = ThisLandmark.name
             cell.subtitleText.text = ThisLandmark.detail
             
+            // 이미지 뷰를 원형으로
+            cell.imgView.layer.cornerRadius = cell.imgView.frame.size.width / 2
+            cell.imgView.layer.masksToBounds = true
+            
             // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
             let imgName = ThisLandmark.image
             let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
@@ -138,6 +142,10 @@ class TourInfoMainVC: UITableViewController {
         // 리뷰
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMReview", for: indexPath) as! TourInfoMReview
+            
+            // 이미지 뷰를 원형으로
+            cell.ReviewImg.layer.cornerRadius = cell.ReviewImg.frame.size.width / 2
+            cell.ReviewImg.layer.masksToBounds = true
             
             return cell
         }
