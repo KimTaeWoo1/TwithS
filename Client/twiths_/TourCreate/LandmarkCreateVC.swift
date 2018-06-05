@@ -16,6 +16,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     
     let landmark = Landmark_()
     var imageUploaded = false
+    var locationSet = false
     @IBOutlet var imgView1: UIImageView! // 랜드마크 사진 올리기 이미지뷰
     var imgURL:URL! = nil // 업로드할 이미지의 URL
     
@@ -57,10 +58,10 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
         if identifier == "LandmarkDone" {
             let info1 = (self.landmarkNameFIeld.text != "")
             let info2 = (self.landmarkDetailField.text != "")
-            let infoFinish = info1 && info2 && imageUploaded
+            let infoFinish = info1 && info2 && imageUploaded && locationSet
         
             if infoFinish == false {
-                let alertController = UIAlertController(title: "Error", message: "랜드마크에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Error", message: "사진과 위치 설정을 포함하여, 랜드마크에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
             
                 alertController.addAction(defaultAction)
@@ -80,6 +81,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
                     landmark.location.append((marker.position.latitude, marker.position.longitude))
                 }
                 CheckLocationSelectedLabel?.text = "설정 완료"
+                locationSet = true
             }
         }
     }
