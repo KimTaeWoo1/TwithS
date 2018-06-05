@@ -16,6 +16,14 @@ protocol YourCellDelegate : class {
     func didPressButton(_ tag: Int)
 }
 
+// 투어의 남은 시간, 진행률을 표시하는 셀
+class tourInfoCell: UITableViewCell {
+    @IBOutlet var clockIcon: UIImageView!
+    @IBOutlet var timeLeft: UILabel!
+    @IBOutlet var proceedRate: UILabel!
+    
+}
+
 // 랜드마크 목록 셀
 class LandmarkCell: UITableViewCell {
     @IBOutlet var LandmarkImage: UIImageView!
@@ -161,6 +169,44 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoCell") as! tourInfoCell
+        
+        let now = NSDate()
+        let DHM: Set<Calendar.Component> = [.day, .hour, .minute]
+        let proceedTime = NSCalendar.current.dateComponents(DHM, from: self.userTourRelation.startTime, to: now as Date);
+        
+        let day = "\(proceedTime.day!)"
+        let hour = "\(proceedTime.hour!)"
+        let minute = "\(proceedTime.minute!)"
+        
+        let timeLimit = self.userTourRelation.tour.timeLimit
+        let timeLeft = timeLimit - ((proceedTime.day!) * 1440 + (proceedTime.hour!) * 60 + (proceedTime.minute!))
+        let dayLeft = "\(timeLeft / 1440)"
+        let hourLeft = "\((timeLeft % 1440) / 60)"
+        let minuteLeft = "\(timeLeft % 60)"
+        
+        cell.clockIcon.image = UIImage(named: "icon-157349_640")
+        if timeLeft >= 0 {
+            if timeLeft >= 1440 { cell.timeLeft.text = "남은시간: " + dayLeft + "일 " + hourLeft + "시간 " + minuteLeft + "분" }
+            else { cell.timeLeft.text = "남은시간: " + hourLeft + "시간 " + minuteLeft + "분" }
+        }
+        
+        let count = userTourLandmarks.count
+        var reached = 0
+        for utl in userTourLandmarks {
+            if utl.state == 1 { reached += 1 }
+        }
+        if count > 0 { cell.proceedRate.text = "\(reached)/\(count) (\(reached * 100 / count)%)" }
+        else { cell.proceedRate.text = "0/0 (0%)" }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
