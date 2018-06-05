@@ -262,13 +262,15 @@ class TourInfoMainVC: UITableViewController {
                         let utl = UserTourLandMark_()
                         utl.userTourRelation.id = utrID
                         utl.user = self.uid
+                        utl.landmark.id = document.documentID
                         
                         let utlRef = self.db.collection("userTourLandmarks").addDocument(data: [
                             "userTourRelation" : utl.userTourRelation.id,
                             "user" : utl.user,
                             "state" : utl.state,
                             "comment" : utl.comment,
-                            "successTime" : utl.successTime
+                            "successTime" : utl.successTime,
+                            "landmark" : utl.landmark.id
                             ])
                     }
                 }

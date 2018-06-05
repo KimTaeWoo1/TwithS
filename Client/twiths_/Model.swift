@@ -43,6 +43,7 @@ class UserTourLandMark_ {
     var id = ""
     var user = ""
     var userTourRelation = UserTourRelation_()
+    var landmark = Landmark_()
     var state = 0
     var image: String = ""
     var comment = ""

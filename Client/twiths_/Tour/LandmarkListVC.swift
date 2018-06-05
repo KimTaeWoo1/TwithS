@@ -69,13 +69,14 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid
     let locationManager = CLLocationManager()
-    var landmarkList:[Landmark_] = []
+    var userTourLandmarks:[UserTourLandMark_] = []
     var Reviews:[Review_] = []
     let cal = NSCalendar.init(calendarIdentifier: NSCalendar.Identifier.gregorian)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = userTourRelation.tour.name
+        let dGroup = DispatchGroup()
         
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -90,27 +91,42 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         }
         
         // 랜드마크 목록에서 투어가 userTourRelation의 투어와 같은 것을 찾아서 랜드마크 정보에 추가한다.
-        db.collection("landmarks").whereField("tour", isEqualTo: self.userTourRelation.tour.id).getDocuments { (querySnapshot, err) in
+        db.collection("userTourLandmarks").whereField("userTourRelation", isEqualTo: self.userTourRelation.id).getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if let documents = querySnapshot?.documents {
                 
-                var landmarks:[Landmark_] = []
                 for document in documents {
-                    let landmark = Landmark_()
-                    landmark.tour.id = document.data()["tour"] as! String
-                    landmark.detail = document.data()["detail"] as! String
-                    landmark.image = document.data()["image"] as! String
-                    landmark.name = document.data()["name"] as! String
+                    dGroup.enter()
+                    let utl = UserTourLandMark_()
                     
-                    landmark.location.append((document.data()["lati1"] as! Double, document.data()["longi1"] as! Double))
-                    landmark.location.append((document.data()["lati2"] as! Double, document.data()["longi2"] as! Double))
-                    landmark.location.append((document.data()["lati3"] as! Double, document.data()["longi3"] as! Double))
-                    landmark.location.append((document.data()["lati4"] as! Double, document.data()["longi4"] as! Double))
- 
-                    landmarks.append(landmark)
+                    utl.user = document.data()["user"] as! String
+                    utl.comment = document.data()["comment"] as! String
+                    utl.state = document.data()["state"] as! Int
+                    utl.successTime = document.data()["successTime"] as! Date
+                    
+                    self.db.collection("landmarks").document(document.data()["landmark"] as! String).getDocument { snapshot, err in
+                        if let err = err {
+                            print("Error getting document: \(err)")
+                        } else if let data = snapshot?.data() {
+                            let landmark = Landmark_()
+                            landmark.tour.id = data["tour"] as! String
+                            landmark.detail = data["detail"] as! String
+                            landmark.image = data["image"] as! String
+                            landmark.name = data["name"] as! String
+                            
+                            landmark.location.append((data["lati1"] as! Double, data["longi1"] as! Double))
+                            landmark.location.append((data["lati2"] as! Double, data["longi2"] as! Double))
+                            landmark.location.append((data["lati3"] as! Double, data["longi3"] as! Double))
+                            landmark.location.append((data["lati4"] as! Double, data["longi4"] as! Double))
+                            utl.landmark = landmark
+                            self.userTourLandmarks.append(utl)
+                            dGroup.leave()
+                        }
+                    }
                 }
-                self.landmarkList = landmarks
+            }
+            dGroup.notify(queue: .main) {   //// 4
                 self.tableView.reloadData()
             }
         }
@@ -153,7 +169,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if mode == 0 { return landmarkList.count } // 코스
+        if mode == 0 { return userTourLandmarks.count } // 코스
         else if mode == 1 { return 1 } // 지도
         else { return Reviews.count } // 리뷰
     }
@@ -163,7 +179,9 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         if mode == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkListREUSE", for: indexPath) as! LandmarkCell
         
-            let ThisLandmark = landmarkList[indexPath.row]
+            let ThisLandmark = self.userTourLandmarks[indexPath.row].landmark
+            print(ThisLandmark.name)
+            print("TEST")
             cell.LandmarkTitle.text = ThisLandmark.name
             cell.LandmarkDescription.text = ThisLandmark.detail
             
@@ -229,7 +247,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     }
     
     func didPressButton(_ tag: Int) {
-        let landmark = landmarkList[tag]
+        let landmark = userTourLandmarks[tag].landmark
         guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
         
         let rect = GMSMutablePath()
@@ -278,7 +296,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             let destTarget = dest.topViewController as! LandmarkInfoVC
             
             destTarget.tourName = self.userTourRelation.tour.name
-            destTarget.ThisLandmark = self.landmarkList[(self.tableView.indexPathForSelectedRow?.row)!]
+            destTarget.ThisLandmark = self.userTourLandmarks[(self.tableView.indexPathForSelectedRow?.row)!].landmark
         }
     }
 
