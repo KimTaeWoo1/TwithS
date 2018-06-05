@@ -18,7 +18,7 @@ class SelfCreateTourVC: UITableViewController {
         super.viewDidLoad()
         let dGroup = DispatchGroup()
         
-        self.db.collection("Tours").whereField("creator", isEqualTo: self.uid).getDocuments { querySnapshot, err in
+        self.db.collection("tours").whereField("creator", isEqualTo: self.uid).getDocuments { querySnapshot, err in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if let documents = querySnapshot?.documents {
