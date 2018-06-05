@@ -26,7 +26,7 @@ class TourInfoMainVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = ThisTour.name
     }
     
     override func didReceiveMemoryWarning() {

@@ -75,6 +75,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = userTourRelation.tour.name
         
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
