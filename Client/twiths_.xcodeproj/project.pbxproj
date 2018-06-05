@@ -42,6 +42,7 @@
 		5B8AF56020B6F7E900A92405 /* Database_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AF55620B6F7E900A92405 /* Database_test.swift */; };
 		5BAAC72820B5C53C00761C86 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAAC72720B5C53C00761C86 /* LoginViewController.swift */; };
 		5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAAC72920B5C54700761C86 /* SignupViewController.swift */; };
+		5BCB192020C675E50084BABE /* LocationCertificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCB191F20C675E50084BABE /* LocationCertificationVC.swift */; };
 		5BCBA27F20C3BA380000F345 /* CompleteTourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBA27E20C3BA380000F345 /* CompleteTourVC.swift */; };
 		5BCBA28120C3BCCA0000F345 /* SelfCreateTourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBA28020C3BCCA0000F345 /* SelfCreateTourVC.swift */; };
 		5BD40AD820B6FE13002D888F /* TourCreate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BD40AD520B6FE12002D888F /* TourCreate.storyboard */; };
@@ -91,6 +92,7 @@
 		5B8AF55620B6F7E900A92405 /* Database_test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database_test.swift; sourceTree = "<group>"; };
 		5BAAC72720B5C53C00761C86 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5BAAC72920B5C54700761C86 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		5BCB191F20C675E50084BABE /* LocationCertificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationCertificationVC.swift; path = twiths_/Tour/LocationCertificationVC.swift; sourceTree = SOURCE_ROOT; };
 		5BCBA27E20C3BA380000F345 /* CompleteTourVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTourVC.swift; sourceTree = "<group>"; };
 		5BCBA28020C3BCCA0000F345 /* SelfCreateTourVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCreateTourVC.swift; sourceTree = "<group>"; };
 		5BD40AD520B6FE12002D888F /* TourCreate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TourCreate.storyboard; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */,
 				00A2654820B8471B00B80AE6 /* TourInfoVC.swift */,
 				00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */,
+				5BCB191F20C675E50084BABE /* LocationCertificationVC.swift */,
 			);
 			path = Tour;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				5B6AC1D020A980A3006EF078 /* AppDelegate.swift in Sources */,
 				00A2654720B8470C00B80AE6 /* LandmarkListVC.swift in Sources */,
 				00A2654320B846DE00B80AE6 /* DBFindHelper.swift in Sources */,
+				5BCB192020C675E50084BABE /* LocationCertificationVC.swift in Sources */,
 				5B8AF54C20B6F7CF00A92405 /* Tour_Review.swift in Sources */,
 				5B3423C520BC581F007B2D40 /* TourInfoMainVC.swift in Sources */,
 				5B8AF55720B6F7E900A92405 /* Tour_Find.swift in Sources */,

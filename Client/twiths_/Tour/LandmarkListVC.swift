@@ -21,6 +21,8 @@ class LandmarkCell: UITableViewCell {
     @IBOutlet var LandmarkImage: UIImageView!
     @IBOutlet var LandmarkTitle: UILabel!
     @IBOutlet var LandmarkDescription: UILabel!
+    @IBOutlet weak var submitButton: UIButton!
+    
     weak var cellDelegate: YourCellDelegate?
     
     @IBAction func submitButtonClicked(_ sender: UIButton) {
@@ -77,6 +79,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         super.viewDidLoad()
         self.title = userTourRelation.tour.name
         let dGroup = DispatchGroup()
+        var utlList:[UserTourLandMark_] = []
         
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -91,21 +94,22 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         }
         
         // 랜드마크 목록에서 투어가 userTourRelation의 투어와 같은 것을 찾아서 랜드마크 정보에 추가한다.
-        db.collection("userTourLandmarks").whereField("userTourRelation", isEqualTo: self.userTourRelation.id).getDocuments { (querySnapshot, err) in
+        db.collection("userTourLandmarks").whereField("userTourRelation", isEqualTo: self.userTourRelation.id).addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if let documents = querySnapshot?.documents {
-                
+                utlList = []
                 for document in documents {
                     dGroup.enter()
                     let utl = UserTourLandMark_()
                     
+                    utl.id = document.documentID
                     utl.user = document.data()["user"] as! String
                     utl.comment = document.data()["comment"] as! String
                     utl.state = document.data()["state"] as! Int
                     utl.successTime = document.data()["successTime"] as! Date
                     
-                    self.db.collection("landmarks").document(document.data()["landmark"] as! String).getDocument { snapshot, err in
+                    self.db.collection("landmarks").document(document.data()["landmark"] as! String).addSnapshotListener { snapshot, err in
                         if let err = err {
                             print("Error getting document: \(err)")
                         } else if let data = snapshot?.data() {
@@ -120,13 +124,14 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                             landmark.location.append((data["lati3"] as! Double, data["longi3"] as! Double))
                             landmark.location.append((data["lati4"] as! Double, data["longi4"] as! Double))
                             utl.landmark = landmark
-                            self.userTourLandmarks.append(utl)
+                            utlList.append(utl)
                             dGroup.leave()
                         }
                     }
                 }
             }
             dGroup.notify(queue: .main) {   //// 4
+                self.userTourLandmarks = utlList
                 self.tableView.reloadData()
             }
         }
@@ -179,26 +184,32 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         if mode == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkListREUSE", for: indexPath) as! LandmarkCell
         
-            let ThisLandmark = self.userTourLandmarks[indexPath.row].landmark
-            print(ThisLandmark.name)
-            print("TEST")
-            cell.LandmarkTitle.text = ThisLandmark.name
-            cell.LandmarkDescription.text = ThisLandmark.detail
-            
-            cell.cellDelegate = self
-            cell.tag = indexPath.row
-            
-            // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
-            let imgName = ThisLandmark.image
-            let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
-            
-            // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
-            storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
-                if Error != nil {
-                    // 오류가 발생함.
-                } else {
-                    cell.LandmarkImage.image = UIImage(data: Data!)
+            let userLandmark = self.userTourLandmarks[indexPath.row]
+            if userLandmark.state == 0 {
+                let ThisLandmark = userLandmark.landmark
+                cell.LandmarkTitle.text = ThisLandmark.name
+                cell.LandmarkDescription.text = ThisLandmark.detail
+                cell.submitButton.tag = indexPath.row
+                cell.cellDelegate = self
+                
+                // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+                let imgName = ThisLandmark.image
+                let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+                
+                // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+                storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+                    if Error != nil {
+                        // 오류가 발생함.
+                    } else {
+                        cell.LandmarkImage.image = UIImage(data: Data!)
+                    }
                 }
+            } else {
+                cell.LandmarkTitle.text = userLandmark.landmark.name
+                cell.LandmarkDescription.text = userLandmark.comment
+                
+                // 버튼을 없애고 성공 라벨로 변경 혹은 버튼을누를수 없게..
+                // 이미지 추가
             }
 
             return cell
@@ -248,22 +259,25 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     
     func didPressButton(_ tag: Int) {
         let landmark = userTourLandmarks[tag].landmark
+
         guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
         
         let rect = GMSMutablePath()
         for marker in landmark.location {
-            print("\(marker.0)   \(marker.1)")
             rect.add(CLLocationCoordinate2D(latitude: marker.0, longitude: marker.1))
         }
         let polygon = GMSPolygon(path: rect)
         if GMSGeometryContainsLocation(locValue, polygon.path!, true) {
-            let alertController = UIAlertController(title: "Info", message: "4개의 핀이 찍혀야합니다.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+        }
+        else {
+            
+            self.navigationController?.popViewController(animated: true)
+            let alertController = UIAlertController(title: "Info", message: "아직 위치에 도달하지 않으셨군요!!\n좀 더 가까이 가서 인증해보세요!!", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: { (alert: UIAlertAction!) in
+            })
             
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
-        }
-        else {
         }
     }
     
@@ -275,7 +289,9 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     }
     
     @IBAction func TourListToLandmarkInfo(segue: UIStoryboardSegue){
-        
+        if segue.identifier == "locationCertificateDone" {
+            self.tableView.reloadData()
+        }
     }
     // MARK: - Navigation
 
@@ -291,12 +307,20 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         }
             
         // 랜드마크 정보 보기
-        else if segue.identifier == "LandmarkInfoGO" {
+        if segue.identifier == "LandmarkInfoGO" {
             let dest = segue.destination as! UINavigationController
             let destTarget = dest.topViewController as! LandmarkInfoVC
             
             destTarget.tourName = self.userTourRelation.tour.name
             destTarget.ThisLandmark = self.userTourLandmarks[(self.tableView.indexPathForSelectedRow?.row)!].landmark
+        }
+        
+        if segue.identifier == "locationCertificationSegue" {
+            if let nextVC = segue.destination as? LocationCertificationVC {
+                if let tag = (sender as? UIButton)?.tag {
+                    nextVC.utl = userTourLandmarks[tag]
+                }
+            }
         }
     }
 

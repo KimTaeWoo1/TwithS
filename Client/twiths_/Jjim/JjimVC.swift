@@ -36,14 +36,14 @@ class JjimVC: UITableViewController {
         let uid = Auth.auth().currentUser?.uid as! String
         let dGroup = DispatchGroup()
         
-        self.db.collection("userTourRelations").whereField("state", isEqualTo: 1).whereField("user", isEqualTo: uid).addSnapshotListener { (querySnapshot, err) in
+        self.db.collection("userTourRelations").whereField("state", isEqualTo: 1).whereField("user", isEqualTo: uid).getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
                     dGroup.enter()
                     let tour = Tour_()
-                    self.db.collection("tours").document(document.data()["tour"] as! String).addSnapshotListener { (query, error) in
+                    self.db.collection("tours").document(document.data()["tour"] as! String).getDocument { (query, error) in
                         if let query = query, query.exists {
                             tour.id = query.documentID
                             tour.name = query.data()!["name"] as! String

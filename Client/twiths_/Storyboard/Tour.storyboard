@@ -12,7 +12,7 @@
         <!--Navigation Controller-->
         <scene sceneID="kCn-P3-CHP">
             <objects>
-                <navigationController id="IeA-wt-GRB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationController" id="IeA-wt-GRB" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="f9K-ck-OMj">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -102,6 +102,7 @@
                                     <outlet property="LandmarkDescription" destination="UJC-ZM-LFx" id="eBH-N0-Of7"/>
                                     <outlet property="LandmarkImage" destination="9SE-m7-3Gu" id="XK4-kb-Tjf"/>
                                     <outlet property="LandmarkTitle" destination="jRe-fi-Tgb" id="vHB-kS-z7v"/>
+                                    <outlet property="submitButton" destination="hdX-M3-4Rq" id="UJo-3i-Ixf"/>
                                     <segue destination="DPk-WK-Efk" kind="presentation" identifier="LandmarkInfoGO" id="MCd-Ct-39q"/>
                                 </connections>
                             </tableViewCell>
@@ -176,7 +177,7 @@
         <!--인증하기-->
         <scene sceneID="bhz-BX-GdX">
             <objects>
-                <tableViewController id="XkJ-IR-C4m" sceneMemberID="viewController">
+                <tableViewController id="XkJ-IR-C4m" customClass="LocationCertificationVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sjj-2A-x7p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -184,7 +185,7 @@
                         <sections>
                             <tableViewSection id="mt0-yw-8e3">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Qdg-tv-GKC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Qdg-tv-GKC">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qdg-tv-GKC" id="071-kp-z02">
@@ -199,7 +200,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="di7-S4-Xsr">
-                                                    <rect key="frame" x="196" y="12" width="152" height="21"/>
+                                                    <rect key="frame" x="195" y="12" width="152" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -208,7 +209,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="180" id="ODy-vY-2ER">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="180" id="ODy-vY-2ER">
                                         <rect key="frame" x="0.0" y="44" width="375" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ODy-vY-2ER" id="GhE-dg-adW">
@@ -219,14 +220,13 @@
                                                     <rect key="frame" x="16" y="11" width="343" height="158"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="180" id="t4N-6w-S7L">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="180" id="t4N-6w-S7L">
                                         <rect key="frame" x="0.0" y="224" width="375" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t4N-6w-S7L" id="rhj-Uz-Ssi">
@@ -250,10 +250,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="인증하기" id="kCh-qk-iES">
-                        <barButtonItem key="rightBarButtonItem" title="완료" id="H5b-TK-v6S"/>
+                        <barButtonItem key="rightBarButtonItem" title="완료" id="H5b-TK-v6S">
+                            <connections>
+                                <segue destination="s4E-LD-Dvf" kind="unwind" identifier="locationCertificateDone" unwindAction="TourListToLandmarkInfoWithSegue:" id="2pl-eK-755"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="CertificationTimeLabel" destination="di7-S4-Xsr" id="t56-Ea-fus"/>
+                        <outlet property="textField" destination="oVy-2S-QYq" id="PZU-JG-2bf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWy-K5-KMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="s4E-LD-Dvf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4930" y="-27"/>
         </scene>
