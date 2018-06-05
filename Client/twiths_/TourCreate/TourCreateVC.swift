@@ -27,6 +27,11 @@ class static4: UITableViewCell {
     @IBOutlet var imgView: UIImageView!
 }
 
+class static5: UITableViewCell {
+    
+    @IBOutlet var landmarkCount: UILabel!
+}
+
 class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var landmarks:[Landmark_] = []
     var images:[UIImage] = []
@@ -96,7 +101,10 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 return cell
                 
             default:
-                let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! static5
+                
+                cell.landmarkCount.text = "현재 랜드마크 \(landmarks.count)개"
+                
                 return cell
             }
         }
@@ -192,7 +200,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "createDone" {
-            // 모든 정보를 입력하지 않은 경우 오류 메시지 출력
+            // 모든 정보를 입력하지 않은 경우 또는 랜드마크 개수가 3개 미만인 경우 오류 메시지 출력
             let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
             let cell3 = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! TourLimitTimeCell
@@ -202,12 +210,12 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             let info3 = (cell3.limitDay.text != "")
             let info4 = (cell3.limitHour.text != "")
             let info5 = (cell3.limitMin.text != "")
-            let info6 = (landmarks.count > 0)
+            let info6 = (landmarks.count >= 3)
             
             let infoFinish = info1 && info2 && info3 && info4 && info5 && info6 && imageUploaded
             
             if infoFinish == false {
-                let alertController = UIAlertController(title: "Error", message: "랜드마크를 1개 이상 포함하여, 투어에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Error", message: "랜드마크를 3개 이상 포함하여, 투어에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
                 
                 alertController.addAction(defaultAction)
