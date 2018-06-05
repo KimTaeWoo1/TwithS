@@ -183,7 +183,7 @@ class MainVC: UITableViewController {
             }))
             
             // '아니오'를 클릭하면
-            alertController.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "아니오", style: .default, handler: nil))
             
             self.present(alertController, animated: true, completion: nil)
         }

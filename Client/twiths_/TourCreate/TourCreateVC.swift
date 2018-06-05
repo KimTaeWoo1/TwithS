@@ -46,6 +46,15 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
     }
     // MARK: - Table view data source
     
+    // 숫자 (0~9) 만 입력 가능하게 하기
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard NSCharacterSet(charactersIn: "0123456789").isSuperset(of: NSCharacterSet(charactersIn: string) as CharacterSet) else {
+            print("wrong character")
+            return false
+        }
+        return true
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 2
@@ -74,6 +83,11 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourLimitTimeCell
+                
+                    cell.limitDay.delegate = self
+                    cell.limitHour.delegate = self
+                    cell.limitMin.delegate = self
+                
                 return cell
                 
             case 3:
