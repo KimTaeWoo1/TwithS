@@ -9,6 +9,11 @@
 import UIKit
 import Firebase
 
+class JjimHeader:UITableViewCell {
+    @IBOutlet var JjimIcon: UIImageView!
+    @IBOutlet var JjimCount: UILabel!
+}
+
 class JjimCell:UITableViewCell {
     @IBOutlet var titleCell: UILabel!
     @IBOutlet var subtitleCell: UILabel!
@@ -71,6 +76,19 @@ class JjimVC: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JjimHeader") as! JjimHeader
+        
+        cell.JjimIcon.image = UIImage(named: "Jjim-icon")
+        cell.JjimCount.text = "찜한 투어 개수: \(self.tours.count)개"
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50.0
     }
     
     override func didReceiveMemoryWarning() {
