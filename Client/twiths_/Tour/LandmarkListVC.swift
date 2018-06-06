@@ -114,6 +114,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                     utl.id = document.documentID
                     utl.user = document.data()["user"] as! String
                     utl.comment = document.data()["comment"] as! String
+                    utl.image = document.data()["image"] as! String
                     utl.state = document.data()["state"] as! Int
                     utl.successTime = document.data()["successTime"] as! Date
                     
@@ -233,30 +234,36 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             // 이미지 뷰를 원형으로
             cell.LandmarkImage.layer.cornerRadius = cell.LandmarkImage.frame.size.width / 2
             cell.LandmarkImage.layer.masksToBounds = true
-        
             let userLandmark = self.userTourLandmarks[indexPath.row]
+            let ThisLandmark = userLandmark.landmark
+            print("---\(ThisLandmark.image)---\(userLandmark.image)")
+        
+            // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+            var imgName = ""
+            if userLandmark.state == 0 { imgName = ThisLandmark.image }
+            else { imgName = userLandmark.image }
+            print("---\(imgName)")
+            
+            let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+            
+            // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+            storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+                if Error != nil {
+                    // 오류가 발생함.
+                } else {
+                    cell.LandmarkImage.image = UIImage(data: Data!)
+                }
+            }
+        
             if userLandmark.state == 0 {
-                let ThisLandmark = userLandmark.landmark
                 cell.LandmarkTitle.text = ThisLandmark.name
                 cell.LandmarkDescription.text = ThisLandmark.detail
                 cell.submitButton.tag = indexPath.row
                 cell.cellDelegate = self
-                
-                // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
-                let imgName = ThisLandmark.image
-                let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
-                
-                // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
-                storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
-                    if Error != nil {
-                        // 오류가 발생함.
-                    } else {
-                        cell.LandmarkImage.image = UIImage(data: Data!)
-                    }
-                }
             } else {
                 cell.LandmarkTitle.text = userLandmark.landmark.name
                 cell.LandmarkDescription.text = userLandmark.comment
+                cell.submitButton.setTitle("성공", for: UIControlState.normal)
                 
                 // 버튼을 없애고 성공 라벨로 변경 혹은 버튼을누를수 없게..
                 // 이미지 추가
@@ -324,6 +331,8 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         if GMSGeometryContainsLocation(locValue, polygon.path!, true) {
         }
         else {
+            
+            print("\(locValue.latitude)/\(locValue.longitude)") // test
             
             self.navigationController?.popViewController(animated: true)
             let alertController = UIAlertController(title: "Info", message: "아직 위치에 도달하지 않으셨군요!!\n좀 더 가까이 가서 인증해보세요!!", preferredStyle: .alert)

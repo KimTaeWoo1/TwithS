@@ -334,7 +334,8 @@ class TourInfoMainVC: UITableViewController {
                             "state" : utl.state,
                             "comment" : utl.comment,
                             "successTime" : utl.successTime,
-                            "landmark" : utl.landmark.id
+                            "landmark" : utl.landmark.id,
+                            "image" : ""
                             ])
                     }
                 }
