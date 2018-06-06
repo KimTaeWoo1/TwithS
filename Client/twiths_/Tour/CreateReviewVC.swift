@@ -85,6 +85,7 @@ class CreateReviewVC: UITableViewController {
                 "name" : Auth.auth().currentUser?.displayName,
                 "tour" : tour.id,
                 "stars" : StarRating.rating,
+                "comment" : textField.text,
                 "createTime" : Date()
                 ])
         }
