@@ -80,10 +80,9 @@ class Review_ {
     var id = 0
     var creator = ""
     var tour = Tour_()
-    var stars = 0
+    var stars:Double = 0.0
     var createTime:Date = Date()
-    var updateTime:Date = Date()
-    var image:String = ""
+    var comment:String = ""
     
     init(){}
 }

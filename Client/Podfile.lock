@@ -11,6 +11,7 @@ PODS:
   - BoringSSL/Implementation (10.0.3):
     - BoringSSL/Interface (= 10.0.3)
   - BoringSSL/Interface (10.0.3)
+  - Cosmos (13.0.0)
   - FBSDKCoreKit (4.33.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.33.0):
@@ -112,6 +113,7 @@ PODS:
   - Protobuf (3.5.0)
 
 DEPENDENCIES:
+  - Cosmos (~> 13.0)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Auth
@@ -126,6 +128,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
     - BoringSSL
+    - Cosmos
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -152,6 +155,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: c46efb47593135382bc0934196f16d2f726f5f36
+  Cosmos: af3973becc045af335b64498c9812034876b7661
   FBSDKCoreKit: 572b047a7e029bc44542bcf8a59414e7ff2b543e
   FBSDKLoginKit: 88cb456349cfb3b554427ce4f8b43729d85dfb40
   Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
@@ -175,6 +179,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
 
-PODFILE CHECKSUM: 3f47367200813724aafbb4404708e52d02a977e3
+PODFILE CHECKSUM: 564a576406b0d21280feeb61a890cf9615b05b86
 
 COCOAPODS: 1.5.2

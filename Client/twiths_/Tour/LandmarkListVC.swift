@@ -156,10 +156,10 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                     review.createTime = document.data()["createTime"] as! Date
                     review.creator = document.data()["creator"] as! String
                     review.id = document.data()["id"] as! Int // 리뷰를 쓸 때마다 전체 리뷰 수를 카운트하여 ID를 자동으로 산출한다고 가정
-                    review.image = document.data()["image"] as! String
-                    review.stars = document.data()["stars"] as! Int
+//                    review.image = document.data()["image"] as! String
+                    review.stars = document.data()["stars"] as! Double
                     review.tour.id = document.data()["tour"] as! String
-                    review.updateTime = document.data()["updateTime"] as! Date
+//                    review.updateTime = document.data()["updateTime"] as! Date
                     Revs.append(review)
                 }
                 self.Reviews = Revs
@@ -285,8 +285,8 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             cell.reviewImg.layer.masksToBounds = true
             
             var starText = ""
-            for _ in 0..<ThisReview.stars { starText += "★" }
-            for _ in ThisReview.stars..<5 { starText += "☆" }
+//            for _ in 0..<ThisReview.stars { starText += "★" }
+//            for _ in ThisReview.stars..<5 { starText += "☆" }
             let date = ThisReview.createTime
             let year = cal!.component(NSCalendar.Unit.year, from: date)
             let month = cal!.component(NSCalendar.Unit.month, from: date)
@@ -295,17 +295,17 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             cell.reviewSubtitle.text = "\(starText) / \(year)년 \(month)월 \(day)일"
             
             // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
-            let imgName = ThisReview.image
-            let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+//            let imgName = ThisReview.image
+//            let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
             
             // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
-            storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
-                if Error != nil {
-                    // 오류가 발생함.
-                } else {
-                    cell.reviewImg.image = UIImage(data: Data!)
-                }
-            }
+//            storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+//                if Error != nil {
+//                    // 오류가 발생함.
+//                } else {
+//                    cell.reviewImg.image = UIImage(data: Data!)
+//                }
+//            }
             
             return cell
         }
@@ -371,12 +371,22 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                         print("Document successfully updated")
                     }
                 }
-                let alertController = UIAlertController(title: "Info", message: "축하합니다!!!\n투어를 완료하셨습니다.\n걸린시간 : ", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: { (alert: UIAlertAction!) in
-                    self.navigationController?.popToRootViewController(animated: true)
+                let alertController = UIAlertController(title: "Info", message: "축하합니다!!!\n투어를 완료하셨습니다.\n이 투어에 대한 리뷰를 작성하시겠습니까? ", preferredStyle: .alert)
+                
+                let okayAction = UIAlertAction(title: "예", style: .cancel, handler:{ (alert: UIAlertAction!) in
+                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateReviewRoot") as! UINavigationController
+                    let topController = controller.topViewController as! CreateReviewVC
+                    topController.tour = self.userTourRelation.tour
+                    
+                    self.present(controller,animated:true,completion:nil)
+                    
                 })
                 
-                alertController.addAction(defaultAction)
+                let noAction = UIAlertAction(title: "아니요", style: .default, handler: { (alert: UIAlertAction!) in
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+                alertController.addAction(okayAction)
+                alertController.addAction(noAction)
                 self.present(alertController, animated: true, completion: nil)
             }
             self.tableView.reloadData()

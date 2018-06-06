@@ -16,6 +16,8 @@ pod 'FBSDKLoginKit'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
 
+pod 'Cosmos', '~> 16.0'
+
   # Pods for twiths_
 
 end
