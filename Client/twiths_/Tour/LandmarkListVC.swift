@@ -11,6 +11,7 @@ import Firebase
 import MapKit
 import CoreLocation
 import GoogleMaps
+import Cosmos
 
 protocol YourCellDelegate : class {
     func didPressButton(_ tag: Int)
@@ -47,8 +48,9 @@ class MapCell:UITableViewCell {
 // 리뷰 뷰 셀
 class ReviewCell:UITableViewCell {
     @IBOutlet var reviewImg: UIImageView!
-    @IBOutlet var reviewTitle: UILabel!
     @IBOutlet var reviewSubtitle: UILabel!
+    @IBOutlet weak var starRating: CosmosView!
+    @IBOutlet weak var nameLabel: UILabel!
 }
 
 class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManagerDelegate {
@@ -156,11 +158,12 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                     let review = Review_()
                     review.createTime = document.data()["createTime"] as! Date
                     review.creator = document.data()["creator"] as! String
-                    review.id = document.data()["id"] as! Int // 리뷰를 쓸 때마다 전체 리뷰 수를 카운트하여 ID를 자동으로 산출한다고 가정
-//                    review.image = document.data()["image"] as! String
+                    review.id = document.documentID as! String
+                    review.name = document.data()["name"] as! String
                     review.stars = document.data()["stars"] as! Double
                     review.tour.id = document.data()["tour"] as! String
-//                    review.updateTime = document.data()["updateTime"] as! Date
+                    review.comment = document.data()["comment"] as! String
+
                     Revs.append(review)
                 }
                 self.Reviews = Revs
@@ -285,21 +288,19 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             
             let ThisReview = Reviews[indexPath.row]
             
-            cell.reviewTitle.text = ThisReview.creator
+            cell.starRating.rating = ThisReview.stars
+            cell.nameLabel.text = ThisReview.name
             
             // 이미지 뷰를 원형으로
-            cell.reviewImg.layer.cornerRadius = cell.reviewImg.frame.size.width / 2
-            cell.reviewImg.layer.masksToBounds = true
+//            cell.reviewImg.layer.cornerRadius = cell.reviewImg.frame.size.width / 2
+//            cell.reviewImg.layer.masksToBounds = true
             
-            var starText = ""
-//            for _ in 0..<ThisReview.stars { starText += "★" }
-//            for _ in ThisReview.stars..<5 { starText += "☆" }
-            let date = ThisReview.createTime
-            let year = cal!.component(NSCalendar.Unit.year, from: date)
-            let month = cal!.component(NSCalendar.Unit.month, from: date)
-            let day = cal!.component(NSCalendar.Unit.day, from: date)
+//            let date = ThisReview.createTime
+//            let year = cal!.component(NSCalendar.Unit.year, from: date)
+//            let month = cal!.component(NSCalendar.Unit.month, from: date)
+//            let day = cal!.component(NSCalendar.Unit.day, from: date)
             
-            cell.reviewSubtitle.text = "\(starText) / \(year)년 \(month)월 \(day)일"
+            cell.reviewSubtitle.text = ThisReview.comment
             
             // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
 //            let imgName = ThisReview.image
@@ -347,7 +348,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if mode == 0 { return 127.0 } // 코스
         else if mode == 1 { return 250.0 } // 지도
-        else { return 65.0 } // 리뷰
+        else { return 80.0 } // 리뷰
     }
     @IBAction func TourListToLandmarkInfo(segue: UIStoryboardSegue){
     }

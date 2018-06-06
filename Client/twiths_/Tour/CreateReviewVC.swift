@@ -82,6 +82,7 @@ class CreateReviewVC: UITableViewController {
             let uid = Auth.auth().currentUser?.uid as! String
             db.collection("reviews").addDocument(data: [
                 "creator" : uid,
+                "name" : Auth.auth().currentUser?.displayName,
                 "tour" : tour.id,
                 "stars" : StarRating.rating,
                 "createTime" : Date()

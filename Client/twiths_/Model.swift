@@ -56,7 +56,6 @@ class UserTourLandMark_ {
 
 class UserProfile_{
     var user:Int = 0
-    var createTours:[Int] = []
     var displayName:String = ""
     
     init(){}
@@ -77,8 +76,9 @@ class UserTourRelation_ {
 
 
 class Review_ {
-    var id = 0
+    var id = ""
     var creator = ""
+    var name = ""
     var tour = Tour_()
     var stars:Double = 0.0
     var createTime:Date = Date()
