@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IeA-wt-GRB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IeA-wt-GRB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,36 +34,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" id="Lkh-go-bhe">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="7pb-4O-XnH">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LvX-md-arw">
-                                    <rect key="frame" x="0.0" y="0.0" width="125" height="44"/>
-                                    <state key="normal" title="코스"/>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zP4-Ax-85x">
+                                    <rect key="frame" x="8" y="13" width="359" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="코스"/>
+                                        <segment title="지도"/>
+                                        <segment title="리뷰"/>
+                                    </segments>
                                     <connections>
-                                        <action selector="courseShow:" destination="bL3-f5-AND" eventType="touchUpInside" id="exy-vu-KGJ"/>
+                                        <action selector="SelectionChanged:" destination="bL3-f5-AND" eventType="valueChanged" id="ITu-m4-9bE"/>
                                     </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHD-1B-qPN">
-                                    <rect key="frame" x="125" y="0.0" width="125" height="44"/>
-                                    <state key="normal" title="지도"/>
-                                    <connections>
-                                        <action selector="mapShow:" destination="bL3-f5-AND" eventType="touchUpInside" id="e9L-Sd-GUQ"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkL-jx-wUy">
-                                    <rect key="frame" x="250" y="0.0" width="125" height="44"/>
-                                    <state key="normal" title="리뷰"/>
-                                    <connections>
-                                        <action selector="reviewShow:" destination="bL3-f5-AND" eventType="touchUpInside" id="Akb-Ez-G2c"/>
-                                    </connections>
-                                </button>
+                                </segmentedControl>
                             </subviews>
-                        </stackView>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourInfoCell" rowHeight="50" id="a05-1U-QrW" customClass="tourInfoCell" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="83" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a05-1U-QrW" id="FWy-hR-YaH">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -95,7 +88,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LandmarkListREUSE" rowHeight="127" id="OAl-5O-hal" customClass="LandmarkCell" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="122" width="375" height="127"/>
+                                <rect key="frame" x="0.0" y="133" width="375" height="127"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OAl-5O-hal" id="SlJ-9j-dgv">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="126.5"/>
@@ -140,7 +133,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MapREUSE" rowHeight="250" id="uAu-u0-is1" customClass="MapCell" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="249" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="260" width="375" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uAu-u0-is1" id="aJx-PU-PrF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
@@ -157,7 +150,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewREUSE" rowHeight="100" id="gry-hV-mMe" customClass="ReviewCell" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="499" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="510" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gry-hV-mMe" id="77p-Dx-43v">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
@@ -571,6 +564,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="vPu-s4-xdC"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GCq-F6-S3P" userLabel="First Responder" sceneMemberID="firstResponder"/>

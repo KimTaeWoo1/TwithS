@@ -11,6 +11,13 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
+class ldmkCell:UITableViewCell {
+    
+    @IBOutlet var imgView: UIImageView!
+    @IBOutlet var landmarkTitle: UILabel!
+    @IBOutlet var landmarkDescription: UILabel!
+}
+
 class TourNameCell: UITableViewCell {
     @IBOutlet weak var tourNameField: UITextField!
 }
@@ -109,11 +116,15 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             }
         }
         // Configure the cell...
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ldmkCell
         
-        cell.textLabel?.text = landmarks[indexPath.row].name
-        cell.detailTextLabel?.text = landmarks[indexPath.row].detail
-        cell.imageView?.image = images[indexPath.row]
+        // 이미지 뷰를 원형으로
+        cell.imgView.layer.cornerRadius = cell.imgView.frame.size.width / 2
+        cell.imgView.layer.masksToBounds = true
+        
+        cell.landmarkTitle.text = landmarks[indexPath.row].name
+        cell.landmarkDescription.text = landmarks[indexPath.row].detail
+        cell.imgView.image = images[indexPath.row]
         
         return cell
     }
@@ -148,7 +159,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         if indexPath.section == 0 && indexPath.row == 3 {
             return 200
         }
-        return 60
+        return 70
     }
     
     @IBAction func LandmarkCreateToTourCreateSegue(segue:UIStoryboardSegue) {

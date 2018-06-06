@@ -47,7 +47,6 @@ class MapCell:UITableViewCell {
 
 // 리뷰 뷰 셀
 class ReviewCell:UITableViewCell {
-    @IBOutlet var reviewImg: UIImageView!
     @IBOutlet var reviewSubtitle: UILabel!
     @IBOutlet weak var starRating: CosmosView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -57,21 +56,10 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
 
     var mode:Int = 0 // 0은 코스, 1은 지도, 2는 리뷰
     
-    // '코스' 버튼을 누르면 코스 버튼 띄우기
-    @IBAction func courseShow(_ sender: Any) {
-        mode = 0
-        self.tableView.reloadData()
-    }
-    
-    // '지도' 버튼을 누르면 지도 띄우기
-    @IBAction func mapShow(_ sender: Any) {
-        mode = 1
-        self.tableView.reloadData()
-    }
-    
-    // '리뷰' 버튼을 누르면 리뷰 띄우기
-    @IBAction func reviewShow(_ sender: Any) {
-        mode = 2
+    // 코스, 지도, 리뷰 버튼을 누르면 각각  코스, 지도, 리뷰 띄우기
+    @IBAction func SelectionChanged(_ sender: UISegmentedControl) {
+        
+        mode = sender.selectedSegmentIndex
         self.tableView.reloadData()
     }
     
@@ -191,15 +179,19 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         let minute = "\(proceedTime.minute!)"
         
         let timeLimit = self.userTourRelation.tour.timeLimit
-        let timeLeft = timeLimit - ((proceedTime.day!) * 1440 + (proceedTime.hour!) * 60 + (proceedTime.minute!))
+        
+        // timeLeft를 기존 남은 시간에서 진행한 시간을 표시하는 것으로 변경
+        // let timeLeft = timeLimit - ((proceedTime.day!) * 1440 + (proceedTime.hour!) * 60 + (proceedTime.minute!))
+        let timeLeft = (proceedTime.day!) * 1440 + (proceedTime.hour!) * 60 + (proceedTime.minute!)
+        
         let dayLeft = "\(timeLeft / 1440)"
         let hourLeft = "\((timeLeft % 1440) / 60)"
         let minuteLeft = "\(timeLeft % 60)"
         
         cell.clockIcon.image = UIImage(named: "icon-157349_640")
         if timeLeft >= 0 {
-            if timeLeft >= 1440 { cell.timeLeft.text = "남은시간: " + dayLeft + "일 " + hourLeft + "시간 " + minuteLeft + "분" }
-            else { cell.timeLeft.text = "남은시간: " + hourLeft + "시간 " + minuteLeft + "분" }
+            if timeLeft >= 1440 { cell.timeLeft.text = "진행한 시간: " + dayLeft + "일 " + hourLeft + "시간 " + minuteLeft + "분" }
+            else { cell.timeLeft.text = "진행한 시간: " + hourLeft + "시간 " + minuteLeft + "분" }
         }
         
         let count = userTourLandmarks.count
