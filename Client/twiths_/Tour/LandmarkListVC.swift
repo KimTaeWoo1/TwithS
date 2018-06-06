@@ -156,7 +156,6 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                     let review = Review_()
                     review.createTime = document.data()["createTime"] as! Date
                     review.creator = document.data()["creator"] as! String
-                    review.id = document.data()["id"] as! Int // 리뷰를 쓸 때마다 전체 리뷰 수를 카운트하여 ID를 자동으로 산출한다고 가정
 //                    review.image = document.data()["image"] as! String
                     review.stars = document.data()["stars"] as! Double
                     review.tour.id = document.data()["tour"] as! String
