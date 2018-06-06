@@ -327,7 +327,9 @@
         <scene sceneID="tkg-Pv-mhF">
             <objects>
                 <navigationController id="DQP-nY-Hkf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" id="z7C-XC-iov"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="home_Icon" selectedImage="home_Icon" id="z7C-XC-iov">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fnI-5z-NU0">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -342,4 +344,7 @@
             <point key="canvasLocation" x="456.80000000000001" y="-39.130434782608695"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home_Icon" width="36" height="36"/>
+    </resources>
 </document>

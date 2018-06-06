@@ -362,11 +362,11 @@
             </objects>
             <point key="canvasLocation" x="929" y="2098"/>
         </scene>
-        <!--마이페이지-->
+        <!--내정보-->
         <scene sceneID="NfQ-N7-dB0">
             <objects>
                 <navigationController id="xu8-eW-k5i" customClass="MyP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="마이페이지" id="Gda-Rk-pmb"/>
+                    <tabBarItem key="tabBarItem" title="내정보" image="mypage-icon" selectedImage="mypage-icon" id="Gda-Rk-pmb"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pUY-UH-IoA">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -381,4 +381,7 @@
             <point key="canvasLocation" x="-1045" y="83"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="mypage-icon" width="36" height="36"/>
+    </resources>
 </document>
