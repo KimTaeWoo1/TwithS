@@ -11,6 +11,10 @@ import Firebase
 import FirebaseAuth
 import Cosmos
 
+class UserSelect:UITableViewCell {
+    @IBOutlet var Selector: UISegmentedControl!
+}
+
 // 목록
 class TourInfoMain: UITableViewCell {
     
@@ -39,6 +43,7 @@ class TourInfoMainVC: UITableViewController {
     var ThisTour = Tour_()
     var landmarkList:[Landmark_] = []
     var Reviews:[Review_] = []
+    var mode:Int = 0 // 0은 목록, 1은 지도, 2는 리뷰
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,26 +74,6 @@ class TourInfoMainVC: UITableViewController {
         }
     }
     
-    var mode:Int = 0 // 0은 목록, 1은 지도, 2는 리뷰
-    
-    @IBAction func selectChanged(_ sender: UISegmentedControl) {
-        // 목록
-        if sender.selectedSegmentIndex == 0 {
-            mode = 0
-            self.tableView.reloadData()
-        }
-        // 지도
-        else if sender.selectedSegmentIndex == 1 {
-            mode = 1
-            self.tableView.reloadData()
-        }
-        // 리뷰
-        else {
-            mode = 2
-            self.tableView.reloadData()
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -98,14 +83,11 @@ class TourInfoMainVC: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
-            return 1
-        }
         if mode == 0 { return landmarkList.count } // 목록
         else if mode == 1 { return 1 } // 지도
         else { return Reviews.count } // 리뷰. 임시로 3개로 테스트
@@ -115,15 +97,7 @@ class TourInfoMainVC: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {/*
-         if indexPath.section == 0 && indexPath.row == 0 {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "UserSelectButtonCell", for: indexPath)
-         return cell
-         }*/
-        if indexPath.section == 0 && indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TourTabBarCell", for: indexPath)
-            return cell
-        }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // 목록
         if mode == 0 {
@@ -179,18 +153,23 @@ class TourInfoMainVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var cell:UIView = UIView()
-        if section == 0 {
-            cell =  tableView.dequeueReusableCell(withIdentifier: "UserSelectButtonCell")!
-        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserSelectButtonCell") as! UserSelect
+        
+        // SegmentedControl을 클릭하면 해당 메뉴(코스/지도/리뷰) 보이기
+        cell.Selector.selectedSegmentIndex = mode
+        cell.Selector.addTarget(self, action: #selector(self.menuShow(sender:)), for: .valueChanged)
+        
         return cell
     }
     
+    @objc func menuShow(sender: UISegmentedControl) {
+        mode = sender.selectedSegmentIndex
+        self.tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 80
-        }
-        return 0
+        return 100
     }
     
     // 테이블 뷰 셀의 세로 길이 설정

@@ -168,24 +168,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserSelectButtonCell" rowHeight="77" id="v4o-ft-q8a">
-                                <rect key="frame" x="0.0" y="28" width="375" height="77"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserSelectButtonCell" rowHeight="100" id="v4o-ft-q8a" customClass="UserSelect" customModule="twiths_" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4o-ft-q8a" id="Raf-2E-PDr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="76.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7C0-uV-tZD">
-                                            <rect key="frame" x="201" y="16" width="119" height="45"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                            <state key="normal" title="진행하기"/>
-                                            <connections>
-                                                <action selector="proceedButtonClicked:" destination="lLv-SQ-Nyy" eventType="touchUpInside" id="bki-Tx-9q6"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hl-aZ-vuM">
-                                            <rect key="frame" x="50" y="16" width="113" height="45"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hl-aZ-vuM">
+                                            <rect key="frame" x="42" y="9" width="113" height="45"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                             <state key="normal" title="찜"/>
@@ -193,33 +184,32 @@
                                                 <action selector="JjimButtonClicked:" destination="lLv-SQ-Nyy" eventType="touchUpInside" id="gR6-Qf-Eej"/>
                                             </connections>
                                         </button>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TourTabBarCell" rowHeight="47" id="Zws-rd-rKG">
-                                <rect key="frame" x="0.0" y="105" width="375" height="47"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zws-rd-rKG" id="5JM-7o-Mae">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8hG-ai-iwY">
-                                            <rect key="frame" x="16" y="9" width="375" height="29"/>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zX4-Hr-Wm3">
+                                            <rect key="frame" x="16" y="62" width="343" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
-                                                <segment title="목록"/>
+                                                <segment title="투어"/>
                                                 <segment title="지도"/>
                                                 <segment title="리뷰"/>
                                             </segments>
-                                            <connections>
-                                                <action selector="selectChanged:" destination="lLv-SQ-Nyy" eventType="valueChanged" id="foX-hT-cck"/>
-                                            </connections>
                                         </segmentedControl>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7C0-uV-tZD">
+                                            <rect key="frame" x="201" y="9" width="119" height="45"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                            <state key="normal" title="진행하기"/>
+                                            <connections>
+                                                <action selector="proceedButtonClicked:" destination="lLv-SQ-Nyy" eventType="touchUpInside" id="bki-Tx-9q6"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="Selector" destination="zX4-Hr-Wm3" id="h87-DB-t8K"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourInfoMain" rowHeight="65" id="zKF-Zp-ZgG" customClass="TourInfoMain" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="152" width="375" height="65"/>
+                                <rect key="frame" x="0.0" y="129" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zKF-Zp-ZgG" id="j0M-lM-udt">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
@@ -253,7 +243,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourInfoMMap" rowHeight="250" id="4k1-eq-JOq" customClass="TourInfoMMap" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="217" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="194" width="375" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4k1-eq-JOq" id="bB6-lP-5pu">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
@@ -270,7 +260,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourInfoMReview" rowHeight="95" id="VoF-7k-XdR" customClass="TourInfoMReview" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="467" width="375" height="95"/>
+                                <rect key="frame" x="0.0" y="444" width="375" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VoF-7k-XdR" id="wC6-bm-XOd">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="94.5"/>
