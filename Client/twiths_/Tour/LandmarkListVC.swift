@@ -163,29 +163,9 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoCell") as! tourInfoCell
         
-        let now = NSDate()
-        let DHM: Set<Calendar.Component> = [.day, .hour, .minute]
-        let proceedTime = NSCalendar.current.dateComponents(DHM, from: self.userTourRelation.startTime, to: now as Date);
-        
-        let day = "\(proceedTime.day!)"
-        let hour = "\(proceedTime.hour!)"
-        let minute = "\(proceedTime.minute!)"
-        
-        let timeLimit = self.userTourRelation.tour.timeLimit
-        
-        // timeLeft를 기존 남은 시간에서 진행한 시간을 표시하는 것으로 변경
-        // let timeLeft = timeLimit - ((proceedTime.day!) * 1440 + (proceedTime.hour!) * 60 + (proceedTime.minute!))
-        let timeLeft = (proceedTime.day!) * 1440 + (proceedTime.hour!) * 60 + (proceedTime.minute!)
-        
-        let dayLeft = "\(timeLeft / 1440)"
-        let hourLeft = "\((timeLeft % 1440) / 60)"
-        let minuteLeft = "\(timeLeft % 60)"
-        
         cell.clockIcon.image = UIImage(named: "icon-157349_640")
-        if timeLeft >= 0 {
-            if timeLeft >= 1440 { cell.timeLeft.text = "진행한 시간: " + dayLeft + "일 " + hourLeft + "시간 " + minuteLeft + "분" }
-            else { cell.timeLeft.text = "진행한 시간: " + hourLeft + "시간 " + minuteLeft + "분" }
-        }
+        
+        cell.timeLeft.text = getProceedTime(self.userTourRelation) + " 째 진행중!"
         
         let count = userTourLandmarks.count
         var reached = 0
@@ -264,11 +244,6 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                 cell.submitButton.isEnabled = false
                 cell.submitButton.alpha = 1.0;
                 cell.submitButton.setTitleColor(UIColor.green, for: .disabled)
-                
-                
-                
-                // 버튼을 없애고 성공 라벨로 변경 혹은 버튼을누를수 없게..
-                // 이미지 추가
             }
 
             return cell
@@ -380,7 +355,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                         print("Document successfully updated")
                     }
                 }
-                let alertController = UIAlertController(title: "Info", message: "축하합니다!!!\n투어를 완료하셨습니다.\n이 투어에 대한 리뷰를 작성하시겠습니까? ", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Info", message: "축하합니다!!!\n투어를 \(getProceedTime(userTourRelation)) 만에 완료하셨습니다.\n이 투어에 대한 리뷰를 작성하시겠습니까? ", preferredStyle: .alert)
                 
                 let okayAction = UIAlertAction(title: "예", style: .cancel, handler:{ (alert: UIAlertAction!) in
                     let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateReviewRoot") as! UINavigationController

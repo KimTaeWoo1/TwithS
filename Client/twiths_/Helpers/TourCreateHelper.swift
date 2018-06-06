@@ -29,3 +29,29 @@ func makeLimitToMinite(day:Int, hour:Int, min:Int) -> Int {
 //        TourCreate.present(imgPicker, animated: true, completion: nil)
 //    }
 //}
+
+func getProceedTime(_ userTourRelation:UserTourRelation_) -> String {
+    let now = NSDate()
+    let DHM: Set<Calendar.Component> = [.day, .hour, .minute]
+    let proceedTime = NSCalendar.current.dateComponents(DHM, from: userTourRelation.startTime, to: now as Date);
+    let day = "\(proceedTime.day!)"
+    let hour = "\(proceedTime.hour!)"
+    let minute = "\(proceedTime.minute!)"
+    
+    let timeLeft = (proceedTime.day!) * 1440 + (proceedTime.hour!) * 60 + (proceedTime.minute!)
+    
+    let dayLeft = "\(timeLeft / 1440)"
+    let hourLeft = "\((timeLeft % 1440) / 60)"
+    let minuteLeft = "\(timeLeft % 60)"
+
+    if timeLeft >= 0 {
+        if timeLeft >= 1440 {
+            return dayLeft + "일 " + hourLeft + "시간 " + minuteLeft + "분"
+        } else if timeLeft >= 60 {
+            return hourLeft + "시간 " + minuteLeft + "분"
+        } else{
+            return minuteLeft + "분"
+        }
+    }
+    return ""
+}

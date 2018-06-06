@@ -21,7 +21,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="ogj-Ve-UlW">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="big-user-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ogj-Ve-UlW">
                                     <rect key="frame" x="27" y="18" width="86" height="92"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -410,7 +410,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="200" height="200"/>
+        <image name="big-user-icon" width="200" height="200"/>
         <image name="mypage-icon" width="36" height="36"/>
     </resources>
 </document>

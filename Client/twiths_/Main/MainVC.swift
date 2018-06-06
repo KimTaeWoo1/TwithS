@@ -10,10 +10,10 @@ import Firebase
 
 class CurrentProceedTourCell : UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var leftTimeLabel: UILabel!
+    @IBOutlet weak var proceedTimeLabel: UILabel!
+    @IBOutlet weak var tourImageView: UIImageView!
     @IBOutlet weak var currentProceedLabel: UILabel!
     
-    @IBOutlet weak var progressBar: UIView!
 }
 
 class MainVC: UITableViewController {
@@ -80,13 +80,6 @@ class MainVC: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func didReceiveMemoryWarning() {
@@ -103,36 +96,29 @@ class MainVC: UITableViewController {
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
-        // 사용자가 진행 중인, 각각의 투어에 있는 랜드마크의 개수를 구한다.
         return proceedTours.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentTourCell", for: indexPath) as! CurrentProceedTourCell
         
-        cell.nameLabel?.text = String(proceedTours[indexPath.row].tour.name)
-        
-        
+        cell.nameLabel?.text = proceedTours[indexPath.row].tour.name
+        cell.proceedTimeLabel.text = getProceedTime(proceedTours[indexPath.row]) + " 째 진행중!"
+
         return cell
     }
+    
+    
     
     @IBAction func TourListToTourCreate(segue:UIStoryboardSegue){
     
     }
     
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-     // Override to support editing the table view.
     
      // 진행 중인 투어를 삭제하기(userTourRelations에서 해당 투어의 데이터를 삭제)
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -192,21 +178,6 @@ class MainVC: UITableViewController {
             self.present(alertController, animated: true, completion: nil)
         }
      }
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     // MARK: - Navigation
     
