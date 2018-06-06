@@ -16,7 +16,7 @@ class MyPageViewController: UITableViewController {
         super.viewDidLoad()
         
         if let user = Auth.auth().currentUser {
-            displayNameLabel.text = user.displayName
+            displayNameLabel.text = user.displayName! + "님"
         }
 
         // Uncomment the following line to preserve selection between presentations

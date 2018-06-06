@@ -214,7 +214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FiX-BG-cWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3978.4000000000001" y="-170.46476761619192"/>
+            <point key="canvasLocation" x="-3785" y="-27"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="ZdB-X5-M5z">
@@ -301,7 +301,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZC-yw-zge" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2652" y="-170.46476761619192"/>
+            <point key="canvasLocation" x="-2458" y="-27"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="AB1-mb-Qma">
@@ -345,6 +345,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="home_Icon" width="36" height="36"/>
+        <image name="home_Icon" width="24" height="24"/>
     </resources>
 </document>
