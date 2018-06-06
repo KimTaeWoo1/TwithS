@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import Cosmos
 
 // 목록
 class TourInfoMain: UITableViewCell {
@@ -26,9 +27,9 @@ class TourInfoMMap: UITableViewCell {
 // 리뷰
 class TourInfoMReview: UITableViewCell {
     
-    @IBOutlet var ReviewImg: UIImageView!
     @IBOutlet var ReviewTitle: UILabel!
     @IBOutlet var ReviewSubtitle: UILabel!
+    @IBOutlet var StarRating: CosmosView!
 }
 
 class TourInfoMainVC: UITableViewController {
@@ -37,10 +38,35 @@ class TourInfoMainVC: UITableViewController {
     let uid = Auth.auth().currentUser?.uid as! String
     var ThisTour = Tour_()
     var landmarkList:[Landmark_] = []
+    var Reviews:[Review_] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ThisTour.name
+        
+        // 리뷰 목록에서 투어가 ThisTour와 같은 것을 찾아서 추가한다.
+        db.collection("reviews").whereField("tour", isEqualTo: self.ThisTour.id).getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else if let documents = querySnapshot?.documents {
+                
+                var Revs:[Review_] = []
+                for document in documents {
+                    let review = Review_()
+                    review.createTime = document.data()["createTime"] as! Date
+                    review.creator = document.data()["creator"] as! String
+                    review.id = document.documentID as! String
+                    review.name = document.data()["name"] as! String
+                    review.stars = document.data()["stars"] as! Double
+                    review.tour.id = document.data()["tour"] as! String
+                    review.comment = document.data()["comment"] as! String
+                    
+                    Revs.append(review)
+                }
+                self.Reviews = Revs
+                self.tableView.reloadData()
+            }
+        }
     }
     
     var mode:Int = 0 // 0은 목록, 1은 지도, 2는 리뷰
@@ -82,7 +108,7 @@ class TourInfoMainVC: UITableViewController {
         }
         if mode == 0 { return landmarkList.count } // 목록
         else if mode == 1 { return 1 } // 지도
-        else { return 3 } // 리뷰. 임시로 3개로 테스트
+        else { return Reviews.count } // 리뷰. 임시로 3개로 테스트
     }
     
     @IBAction func ToTourInfoMainSegue(segue: UIStoryboardSegue){
@@ -143,9 +169,10 @@ class TourInfoMainVC: UITableViewController {
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMReview", for: indexPath) as! TourInfoMReview
             
-            // 이미지 뷰를 원형으로
-            cell.ReviewImg.layer.cornerRadius = cell.ReviewImg.frame.size.width / 2
-            cell.ReviewImg.layer.masksToBounds = true
+            let ThisReview = Reviews[indexPath.row]
+            cell.StarRating.rating = ThisReview.stars
+            cell.ReviewTitle.text = ThisReview.name
+            cell.ReviewSubtitle.text = ThisReview.comment
             
             return cell
         }
@@ -170,7 +197,7 @@ class TourInfoMainVC: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if mode == 0 { return 65.0 } // 목록
         else if mode == 1 { return 250.0 } // 지도
-        else { return 70.0 } // 리뷰
+        else { return 95.0 } // 리뷰
     }
     
     /*
