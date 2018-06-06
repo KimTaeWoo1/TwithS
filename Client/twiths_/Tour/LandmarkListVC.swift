@@ -17,12 +17,13 @@ protocol YourCellDelegate : class {
     func didPressButton(_ tag: Int)
 }
 
-// 투어의 남은 시간, 진행률을 표시하는 셀
+// 투어의 진행한 시간, 메뉴를 표시하는 셀
 class tourInfoCell: UITableViewCell {
     @IBOutlet var clockIcon: UIImageView!
     @IBOutlet var timeLeft: UILabel!
     @IBOutlet var proceedRate: UILabel!
     
+    @IBOutlet var MenuSelect: UISegmentedControl!
 }
 
 // 랜드마크 목록 셀
@@ -53,18 +54,10 @@ class ReviewCell:UITableViewCell {
 }
 
 class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManagerDelegate {
-
-    var mode:Int = 0 // 0은 코스, 1은 지도, 2는 리뷰
-    
-    // 코스, 지도, 리뷰 버튼을 누르면 각각  코스, 지도, 리뷰 띄우기
-    @IBAction func SelectionChanged(_ sender: UISegmentedControl) {
-        
-        mode = sender.selectedSegmentIndex
-        self.tableView.reloadData()
-    }
     
     var ID:Int = 0
     var userTourRelation = UserTourRelation_()
+    var mode:Int = 0 // 0은 코스, 1은 지도, 2는 리뷰
     
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid
@@ -202,11 +195,20 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         if count > 0 { cell.proceedRate.text = "\(reached)/\(count) (\(reached * 100 / count)%)" }
         else { cell.proceedRate.text = "0/0 (0%)" }
         
+        // SegmentedControl을 클릭하면 해당 메뉴(코스/지도/리뷰) 보이기
+        cell.MenuSelect.selectedSegmentIndex = mode
+        cell.MenuSelect.addTarget(self, action: #selector(self.menuShow(sender:)), for: .valueChanged)
+        
         return cell
     }
     
+    @objc func menuShow(sender: UISegmentedControl) {
+        mode = sender.selectedSegmentIndex
+        self.tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
+        return 97.0
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
