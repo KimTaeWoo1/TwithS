@@ -168,6 +168,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="KG7-m1-NRt" kind="show" identifier="TourInfoSegue1" id="MrR-IX-e2e"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -208,6 +211,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Pxi-lW-jHd" kind="show" identifier="TourInfoSegue2" id="kbj-u5-6Gf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -222,6 +228,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgx-zg-KNd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="929" y="-690"/>
+        </scene>
+        <!--TourInfoNotProceed-->
+        <scene sceneID="YIK-EE-x5S">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TourInfoNotProceed" id="Pxi-lW-jHd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PPr-q2-eG5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2028" y="-709"/>
         </scene>
         <!--내가 쓴 리뷰-->
         <scene sceneID="AQ7-7K-KG6">
@@ -262,6 +276,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6D-Tu-F9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="929" y="82"/>
+        </scene>
+        <!--TourInfoNotProceed-->
+        <scene sceneID="UL8-Se-yrd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TourInfoNotProceed" id="KG7-m1-NRt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fwN-2R-09n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2027" y="-1348"/>
         </scene>
         <!--공지사항-->
         <scene sceneID="2Ap-4s-JNp">

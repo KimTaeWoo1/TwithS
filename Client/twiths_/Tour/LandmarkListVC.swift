@@ -267,6 +267,11 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                 cell.LandmarkTitle.text = userLandmark.landmark.name
                 cell.LandmarkDescription.text = userLandmark.comment
                 cell.submitButton.setTitle("성공", for: UIControlState.normal)
+                cell.submitButton.isEnabled = false
+                cell.submitButton.alpha = 1.0;
+                cell.submitButton.setTitleColor(UIColor.green, for: .disabled)
+                
+                
                 
                 // 버튼을 없애고 성공 라벨로 변경 혹은 버튼을누를수 없게..
                 // 이미지 추가
