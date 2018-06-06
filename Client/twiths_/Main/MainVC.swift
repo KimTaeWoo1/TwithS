@@ -109,6 +109,24 @@ class MainVC: UITableViewController {
         
         cell.nameLabel?.text = proceedTours[indexPath.row].tour.name
         cell.proceedTimeLabel.text = getProceedTime(proceedTours[indexPath.row]) + " 째 진행중!"
+        
+        // 이미지 뷰를 원형으로
+        cell.tourImageView.layer.cornerRadius = cell.tourImageView.frame.size.width / 2
+        cell.tourImageView.layer.masksToBounds = true
+        
+        // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
+        var imgName = proceedTours[indexPath.row].tour.image
+        
+        let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+        
+        // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
+        storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
+            if Error != nil {
+                // 오류가 발생함.
+            } else {
+                cell.tourImageView.image = UIImage(data: Data!)
+            }
+        }
 
         return cell
     }
