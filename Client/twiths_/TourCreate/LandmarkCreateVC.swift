@@ -32,7 +32,6 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     }
 
     @IBAction func LandmarkImgUpload(_ sender: Any) {
-        
         var imgPick = UIImagePickerController()
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
             imgPick.delegate = self
@@ -89,9 +88,6 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     @IBAction func MapToCreateLandmark(segue:UIStoryboardSegue){
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "LandmarkDone" {
@@ -104,9 +100,6 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
             landmark.name = name
             landmark.detail = detail
             landmark.image = imageName
-            // Get the new view controller using segue.destinationViewController.
-            // Pass the selected object to the new view controller.
-            
         }
         
     }

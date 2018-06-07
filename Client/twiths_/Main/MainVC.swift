@@ -122,19 +122,17 @@ class MainVC: UITableViewController {
         // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
         storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
             if Error != nil {
-                // 오류가 발생함.
+                print(Error?.localizedDescription)
             } else {
                 cell.tourImageView.image = UIImage(data: Data!)
             }
         }
-
         return cell
     }
     
     
     
     @IBAction func TourListToTourCreate(segue:UIStoryboardSegue){
-    
     }
     
     
@@ -173,7 +171,7 @@ class MainVC: UITableViewController {
                                 if let err = err {
                                     print("Error getting documents: \(err)")
                                 } else if let documents = querySnapshot?.documents {
-                                    for document in querySnapshot!.documents {
+                                    for document in documents {
                                         UTLdocID = document.documentID
                                         
                                         // 그 ID에 해당하는 문서를 userTourLandmark에서 삭제
@@ -192,7 +190,6 @@ class MainVC: UITableViewController {
             
             // '아니오'를 클릭하면
             alertController.addAction(UIAlertAction(title: "아니오", style: .default, handler: nil))
-            
             self.present(alertController, animated: true, completion: nil)
         }
      }
@@ -204,8 +201,6 @@ class MainVC: UITableViewController {
         if segue.identifier == "tour_detail" {
             let dest = segue.destination as! LandmarkListVC
             dest.userTourRelation = proceedTours[self.tableView.indexPathForSelectedRow!.row]
-//            let selindex = self.tableView.indexPathForSelectedRow?.section as! Int
-//            dest.userTourRelation = proceedTours[selindex]
         }
     }
     

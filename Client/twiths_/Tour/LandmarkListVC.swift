@@ -264,30 +264,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             
             cell.starRating.rating = ThisReview.stars
             cell.nameLabel.text = ThisReview.name
-            
-            // 이미지 뷰를 원형으로
-//            cell.reviewImg.layer.cornerRadius = cell.reviewImg.frame.size.width / 2
-//            cell.reviewImg.layer.masksToBounds = true
-            
-//            let date = ThisReview.createTime
-//            let year = cal!.component(NSCalendar.Unit.year, from: date)
-//            let month = cal!.component(NSCalendar.Unit.month, from: date)
-//            let day = cal!.component(NSCalendar.Unit.day, from: date)
-            
             cell.reviewSubtitle.text = ThisReview.comment
-            
-            // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
-//            let imgName = ThisReview.image
-//            let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
-            
-            // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
-//            storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
-//                if Error != nil {
-//                    // 오류가 발생함.
-//                } else {
-//                    cell.reviewImg.image = UIImage(data: Data!)
-//                }
-//            }
             
             return cell
         }

@@ -19,16 +19,6 @@ func makeLimitToMinite(day:Int, hour:Int, min:Int) -> Int {
     return day * 1440 + hour * 60 + min
 }
 
-// 사진 앨범을 띄우는 함수
-//func showImgAlbum (imgPicker:UIImagePickerController, TourCreate:TourCreateVC) {
-//    if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-//        imgPicker.delegate = TourCreate
-//        imgPicker.sourceType = .savedPhotosAlbum
-//        imgPicker.allowsEditing = false
-//        
-//        TourCreate.present(imgPicker, animated: true, completion: nil)
-//    }
-//}
 
 func getProceedTime(_ userTourRelation:UserTourRelation_) -> String {
     let now = NSDate()

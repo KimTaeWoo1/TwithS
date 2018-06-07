@@ -163,7 +163,7 @@
         <!--Title-->
         <scene sceneID="Ioj-mg-vmw">
             <objects>
-                <viewController id="A1q-3y-gEe" customClass="TourInfoMainVC2" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="A1q-3y-gEe" customClass="TourInfoMainVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xdB-w7-w2A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,9 +258,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="찜"/>
-                                <connections>
-                                    <action selector="JjimButtonClicked:" destination="lLv-SQ-Nyy" eventType="touchUpInside" id="rOI-2e-lGF"/>
-                                </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gfx-Ay-gmO">
                                 <rect key="frame" x="16" y="90" width="343" height="28"/>
@@ -279,9 +276,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="진행하기"/>
-                                <connections>
-                                    <action selector="proceedButtonClicked:" destination="lLv-SQ-Nyy" eventType="touchUpInside" id="19T-r7-yT6"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -301,155 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UvG-vP-mcB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-338.39999999999998" y="-240.62968515742131"/>
-        </scene>
-        <!--Title-->
-        <scene sceneID="iwk-Jr-v02">
-            <objects>
-                <tableViewController id="lLv-SQ-Nyy" customClass="TourInfoMainVC" customModule="twiths_" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SJ1-vL-klh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserSelectButtonCell" rowHeight="100" id="v4o-ft-q8a" customClass="UserSelect" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4o-ft-q8a" id="Raf-2E-PDr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hl-aZ-vuM">
-                                            <rect key="frame" x="42" y="9" width="113" height="45"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                            <state key="normal" title="찜"/>
-                                            <connections>
-                                                <action selector="JjimButtonClicked:" destination="lLv-SQ-Nyy" eventType="touchUpInside" id="gR6-Qf-Eej"/>
-                                            </connections>
-                                        </button>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zX4-Hr-Wm3">
-                                            <rect key="frame" x="16" y="62" width="343" height="28"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="투어"/>
-                                                <segment title="지도"/>
-                                                <segment title="리뷰"/>
-                                            </segments>
-                                        </segmentedControl>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7C0-uV-tZD">
-                                            <rect key="frame" x="201" y="9" width="119" height="45"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                            <state key="normal" title="진행하기"/>
-                                            <connections>
-                                                <action selector="proceedButtonClicked:" destination="lLv-SQ-Nyy" eventType="touchUpInside" id="bki-Tx-9q6"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="Selector" destination="zX4-Hr-Wm3" id="h87-DB-t8K"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourInfoMain" rowHeight="65" id="zKF-Zp-ZgG" customClass="TourInfoMain" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="375" height="65"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zKF-Zp-ZgG" id="j0M-lM-udt">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAY-bW-W1m">
-                                            <rect key="frame" x="16" y="6" width="54" height="54"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8RK-ML-3mc">
-                                            <rect key="frame" x="78" y="35" width="281" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aS9-CG-Uiy">
-                                            <rect key="frame" x="78" y="9" width="281" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="imgView" destination="cAY-bW-W1m" id="3kW-iM-bG7"/>
-                                    <outlet property="subtitleText" destination="8RK-ML-3mc" id="sYO-db-nZR"/>
-                                    <outlet property="titleText" destination="aS9-CG-Uiy" id="QcQ-8m-oI7"/>
-                                    <segue destination="E0D-hX-jtq" kind="presentation" identifier="TIShowLandmarkInfo" id="Wkx-WF-1ec"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TourInfoMReview" rowHeight="95" id="VoF-7k-XdR" customClass="TourInfoMReview" customModule="twiths_" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="193" width="375" height="95"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VoF-7k-XdR" id="wC6-bm-XOd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="94.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Review label 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKM-NE-R9Q">
-                                            <rect key="frame" x="16" y="51" width="343" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Review label 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5V-SQ-c4F">
-                                            <rect key="frame" x="16" y="8" width="252" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nWG-PM-TB6" customClass="CosmosView" customModule="Cosmos">
-                                            <rect key="frame" x="16" y="28" width="125" height="25"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="ReviewSubtitle" destination="XKM-NE-R9Q" id="Rzl-1X-Aa1"/>
-                                    <outlet property="ReviewTitle" destination="R5V-SQ-c4F" id="us1-hs-bfC"/>
-                                    <outlet property="StarRating" destination="nWG-PM-TB6" id="Aif-jP-lgm"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="lLv-SQ-Nyy" id="YUK-C1-2AH"/>
-                            <outlet property="delegate" destination="lLv-SQ-Nyy" id="27l-QJ-tka"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="1qy-eA-jkW">
-                        <barButtonItem key="rightBarButtonItem" title="About" id="ZwF-eW-I2f">
-                            <connections>
-                                <segue destination="IHl-7H-hh6" kind="presentation" identifier="TIShowTourInfo" id="kTY-uC-1q3"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="blueView" destination="tTl-Hj-hjQ" id="5b2-9x-d4u"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WQO-kz-yRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="tTl-Hj-hjQ">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <viewLayoutGuide key="safeArea" id="pJy-cQ-q6b"/>
-                </view>
-            </objects>
-            <point key="canvasLocation" x="2250" y="309"/>
+            <point key="canvasLocation" x="2655" y="586"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="i4l-1j-M3t"/>
-        <segue reference="pEK-VE-J1p"/>
-    </inferredMetricsTieBreakers>
 </document>
