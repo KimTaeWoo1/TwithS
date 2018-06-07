@@ -15,6 +15,8 @@
 		00A2654920B8471B00B80AE6 /* TourInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654820B8471B00B80AE6 /* TourInfoVC.swift */; };
 		00A2654B20B8472900B80AE6 /* LandmarkInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */; };
 		35C8D8354440214168BB483B /* Pods_twiths_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3941FE870DFF7D3907971846 /* Pods_twiths_.framework */; };
+		5B04FF4020C90DEE00D6BA5E /* TourInfoMainVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04FF3F20C90DEE00D6BA5E /* TourInfoMainVC2.swift */; };
+		5B04FF4220C912BE00D6BA5E /* TourMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04FF4120C912BE00D6BA5E /* TourMapVC.swift */; };
 		5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423B820BAF7CD007B2D40 /* Model.swift */; };
 		5B3423BB20BB0AF5007B2D40 /* TourCreateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */; };
 		5B3423C020BC38B0007B2D40 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3423BF20BC38B0007B2D40 /* SearchVC.swift */; };
@@ -64,6 +66,8 @@
 		00A2654820B8471B00B80AE6 /* TourInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoVC.swift; sourceTree = "<group>"; };
 		00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkInfoVC.swift; sourceTree = "<group>"; };
 		3941FE870DFF7D3907971846 /* Pods_twiths_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twiths_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B04FF3F20C90DEE00D6BA5E /* TourInfoMainVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoMainVC2.swift; sourceTree = "<group>"; };
+		5B04FF4120C912BE00D6BA5E /* TourMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourMapVC.swift; sourceTree = "<group>"; };
 		5B3423B820BAF7CD007B2D40 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		5B3423BA20BB0AF5007B2D40 /* TourCreateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCreateHelper.swift; sourceTree = "<group>"; };
 		5B3423BF20BC38B0007B2D40 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -180,8 +184,10 @@
 			isa = PBXGroup;
 			children = (
 				5B3423C420BC581F007B2D40 /* TourInfoMainVC.swift */,
+				5B04FF3F20C90DEE00D6BA5E /* TourInfoMainVC2.swift */,
 				005A777F20BF612B00151A55 /* TourInfoTourVC.swift */,
 				005A778120BF614200151A55 /* TourInfoLandmarkVC.swift */,
+				5B04FF4120C912BE00D6BA5E /* TourMapVC.swift */,
 			);
 			path = TourInfoNotProceed;
 			sourceTree = "<group>";
@@ -460,6 +466,7 @@
 			files = (
 				00A2654B20B8472900B80AE6 /* LandmarkInfoVC.swift in Sources */,
 				5B3423C020BC38B0007B2D40 /* SearchVC.swift in Sources */,
+				5B04FF4020C90DEE00D6BA5E /* TourInfoMainVC2.swift in Sources */,
 				5B8AF55B20B6F7E900A92405 /* ProceedTour.swift in Sources */,
 				5B8AF55C20B6F7E900A92405 /* SelectLandmark.swift in Sources */,
 				5B40AB4120C053FA00F97F0D /* JjimVC.swift in Sources */,
@@ -478,6 +485,7 @@
 				00A2654520B846F700B80AE6 /* MainVC.swift in Sources */,
 				005A778020BF612B00151A55 /* TourInfoTourVC.swift in Sources */,
 				5BCBA28120C3BCCA0000F345 /* SelfCreateTourVC.swift in Sources */,
+				5B04FF4220C912BE00D6BA5E /* TourMapVC.swift in Sources */,
 				5B8AF55F20B6F7E900A92405 /* Tour_Landmarks.swift in Sources */,
 				5BEE2CC620C7B6E900199156 /* CreateReviewVC.swift in Sources */,
 				5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */,
