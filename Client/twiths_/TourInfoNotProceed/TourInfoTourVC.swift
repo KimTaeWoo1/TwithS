@@ -14,6 +14,10 @@ class TourInfoTourVC: UITableViewController {
     var ThisTour:Tour_ = Tour_()
     let cal = NSCalendar.init(calendarIdentifier: NSCalendar.Identifier.gregorian)
     
+    @IBOutlet var tourName: UILabel!
+    @IBOutlet var tourCreateDate: UILabel!
+    @IBOutlet var tourDetail: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +33,16 @@ class TourInfoTourVC: UITableViewController {
                 self.imgView.image = UIImage(data: Data!)
             }
         }
+        
+        tourName.text = ThisTour.name
+        
+        let date = ThisTour.createDate
+        let year = cal!.component(NSCalendar.Unit.year, from: date)
+        let month = cal!.component(NSCalendar.Unit.month, from: date)
+        let day = cal!.component(NSCalendar.Unit.day, from: date)
+        tourCreateDate.text = "\(year)년 \(month)월 \(day)일"
+        
+        tourDetail.text = ThisTour.detail
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,36 +59,6 @@ class TourInfoTourVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 8
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TITourInfo", for: indexPath)
-
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = "투어 이름:"
-            cell.detailTextLabel?.text = ThisTour.name
-            break
-        case 3:
-            let date = ThisTour.createDate
-            let year = cal!.component(NSCalendar.Unit.year, from: date)
-            let month = cal!.component(NSCalendar.Unit.month, from: date)
-            let day = cal!.component(NSCalendar.Unit.day, from: date)
-            
-            cell.textLabel?.text = "만든 날짜:"
-            cell.detailTextLabel?.text = "\(year)년 \(month)월 \(day)일"
-            break
-        case 6:
-            cell.textLabel?.text = "투어 정보:"
-            cell.detailTextLabel?.text = ThisTour.detail
-            break
-        default:
-            cell.textLabel?.text = ""
-            cell.detailTextLabel?.text = ""
-            break
-        }
-
-        return cell
+        return 3
     }
 }

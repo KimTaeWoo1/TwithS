@@ -178,6 +178,11 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
                         landmark.image = document.data()["image"] as! String
                         landmark.name = document.data()["name"] as! String
                         landmark.tour.id = document.data()["tour"] as! String
+                        
+                        landmark.location.append((document.data()["lati1"] as! Double, document.data()["longi1"] as! Double))
+                        landmark.location.append((document.data()["lati2"] as! Double, document.data()["longi2"] as! Double))
+                        landmark.location.append((document.data()["lati3"] as! Double, document.data()["longi3"] as! Double))
+                        landmark.location.append((document.data()["lati4"] as! Double, document.data()["longi4"] as! Double))
                         dest.landmarkList.append(landmark)
                         dest.tableView.reloadData()
                     }

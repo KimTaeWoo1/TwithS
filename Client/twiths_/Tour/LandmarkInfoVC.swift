@@ -14,12 +14,20 @@ class LandmarkInfoVC: UITableViewController {
     var tourName = ""
     @IBOutlet var imgView: UIImageView!
     
+    @IBOutlet var landmarkName: UILabel!
+    @IBOutlet var TourName: UILabel!
+    @IBOutlet var landmarkDetail: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
         let imgName = ThisLandmark.image
         let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
+        
+        landmarkName.text = ThisLandmark.name
+        TourName.text = tourName
+        landmarkDetail.text = ThisLandmark.detail
         
         // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
         storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
@@ -46,30 +54,6 @@ class LandmarkInfoVC: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 3
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkInfo_Table", for: indexPath)
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = "랜드마크 이름:"
-            cell.detailTextLabel?.text = ThisLandmark.name
-            break
-        case 1:
-            cell.textLabel?.text = "투어 이름:"
-            cell.detailTextLabel?.text = tourName
-            break
-        case 2:
-            cell.textLabel?.text = "랜드마크 설명:"
-            cell.detailTextLabel?.text = ThisLandmark.detail
-            break
-        default:
-            cell.textLabel?.text = ""
-            cell.detailTextLabel?.text = ""
-            break
-        }
-        return cell
     }
 
 }

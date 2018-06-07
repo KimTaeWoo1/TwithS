@@ -48,8 +48,10 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>By accessing your location, this app can find you a good place to eat.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>위치 접근을 허용해야, 진행 할 수 있습니다.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>위치 접근을 허용해야, 진행 할 수 있습니다.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

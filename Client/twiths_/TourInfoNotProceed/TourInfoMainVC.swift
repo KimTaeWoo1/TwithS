@@ -30,9 +30,7 @@ class TourInfoMMap: UIView {
 class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var mapView: UIView!
-    
-    
+    @IBOutlet weak var mapView: GMSMapView!
     
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid as! String
@@ -45,14 +43,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         self.title = ThisTour.name
         
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-        let gsMapView = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
-        
-        gsMapView.delegate = self
-        gsMapView.isMyLocationEnabled = true
-        mapView.addSubview(gsMapView)
 
-        
         // 리뷰 목록에서 투어가 ThisTour와 같은 것을 찾아서 추가한다.
         db.collection("reviews").whereField("tour", isEqualTo: self.ThisTour.id).getDocuments { (querySnapshot, err) in
             if let err = err {
@@ -78,6 +69,30 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let camera = GMSCameraPosition.camera(withLatitude: 37.554974, longitude: 127.072699, zoom: 7.0)
+        let gsMapView = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
+        
+        gsMapView.delegate = self
+        mapView.addSubview(gsMapView)
+        
+        // 맵뷰에 랜드마크 위치 찍기
+        for landmark in landmarkList {
+            let rect = GMSMutablePath()
+            for location in landmark.location {
+                let marker = GMSMarker()
+                marker.position = CLLocationCoordinate2D(latitude: location.0, longitude: location.1)
+                marker.map = gsMapView
+                rect.add(marker.position)
+            }
+            let polygon = GMSPolygon(path: rect)
+            polygon.fillColor = UIColor(red: 0.25, green: 0, blue: 0, alpha: 0.05);
+            polygon.strokeColor = .black
+            polygon.strokeWidth = 2
+            polygon.map = gsMapView
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,6 +102,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
+        print("****test****")
         return 1
     }
     
@@ -94,7 +110,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
         // #warning Incomplete implementation, return the number of rows
         if mode == 0 { return landmarkList.count } // 목록
         else if mode == 1 { return 1 } // 지도
-        else { return Reviews.count } // 리뷰. 임시로 3개로 테스트
+        else { return Reviews.count } // 리뷰
     }
     
     @IBAction func ToTourInfoMainSegue(segue: UIStoryboardSegue){

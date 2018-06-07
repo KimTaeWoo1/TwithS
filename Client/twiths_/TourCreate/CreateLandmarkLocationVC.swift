@@ -1,51 +1,28 @@
-//
-//  CreateLandmarkLocationVC.swift
-//  twiths_
-//
-//  Created by yeon suk choi on 2018. 6. 4..
-//  Copyright © 2018년 yeon suk choi. All rights reserved.
-//
-
 import UIKit
 import GoogleMaps
 
 class CreateLandmarkLocationVC: UIViewController {
     var counterMarker: Int = 0
-    var allMarkers:[GMSMarker] = [] 
+    var allMarkers:[GMSMarker] = []
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
     
-    // You don't need to modify the default init(nibName:bundle:) method.
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     override func loadView() {
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
         
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+        let camera = GMSCameraPosition.camera(withLatitude: 37.554974, longitude: 127.072699, zoom: 6.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
         view = mapView
-        
-    }
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        // 모든 정보를 입력하지 않은 경우 오류 메시지 출력
-        if identifier == "CreateMapDone" {
-            if counterMarker != 4{
-                let alertController = UIAlertController(title: "Info", message: "4개의 핀이 찍혀야합니다.", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-                return false
-            }
-        }
-        return true
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
     }
 }
 
@@ -62,9 +39,8 @@ extension CreateLandmarkLocationVC: GMSMapViewDelegate {
             counterMarker += 1
             // Create the polygon, and assign it to the map.
             mapView.clear()
-            let rect = GMSMutablePath()
+            let rect = reorderMarkersClockwise(mapView)
             for mark in allMarkers {
-                rect.add(mark.position)
                 mark.map = mapView
             }
             let polygon = GMSPolygon(path: rect)
@@ -87,9 +63,8 @@ extension CreateLandmarkLocationVC: GMSMapViewDelegate {
         counterMarker -= 1
         
         mapView.clear()
-        let rect = GMSMutablePath()
+        let rect = reorderMarkersClockwise(mapView)
         for mark in allMarkers {
-            rect.add(mark.position)
             mark.map = mapView
         }
         
@@ -99,5 +74,51 @@ extension CreateLandmarkLocationVC: GMSMapViewDelegate {
         polygon.strokeColor = .black
         polygon.strokeWidth = 2
         polygon.map = mapView
+    }
+    
+    // 마커가 잘 찍히도록(교차가 일어나지 않도록)
+    func reorderMarkersClockwise(_ mapView: GMSMapView) -> GMSMutablePath {
+        let rect = GMSMutablePath()
+        if (counterMarker > 1) {
+            let arr = allMarkers.map{$0.position}.sorted(by: isLess)
+            for pos in arr {
+                rect.add(pos)
+            }
+        } else {
+            for mark in allMarkers {
+                rect.add(mark.position)
+            }
+        }
+        return rect
+    }
+    
+    func isLess(_ a: CLLocationCoordinate2D, _ b: CLLocationCoordinate2D) -> Bool {
+        let center = getCenterPointOfPoints()
+        
+        if (a.latitude >= 0 && b.latitude < 0) {
+            return true
+        } else if (a.latitude == 0 && b.latitude == 0) {
+            return a.longitude > b.longitude
+        }
+        
+        let det = (a.latitude - center.latitude) * (b.longitude - center.longitude) - (b.latitude - center.latitude) * (a.longitude - center.longitude)
+        if (det < 0) {
+            return true
+        } else if (det > 0) {
+            return false
+        }
+        
+        let d1 = (a.latitude - center.latitude) * (a.latitude - center.latitude) + (a.longitude - center.longitude) * (a.longitude - center.longitude)
+        let d2 = (b.latitude - center.latitude) * (b.latitude - center.latitude) + (b.longitude - center.longitude) * (b.longitude - center.longitude)
+        return d1 > d2
+    }
+    
+    func getCenterPointOfPoints() -> CLLocationCoordinate2D {
+        let arr = allMarkers.map {$0.position}
+        let s1: Double = arr.map{$0.latitude}.reduce(0, +)
+        let s2: Double = arr.map{$0.longitude}.reduce(0, +)
+        let c_lat = arr.count > 0 ? s1 / Double(arr.count) : 0.0
+        let c_lng = arr.count > 0 ? s2 / Double(arr.count) : 0.0
+        return CLLocationCoordinate2D.init(latitude: c_lat, longitude: c_lng)
     }
 }

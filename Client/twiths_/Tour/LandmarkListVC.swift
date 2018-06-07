@@ -4,7 +4,6 @@
 //
 //  Created by ㅇㅇ on 2018. 5. 25..
 //
-// 임시로 이전 데이터베이스 양식을 이용하므로 나중에 수정이 필요함.
 
 import UIKit
 import Firebase
@@ -15,15 +14,6 @@ import Cosmos
 
 protocol YourCellDelegate : class {
     func didPressButton(_ tag: Int)
-}
-
-// 투어의 진행한 시간, 메뉴를 표시하는 셀
-class tourInfoCell: UITableViewCell {
-    @IBOutlet var clockIcon: UIImageView!
-    @IBOutlet var timeLeft: UILabel!
-    @IBOutlet var proceedRate: UILabel!
-    
-    @IBOutlet var MenuSelect: UISegmentedControl!
 }
 
 // 랜드마크 목록 셀
@@ -41,11 +31,6 @@ class LandmarkCell: UITableViewCell {
     
 }
 
-// 지도 뷰 셀
-class MapCell:UITableViewCell {
-    
-}
-
 // 리뷰 뷰 셀
 class ReviewCell:UITableViewCell {
     @IBOutlet var reviewSubtitle: UILabel!
@@ -53,11 +38,25 @@ class ReviewCell:UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
 }
 
-class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManagerDelegate {
+class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate, CLLocationManagerDelegate, UITableViewDelegate {
     
     var ID:Int = 0
     var userTourRelation = UserTourRelation_()
     var mode:Int = 0 // 0은 코스, 1은 지도, 2는 리뷰
+    
+    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet var clockIcon: UIImageView!
+    @IBOutlet var timeLeft: UILabel!
+    @IBOutlet var proceedRate: UILabel!
+    @IBAction func menuSelectChanged(_ sender: UISegmentedControl) {
+        mode = sender.selectedSegmentIndex
+        if mode == 1 { self.view.bringSubview(toFront: mapView) }
+        else { self.view.bringSubview(toFront: tableView) }
+        
+        self.tableView.reloadData()
+    }
     
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid
@@ -69,8 +68,21 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = userTourRelation.tour.name
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         let dGroup = DispatchGroup()
         var utlList:[UserTourLandMark_] = []
+        
+        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+        let camera = GMSCameraPosition.camera(withTarget: locValue, zoom: 8.0)
+        let gsMapView = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
+        
+        
+        gsMapView.delegate = self
+        gsMapView.isMyLocationEnabled = true
+        mapView.addSubview(gsMapView)
         
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -124,6 +136,34 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             }
             dGroup.notify(queue: .main) {   //// 4
                 self.userTourLandmarks = utlList
+                
+                self.timeLeft.text = getProceedTime(self.userTourRelation) + " 째 진행중!"
+                let count = self.userTourLandmarks.count
+                var reached = 0
+                for utl in self.userTourLandmarks {
+                    if utl.state == 1 { reached += 1 }
+                }
+                if count > 0 { self.proceedRate.text = "\(reached)/\(count) (\(reached * 100 / count)%)" }
+                else { self.proceedRate.text = "0/0 (0%)" }
+                
+                
+                // 맵뷰에 랜드마크 위치 찍기
+                for utl in self.userTourLandmarks {
+                    let rect = GMSMutablePath()
+                    for location in utl.landmark.location {
+                        let marker = GMSMarker()
+                        marker.position = CLLocationCoordinate2D(latitude: location.0, longitude: location.1)
+                        marker.title = utl.landmark.name
+                        marker.map = gsMapView
+                        rect.add(marker.position)
+                    }
+                    let polygon = GMSPolygon(path: rect)
+                    polygon.fillColor = UIColor(red: 0.25, green: 0, blue: 0, alpha: 0.05);
+                    polygon.strokeColor = .black
+                    polygon.strokeWidth = 2
+                    polygon.map = gsMapView
+                }
+
                 self.tableView.reloadData()
             }
         }
@@ -144,68 +184,37 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                     review.stars = document.data()["stars"] as! Double
                     review.tour.id = document.data()["tour"] as! String
                     review.comment = document.data()["comment"] as! String
-
+                    
                     Revs.append(review)
                 }
                 self.Reviews = Revs
-                self.tableView.reloadData()
             }
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoCell") as! tourInfoCell
-        
-        cell.clockIcon.image = UIImage(named: "icon-157349_640")
-        
-        cell.timeLeft.text = getProceedTime(self.userTourRelation) + " 째 진행중!"
-        
-        let count = userTourLandmarks.count
-        var reached = 0
-        for utl in userTourLandmarks {
-            if utl.state == 1 { reached += 1 }
-        }
-        if count > 0 { cell.proceedRate.text = "\(reached)/\(count) (\(reached * 100 / count)%)" }
-        else { cell.proceedRate.text = "0/0 (0%)" }
-        
-        // SegmentedControl을 클릭하면 해당 메뉴(코스/지도/리뷰) 보이기
-        cell.MenuSelect.selectedSegmentIndex = mode
-        cell.MenuSelect.addTarget(self, action: #selector(self.menuShow(sender:)), for: .valueChanged)
-        
-        return cell
-    }
-    
-    @objc func menuShow(sender: UISegmentedControl) {
-        mode = sender.selectedSegmentIndex
-        self.tableView.reloadData()
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 97.0
-    }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if mode == 0 { return userTourLandmarks.count } // 코스
-        else if mode == 1 { return 1 } // 지도
+        else if mode == 1 { return 0 } // 지도
         else { return Reviews.count } // 리뷰
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 코스
         if mode == 0 {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkListREUSE", for: indexPath) as! LandmarkCell
             
             // 이미지 뷰를 원형으로
@@ -214,7 +223,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             let userLandmark = self.userTourLandmarks[indexPath.row]
             let ThisLandmark = userLandmark.landmark
             print("---\(ThisLandmark.image)---\(userLandmark.image)")
-        
+            
             // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
             var imgName = ""
             if userLandmark.state == 0 { imgName = ThisLandmark.image }
@@ -231,7 +240,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                     cell.LandmarkImage.image = UIImage(data: Data!)
                 }
             }
-        
+            
             if userLandmark.state == 0 {
                 cell.LandmarkTitle.text = ThisLandmark.name
                 cell.LandmarkDescription.text = ThisLandmark.detail
@@ -245,18 +254,19 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
                 cell.submitButton.alpha = 1.0;
                 cell.submitButton.setTitleColor(UIColor.green, for: .disabled)
             }
-
-            return cell
-        }
-        
-        // 지도
-        else if mode == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MapREUSE", for: indexPath) as! MapCell
             
             return cell
         }
-        
-        // 리뷰
+            
+            // 지도
+        else if mode == 1 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LandmarkListREUSE", for: indexPath) as! LandmarkCell
+            
+            return cell
+        }
+            
+            // 리뷰
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewREUSE", for: indexPath) as! ReviewCell
             
@@ -272,7 +282,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     
     func didPressButton(_ tag: Int) {
         let landmark = userTourLandmarks[tag].landmark
-
+        
         guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
         
         let rect = GMSMutablePath()
@@ -296,7 +306,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
     }
     
     // 테이블 뷰 셀의 세로 길이 설정
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if mode == 0 { return 127.0 } // 코스
         else if mode == 1 { return 250.0 } // 지도
         else { return 80.0 } // 리뷰
@@ -354,7 +364,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
         }
     }
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -365,7 +375,7 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             
             destTarget.ThisTour = self.userTourRelation.tour
         }
-            
+        
         // 랜드마크 정보 보기
         if segue.identifier == "LandmarkInfoGO" {
             let dest = segue.destination as! UINavigationController
@@ -383,5 +393,12 @@ class LandmarkListVC: UITableViewController, YourCellDelegate, CLLocationManager
             }
         }
     }
+    
+}
 
+extension LandmarkListVC: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+        // Custom logic here
+    }
 }

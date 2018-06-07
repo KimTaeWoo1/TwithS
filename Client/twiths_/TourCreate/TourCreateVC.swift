@@ -50,22 +50,8 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    // MARK: - Table view data source
     
-    // 숫자 (0~9) 만 입력 가능하게 하기
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard NSCharacterSet(charactersIn: "0123456789").isSuperset(of: NSCharacterSet(charactersIn: string) as CharacterSet) else {
-            print("wrong character")
-            return false
-        }
-        return true
-    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -75,12 +61,12 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 {
-            return 5
+            return 4
         }
         return landmarks.count
     }
     
-    let cellIdentifier = ["TourNameCell", "TourDetailCell", "TourLimitTimeCell", "static4", "static5"]
+    let cellIdentifier = ["TourNameCell", "TourDetailCell", "static4", "static5"]
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
@@ -92,17 +78,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourDetailCell
                 makeBorderToTextField(cell.tourDetailField)
                 return cell
-                
             case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourLimitTimeCell
-                
-                    cell.limitDay.delegate = self
-                    cell.limitHour.delegate = self
-                    cell.limitMin.delegate = self
-                
-                return cell
-                
-            case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! static4
                 imageCell = cell
                 return cell
@@ -156,7 +132,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         if indexPath.section == 0 && indexPath.row == 1 {
             return 230
         }
-        if indexPath.section == 0 && indexPath.row == 3 {
+        if indexPath.section == 0 && indexPath.row == 2 {
             return 200
         }
         return 70
@@ -180,16 +156,12 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             // 모든 정보를 입력하지 않은 경우 또는 랜드마크 개수가 3개 미만인 경우 오류 메시지 출력
             let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
-            let cell3 = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! TourLimitTimeCell
             
             let info1 = (cell1.tourNameField.text != "")
             let info2 = (cell2.tourDetailField.text != "")
-            let info3 = (cell3.limitDay.text != "")
-            let info4 = (cell3.limitHour.text != "")
-            let info5 = (cell3.limitMin.text != "")
-            let info6 = (landmarks.count >= 3)
+            let info3 = (landmarks.count >= 3)
             
-            let infoFinish = info1 && info2 && info3 && info4 && info5 && info6 && imageUploaded
+            let infoFinish = info1 && info2 && info3 && imageUploaded
             
             if infoFinish == false {
                 let alertController = UIAlertController(title: "Error", message: "랜드마크를 3개 이상 포함하여, 투어에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
@@ -223,7 +195,6 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             
             let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
-            let cell3 = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! TourLimitTimeCell
             
             tour.creator = userID!
             tour.name = (cell1.tourNameField?.text)!
@@ -244,9 +215,6 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 }
             })
             
-            if let day = cell3.limitDay.text, let hour = cell3.limitHour.text, let min = cell3.limitMin.text {
-                tour.timeLimit = makeLimitToMinite(day: Int(day)!, hour: Int(hour)!, min: Int(min)!)
-            }
             tourRef = db.collection("tours").addDocument(data: [
                 "name" : tour.name,
                 "creator" : tour.creator,
