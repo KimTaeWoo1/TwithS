@@ -88,7 +88,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // 목록
         if mode == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMain
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMainVC
             
             let ThisLandmark:Landmark_ = landmarkList[indexPath.row]
             cell.titleText.text = ThisLandmark.name
