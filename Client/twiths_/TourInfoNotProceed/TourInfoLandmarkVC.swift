@@ -16,6 +16,10 @@ class TourInfoLandmarkVC: UITableViewController {
     var ThisLandmark:Landmark_ = Landmark_()
     var TourName:String = ""
 
+    @IBOutlet var landmarkName: UILabel!
+    @IBOutlet var tourName: UILabel!
+    @IBOutlet var landmarkDetail: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +35,11 @@ class TourInfoLandmarkVC: UITableViewController {
                 self.imgView.image = UIImage(data: Data!)
             }
         }
-
+        
+        landmarkName.text = ThisLandmark.name
+        tourName.text = TourName
+        landmarkDetail.text = ThisLandmark.detail
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -54,31 +62,6 @@ class TourInfoLandmarkVC: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 3
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TILandmarkInfo", for: indexPath)
-        
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = "랜드마크 이름:"
-            cell.detailTextLabel?.text = ThisLandmark.name
-            break
-        case 1:
-            cell.textLabel?.text = "투어 이름:"
-            cell.detailTextLabel?.text = TourName
-            break
-        case 2:
-            cell.textLabel?.text = "설명:"
-            cell.detailTextLabel?.text = ThisLandmark.detail
-            break
-        default:
-            cell.textLabel?.text = ""
-            cell.detailTextLabel?.text = ""
-            break
-        }
-        
-        return cell
     }
 
     /*

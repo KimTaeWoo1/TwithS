@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wAr-r5-UCX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wAr-r5-UCX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -62,7 +62,7 @@
                                     <outlet property="nameLabel" destination="620-gc-ue4" id="NSQ-lF-ipN"/>
                                     <outlet property="proceedTimeLabel" destination="nHW-et-hEx" id="jtJ-Kw-yYi"/>
                                     <outlet property="tourImageView" destination="EFv-gy-nUn" id="pNJ-Hu-0sf"/>
-                                    <segue destination="pKF-2G-iia" kind="show" identifier="tour_detail" id="i3D-vI-gNc"/>
+                                    <segue destination="Xa0-UN-hLf" kind="show" identifier="tour_detail" id="MWY-WR-tlB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -92,6 +92,14 @@
             </objects>
             <point key="canvasLocation" x="1408.8" y="-39.130434782608695"/>
         </scene>
+        <!--Tour-->
+        <scene sceneID="VFe-OO-AHK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Tour" referencedIdentifier="Tour" id="Xa0-UN-hLf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wbF-ee-sGv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2179" y="-166"/>
+        </scene>
         <!--TourCreate-->
         <scene sceneID="C08-ZN-8X8">
             <objects>
@@ -99,14 +107,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0dO-tA-y4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1479" y="475"/>
-        </scene>
-        <!--Tour-->
-        <scene sceneID="Jxa-AJ-gGj">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Tour" referencedIdentifier="Tour" id="pKF-2G-iia" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ObS-de-cDD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2118" y="-146"/>
         </scene>
         <!--Mypage-->
         <scene sceneID="oIR-Th-Chx">

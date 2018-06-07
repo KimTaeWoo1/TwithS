@@ -32,8 +32,6 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: UIView!
     
-    
-    
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid as! String
     var ThisTour = Tour_()
@@ -87,6 +85,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
+        print("****test****")
         return 1
     }
     
@@ -94,7 +93,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
         // #warning Incomplete implementation, return the number of rows
         if mode == 0 { return landmarkList.count } // 목록
         else if mode == 1 { return 1 } // 지도
-        else { return Reviews.count } // 리뷰. 임시로 3개로 테스트
+        else { return Reviews.count } // 리뷰
     }
     
     @IBAction func ToTourInfoMainSegue(segue: UIStoryboardSegue){
@@ -105,7 +104,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // 목록
         if mode == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMainVC
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMain
             
             let ThisLandmark:Landmark_ = landmarkList[indexPath.row]
             cell.titleText.text = ThisLandmark.name

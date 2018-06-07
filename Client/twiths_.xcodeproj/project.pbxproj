@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		005A778020BF612B00151A55 /* TourInfoTourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005A777F20BF612B00151A55 /* TourInfoTourVC.swift */; };
 		005A778220BF614200151A55 /* TourInfoLandmarkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005A778120BF614200151A55 /* TourInfoLandmarkVC.swift */; };
+		0078A5F920C95A6400A6DA9F /* LandmarkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0078A5F820C95A6400A6DA9F /* LandmarkListVC.swift */; };
 		00A2654520B846F700B80AE6 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654420B846F700B80AE6 /* MainVC.swift */; };
-		00A2654720B8470C00B80AE6 /* LandmarkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */; };
 		00A2654920B8471B00B80AE6 /* TourInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654820B8471B00B80AE6 /* TourInfoVC.swift */; };
 		00A2654B20B8472900B80AE6 /* LandmarkInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */; };
 		35C8D8354440214168BB483B /* Pods_twiths_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3941FE870DFF7D3907971846 /* Pods_twiths_.framework */; };
@@ -47,8 +47,8 @@
 /* Begin PBXFileReference section */
 		005A777F20BF612B00151A55 /* TourInfoTourVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoTourVC.swift; sourceTree = "<group>"; };
 		005A778120BF614200151A55 /* TourInfoLandmarkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoLandmarkVC.swift; sourceTree = "<group>"; };
+		0078A5F820C95A6400A6DA9F /* LandmarkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListVC.swift; sourceTree = "<group>"; };
 		00A2654420B846F700B80AE6 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListVC.swift; sourceTree = "<group>"; };
 		00A2654820B8471B00B80AE6 /* TourInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourInfoVC.swift; sourceTree = "<group>"; };
 		00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkInfoVC.swift; sourceTree = "<group>"; };
 		3941FE870DFF7D3907971846 /* Pods_twiths_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twiths_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,11 +111,11 @@
 		00A2654020B8469D00B80AE6 /* Tour */ = {
 			isa = PBXGroup;
 			children = (
-				00A2654620B8470C00B80AE6 /* LandmarkListVC.swift */,
 				00A2654820B8471B00B80AE6 /* TourInfoVC.swift */,
 				00A2654A20B8472900B80AE6 /* LandmarkInfoVC.swift */,
 				5BCB191F20C675E50084BABE /* LocationCertificationVC.swift */,
 				5BEE2CC520C7B6E900199156 /* CreateReviewVC.swift */,
+				0078A5F820C95A6400A6DA9F /* LandmarkListVC.swift */,
 			);
 			path = Tour;
 			sourceTree = "<group>";
@@ -431,13 +431,13 @@
 				5BAAC72A20B5C54700761C86 /* SignupViewController.swift in Sources */,
 				00A2654520B846F700B80AE6 /* MainVC.swift in Sources */,
 				005A778020BF612B00151A55 /* TourInfoTourVC.swift in Sources */,
+				0078A5F920C95A6400A6DA9F /* LandmarkListVC.swift in Sources */,
 				5BCBA28120C3BCCA0000F345 /* SelfCreateTourVC.swift in Sources */,
 				5B04FF4220C912BE00D6BA5E /* TourMapVC.swift in Sources */,
 				5BEE2CC620C7B6E900199156 /* CreateReviewVC.swift in Sources */,
 				5B3423B920BAF7CD007B2D40 /* Model.swift in Sources */,
 				5B3423BB20BB0AF5007B2D40 /* TourCreateHelper.swift in Sources */,
 				5B6AC1D020A980A3006EF078 /* AppDelegate.swift in Sources */,
-				00A2654720B8470C00B80AE6 /* LandmarkListVC.swift in Sources */,
 				5BCB192020C675E50084BABE /* LocationCertificationVC.swift in Sources */,
 				005A778220BF614200151A55 /* TourInfoLandmarkVC.swift in Sources */,
 				00A2654920B8471B00B80AE6 /* TourInfoVC.swift in Sources */,
