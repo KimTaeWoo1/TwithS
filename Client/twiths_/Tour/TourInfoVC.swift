@@ -23,11 +23,11 @@ class TourInfoVC: UITableViewController {
         let storRef = Storage.storage().reference(forURL: "gs://twiths-350ca.appspot.com").child(imgName)
         
         // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
-        storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
-            if Error != nil {
+        storRef.getData(maxSize: 64 * 1024 * 1024) { data, error in
+            if error != nil {
                 // 오류가 발생함.
             } else {
-                self.imgView.image = UIImage(data: Data!)
+                self.imgView.image = UIImage(data: data!)
             }
         }
     }

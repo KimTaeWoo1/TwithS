@@ -9,6 +9,23 @@
 import UIKit
 import Firebase
 import GoogleMaps
+import Cosmos
+
+class TourInfoMain: UITableViewCell {
+    @IBOutlet var imgView: UIImageView!
+    @IBOutlet var titleText: UILabel!
+    @IBOutlet var subtitleText: UILabel!
+}
+
+class TourInfoMReview: UITableViewCell {
+    @IBOutlet var reviewSubtitle: UILabel!
+    @IBOutlet var reviewTitle: UILabel!
+    @IBOutlet var StarRating: CosmosView!
+}
+
+class TourInfoMMap: UIView {
+    
+}
 
 class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -88,7 +105,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // 목록
         if mode == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMainVC
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMain
             
             let ThisLandmark:Landmark_ = landmarkList[indexPath.row]
             cell.titleText.text = ThisLandmark.name
@@ -113,10 +130,10 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
             return cell
         }
             
-            // 지도
         else if mode == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMMap", for: indexPath) as! TourInfoMMap
             
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TourInfoMain", for: indexPath) as! TourInfoMain
+            self.view.bringSubview(toFront: mapView)
             return cell
         }
             
@@ -126,8 +143,8 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
             
             let ThisReview = Reviews[indexPath.row]
             cell.StarRating.rating = ThisReview.stars
-            cell.ReviewTitle.text = ThisReview.name
-            cell.ReviewSubtitle.text = ThisReview.comment
+            cell.reviewTitle.text = ThisReview.name
+            cell.reviewSubtitle.text = ThisReview.comment
             
             return cell
         }

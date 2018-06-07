@@ -74,7 +74,7 @@ class MainVC: UITableViewController {
                         }
                     }
                 }
-            }
+            } 
             dGroup.notify(queue: .main) {   //// 4
                 self.proceedTours = tours
                 self.tableView.reloadData()
