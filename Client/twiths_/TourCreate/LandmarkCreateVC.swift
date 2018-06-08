@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @IBOutlet weak var landmarkNameFIeld: UITextField!
     @IBOutlet weak var landmarkDetailField: UITextView!
@@ -24,6 +25,21 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
         super.viewDidLoad()
         makeBorderToTextField(landmarkDetailField)
         CheckLocationSelectedLabel?.text = ""
+        landmarkNameFIeld.placeholder = "투어 제목을 입력해주세요."
+        landmarkDetailField.text = "투어에 대한 설명을 입력해주세요."
+        landmarkDetailField.textColor = UIColor.lightGray
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Placeholder"
+            textView.textColor = UIColor.lightGray
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,9 +92,11 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     @IBAction func MapToCreateLandmark(sender:UIStoryboardSegue){
         if sender.source is CreateLandmarkLocationVC {
             if let senderVC = sender.source as? CreateLandmarkLocationVC {
+                var markerList:[(Double,Double)] = []
                 for marker in senderVC.allMarkers {
-                    landmark.location.append((marker.position.latitude, marker.position.longitude))
+                    markerList.append((marker.position.latitude, marker.position.longitude))
                 }
+                landmark.location = markerList
                 CheckLocationSelectedLabel?.text = "설정 완료"
                 locationSet = true
             }

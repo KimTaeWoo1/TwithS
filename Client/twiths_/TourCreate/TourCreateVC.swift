@@ -22,7 +22,7 @@ class TourNameCell: UITableViewCell {
     @IBOutlet weak var tourNameField: UITextField!
 }
 class TourDetailCell: UITableViewCell {
-    @IBOutlet weak var tourDetailField: UITextView!
+    @IBOutlet var detailTextField: UITextView!
 }
 class TourLimitTimeCell: UITableViewCell {
     @IBOutlet weak var limitDay: UITextField!
@@ -76,7 +76,8 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourDetailCell
-                makeBorderToTextField(cell.tourDetailField)
+                makeBorderToTextField(cell.detailTextField)
+                cell.detailTextField.text = "투어에 대한 설명을 입력해주세요."
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! static4
@@ -135,7 +136,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         if indexPath.section == 0 && indexPath.row == 2 {
             return 200
         }
-        return 70
+        return 50
     }
     
     @IBAction func LandmarkCreateToTourCreateSegue(segue:UIStoryboardSegue) {
@@ -158,7 +159,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
             
             let info1 = (cell1.tourNameField.text != "")
-            let info2 = (cell2.tourDetailField.text != "")
+            let info2 = (cell2.detailTextField.text != "")
             let info3 = (landmarks.count >= 3)
             
             let infoFinish = info1 && info2 && info3 && imageUploaded
@@ -198,7 +199,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             
             tour.creator = userID!
             tour.name = (cell1.tourNameField?.text)!
-            tour.detail = (cell2.tourDetailField?.text)!
+            tour.detail = (cell2.detailTextField?.text)!
             tour.image = imageName
             
             // 투어 이미지 올리기
