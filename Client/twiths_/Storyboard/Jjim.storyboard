@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="twK-6Y-2F8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="twK-6Y-2F8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,18 +27,27 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="찜한 투어 개수: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOh-dd-aaL">
-                                            <rect key="frame" x="50" y="14" width="325" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="찜한 투어 개수: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hOh-dd-aaL">
+                                            <rect key="frame" x="65.5" y="14" width="309.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HvO-u6-M5B">
-                                            <rect key="frame" x="10" y="8" width="32" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HvO-u6-M5B">
+                                            <rect key="frame" x="10" y="0.0" width="47.5" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="HvO-u6-M5B" secondAttribute="height" multiplier="1:1" id="F5S-ik-Zqg"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="hOh-dd-aaL" secondAttribute="trailing" id="3c9-Af-3MB"/>
+                                        <constraint firstItem="HvO-u6-M5B" firstAttribute="leading" secondItem="mdO-LZ-PKB" secondAttribute="leading" constant="10" id="AJj-46-I8G"/>
+                                        <constraint firstItem="hOh-dd-aaL" firstAttribute="leading" secondItem="HvO-u6-M5B" secondAttribute="trailing" constant="8" id="JxX-9Y-SUQ"/>
+                                        <constraint firstItem="hOh-dd-aaL" firstAttribute="centerY" secondItem="mdO-LZ-PKB" secondAttribute="centerY" id="ZT5-Gq-tsk"/>
+                                        <constraint firstItem="HvO-u6-M5B" firstAttribute="top" secondItem="mdO-LZ-PKB" secondAttribute="top" id="anN-UO-DRW"/>
+                                        <constraint firstItem="HvO-u6-M5B" firstAttribute="centerY" secondItem="mdO-LZ-PKB" secondAttribute="centerY" id="ypU-we-jUK"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="JjimCount" destination="hOh-dd-aaL" id="G6p-Q9-7QA"/>
@@ -50,25 +61,38 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lOD-hD-eKo">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lOD-hD-eKo">
                                             <rect key="frame" x="8" y="5" width="54" height="54"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="lOD-hD-eKo" secondAttribute="height" multiplier="1:1" id="CMN-rw-tlp"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ec3-UO-wvZ">
-                                            <rect key="frame" x="70" y="7" width="305" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKD-DS-xQV">
-                                            <rect key="frame" x="70" y="33" width="305" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NmW-f1-dC5">
+                                            <rect key="frame" x="82" y="14" width="277" height="36.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ec3-UO-wvZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="277" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dKD-DS-xQV">
+                                                    <rect key="frame" x="0.0" y="25.5" width="277" height="11"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="lOD-hD-eKo" firstAttribute="centerY" secondItem="qFi-Wy-cPh" secondAttribute="centerY" id="Bfs-Wf-tAk"/>
+                                        <constraint firstItem="NmW-f1-dC5" firstAttribute="leading" secondItem="lOD-hD-eKo" secondAttribute="trailing" constant="20" id="Tf6-fz-c6U"/>
+                                        <constraint firstItem="lOD-hD-eKo" firstAttribute="top" secondItem="qFi-Wy-cPh" secondAttribute="top" constant="5" id="d4q-Jn-wr7"/>
+                                        <constraint firstItem="lOD-hD-eKo" firstAttribute="leading" secondItem="qFi-Wy-cPh" secondAttribute="leading" constant="8" id="lAs-1z-XFa"/>
+                                        <constraint firstItem="NmW-f1-dC5" firstAttribute="centerY" secondItem="qFi-Wy-cPh" secondAttribute="centerY" id="lnD-i6-M7X"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="NmW-f1-dC5" secondAttribute="trailing" id="pKI-iM-uy4"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="imgView" destination="lOD-hD-eKo" id="vUA-ne-AgB"/>

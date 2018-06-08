@@ -10,7 +10,7 @@ import UIKit
 import Cosmos
 import Firebase
 
-class CreateReviewVC: UITableViewController {
+class CreateReviewVC: UITableViewController,UITextViewDelegate {
     
     var tour = Tour_()
     @IBOutlet weak var textField: UITextView!
@@ -20,13 +20,28 @@ class CreateReviewVC: UITableViewController {
         super.viewDidLoad()
         makeBorderToTextField(textField)
         StarRating.settings.fillMode = .half
+        textField.text = "투어에 대한 리뷰를 입력해주세요."
+        textField.textColor = UIColor.lightGray
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "투어에 대한 리뷰를 입력해주세요."
+            textView.textColor = UIColor.lightGray
+        }
+    }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.

@@ -73,11 +73,15 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             switch indexPath.row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourNameCell
+                cell.tourNameField.placeholder = "투어 제목을 입력해주세요."
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourDetailCell
                 makeBorderToTextField(cell.detailTextField)
                 cell.detailTextField.text = "투어에 대한 설명을 입력해주세요."
+                cell.detailTextField.textColor = UIColor.lightGray
+                cell.detailTextField.delegate = self
+                
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! static4
@@ -87,23 +91,34 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! static5
                 
-                cell.landmarkCount.text = "현재 랜드마크 \(landmarks.count)개"
+                cell.landmarkCount.text = "설정된 장소 \(landmarks.count)개"
                 
                 return cell
             }
         }
+        
         // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ldmkCell
-        
-        // 이미지 뷰를 원형으로
-        cell.imgView.layer.cornerRadius = cell.imgView.frame.size.width / 2
-        cell.imgView.layer.masksToBounds = true
         
         cell.landmarkTitle.text = landmarks[indexPath.row].name
         cell.landmarkDescription.text = landmarks[indexPath.row].detail
         cell.imgView.image = images[indexPath.row]
         
         return cell
+    }
+    
+    //textView placeholder
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "투어에 대한 설명을 입력해주세요."
+            textView.textColor = UIColor.lightGray
+        }
     }
     
     // '사진 올리기' 버튼 클릭 시 실행
@@ -136,6 +151,9 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         if indexPath.section == 0 && indexPath.row == 2 {
             return 200
         }
+        if indexPath.section == 0 && indexPath.row == 3 {
+            return 100
+        }
         return 50
     }
     
@@ -165,7 +183,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             let infoFinish = info1 && info2 && info3 && imageUploaded
             
             if infoFinish == false {
-                let alertController = UIAlertController(title: "Error", message: "랜드마크를 3개 이상 포함하여, 투어에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Error", message: "장소를 3개 이상 설정하고, 투어에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
                 
                 alertController.addAction(defaultAction)
@@ -176,7 +194,6 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         }
         return true
     }
-    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation

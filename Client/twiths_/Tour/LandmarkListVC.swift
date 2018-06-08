@@ -224,6 +224,8 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             let ThisLandmark = userLandmark.landmark
             print("---\(ThisLandmark.image)---\(userLandmark.image)")
             
+            cell.submitButton.titleLabel?.adjustsFontSizeToFitWidth = true;
+            cell.submitButton.titleLabel?.minimumScaleFactor = 0.5; // set whatever factor you want to set
             // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
             var imgName = ""
             if userLandmark.state == 0 { imgName = ThisLandmark.image }
@@ -275,6 +277,7 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             cell.starRating.rating = ThisReview.stars
             cell.nameLabel.text = ThisReview.name
             cell.reviewSubtitle.text = ThisReview.comment
+            
             
             return cell
         }

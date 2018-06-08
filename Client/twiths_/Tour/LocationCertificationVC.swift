@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LocationCertificationVC: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class LocationCertificationVC: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
 
     var utl = UserTourLandMark_()
     
@@ -27,30 +27,9 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
     @IBOutlet weak var textField: UITextView!
     @IBOutlet var picImage: UIImageView!
     
-    // '사진 업로드' 버튼 클릭 시 실행
-    @IBAction func picUpload(_ sender: Any) {
-        var imgPick = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            imgPick.delegate = self
-            imgPick.sourceType = .savedPhotosAlbum
-            imgPick.allowsEditing = false
-            
-            self.present(imgPick, animated: true, completion: nil)
-        }
-    }
-    
-    // 이미지를 선택 완료한 경우
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let url = info[UIImagePickerControllerReferenceURL] as? URL, let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            picImage.image = image
-        }
-        self.imageUploaded = true
-        dismiss(animated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        textField.delegate = self
         date = NSDate()
         let cal = Calendar.current
         let comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date as Date)
@@ -62,6 +41,9 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
         second = comps.second!
         
         makeBorderToTextField(textField)
+        textField.text = "장소에 방문한 소감을 입력해주세요."
+        textField.textColor = UIColor.lightGray
+
         
         CertificationTimeLabel.text = "\(year)년 \(month)월 \(day)일 \(hour)시 \(minute)분 \(second)초"
 
@@ -72,22 +54,20 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "장소에 방문한 소감을 입력해주세요."
+            textView.textColor = UIColor.lightGray
+        }
     }
-    */
-
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "locationCertificateDone" {
             // 모든 정보를 입력하지 않은 경우 또는 랜드마크 개수가 3개 미만인 경우 오류 메시지 출력
@@ -108,6 +88,28 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
             }
         }
         return true
+    }
+    
+    
+    // '사진 업로드' 버튼 클릭 시 실행
+    @IBAction func picUpload(_ sender: Any) {
+        var imgPick = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            imgPick.delegate = self
+            imgPick.sourceType = .savedPhotosAlbum
+            imgPick.allowsEditing = false
+            
+            self.present(imgPick, animated: true, completion: nil)
+        }
+    }
+    
+    // 이미지를 선택 완료한 경우
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let url = info[UIImagePickerControllerReferenceURL] as? URL, let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            picImage.image = image
+        }
+        self.imageUploaded = true
+        dismiss(animated: true)
     }
     
     // MARK: - Navigation

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
     @IBOutlet weak var landmarkNameFIeld: UITextField!
     @IBOutlet weak var landmarkDetailField: UITextView!
     @IBOutlet weak var CheckLocationSelectedLabel: UILabel!
@@ -23,12 +23,14 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        landmarkDetailField.delegate = self
         makeBorderToTextField(landmarkDetailField)
         CheckLocationSelectedLabel?.text = ""
-        landmarkNameFIeld.placeholder = "투어 제목을 입력해주세요."
-        landmarkDetailField.text = "투어에 대한 설명을 입력해주세요."
+        landmarkNameFIeld.placeholder = "장소 제목을 입력해주세요."
+        landmarkDetailField.text = "장소에 대한 설명을 입력해주세요."
         landmarkDetailField.textColor = UIColor.lightGray
     }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
@@ -37,11 +39,10 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Placeholder"
+            textView.text = "장소에 대한 설명을 입력해주세요."
             textView.textColor = UIColor.lightGray
         }
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -76,7 +77,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
             let infoFinish = info1 && info2 && imageUploaded && locationSet
         
             if infoFinish == false {
-                let alertController = UIAlertController(title: "Error", message: "사진과 위치 설정을 포함하여, 랜드마크에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Error", message: "사진과 위치 설정을 포함하여, 장소에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
             
                 alertController.addAction(defaultAction)
@@ -122,5 +123,6 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
         
     }
     
+
 
 }
