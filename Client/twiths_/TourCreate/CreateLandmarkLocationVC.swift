@@ -7,6 +7,12 @@ class CreateLandmarkLocationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let alertController = UIAlertController(title: "Info", message: "원하는 위치의 네개의 꼭지점을 찾아 길게 눌러주세요.", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -33,8 +39,7 @@ extension CreateLandmarkLocationVC: GMSMapViewDelegate {
         if counterMarker < 4 {
             let marker = GMSMarker()
             marker.position = coordinate
-            marker.title = "I added this with a long tap"
-            marker.snippet = ""
+            marker.title = "길게 누르면 없어집니다."
             allMarkers.append(marker)
             counterMarker += 1
             // Create the polygon, and assign it to the map.
