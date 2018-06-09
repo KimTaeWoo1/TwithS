@@ -41,20 +41,23 @@ class SignupViewController: UIViewController {
                 if error == nil {
                     print("You have successfully signed up")
                     //Goes to the Setup page which lets the user take a photo for their profile picture and also chose a username
-                    let user = Auth.auth().currentUser;
-                    let changeRequest = user?.createProfileChangeRequest()
-                    changeRequest?.displayName =  self.DisplayNameTextField.text
-                    changeRequest?.commitChanges { error in
-                        if let error = error {
-                            print(error)
-                        }
-                        else {
-                            
+                    if let user = Auth.auth().currentUser {
+                        let changeRequest = user.createProfileChangeRequest()
+                        changeRequest.displayName =  self.DisplayNameTextField.text
+                        changeRequest.commitChanges { error in
+                            if let error = error {
+                                print(error)
+                            }
+                            else {
+                                
+                            }
                         }
                     }
                     
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                    self.present(vc!, animated: true, completion: nil)
+                    if let storyboard = self.storyboard {
+                        let vc = storyboard.instantiateViewController(withIdentifier: "Home")
+                        self.present(vc, animated: true, completion: nil)
+                    }
                     
                 } else {
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)

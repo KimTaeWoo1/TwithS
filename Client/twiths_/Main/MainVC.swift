@@ -43,7 +43,7 @@ class MainVC: UITableViewController {
         db.collection("userTourRelations").whereField("user", isEqualTo: self.uid).whereField("state", isEqualTo: 2).addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
-            } else if let documents = querySnapshot?.documents {
+            } else if let documents = querySnapshot?.documents, let uid = self.uid {
                 tours = []
                 for document in documents {
                     dGroup.enter()
@@ -51,21 +51,21 @@ class MainVC: UITableViewController {
                     utr.id = document.documentID
                     utr.state = document.data()["state"] as! Int
                     utr.startTime = document.data()["startTime"] as! Date
-                    utr.user = self.uid!
+                    utr.user = uid
                     
                     self.db.collection("tours").document(document.data()["tour"] as! String).addSnapshotListener { query, err in
                         if let err = err {
                             print(err.localizedDescription)
-                        } else if let query = query, query.exists {
+                        } else if let query = query, query.exists, let data = query.data() {
                             let tour = Tour_()
                             tour.id = query.documentID
-                            tour.name = query.data()!["name"] as! String
-                            tour.detail = query.data()!["detail"] as! String
-                            tour.creator = query.data()!["creator"] as! String
-                            tour.createDate = query.data()!["createDate"] as! Date
-                            tour.updateDate = query.data()!["updateDate"] as! Date
-                            tour.timeLimit = query.data()!["timeLimit"] as! Int
-                            tour.image = query.data()!["image"] as! String
+                            tour.name = data["name"] as! String
+                            tour.detail = data["detail"] as! String
+                            tour.creator = data["creator"] as! String
+                            tour.createDate = data["createDate"] as! Date
+                            tour.updateDate = data["updateDate"] as! Date
+                            tour.timeLimit = data["timeLimit"] as! Int
+                            tour.image = data["image"] as! String
                             utr.tour = tour
                             tours.append(utr)
                             dGroup.leave()
@@ -107,7 +107,7 @@ class MainVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentTourCell", for: indexPath) as! CurrentProceedTourCell
         
-        cell.nameLabel?.text = proceedTours[indexPath.row].tour.name
+        cell.nameLabel.text = proceedTours[indexPath.row].tour.name
         cell.proceedTimeLabel.text = getProceedTime(proceedTours[indexPath.row]) + " 째 진행중!"
         
         // 이미지 뷰를 원형으로
@@ -121,8 +121,8 @@ class MainVC: UITableViewController {
         
         // 셀에 이미지 불러오기. 임시로 64*1024*1024, 즉 64MB를 최대로 하고, 논의 후 변경 예정.
         storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
-            if Error != nil {
-                print(Error?.localizedDescription)
+            if let Error = Error {
+                print(Error.localizedDescription)
             } else {
                 cell.tourImageView.image = UIImage(data: Data!)
             }

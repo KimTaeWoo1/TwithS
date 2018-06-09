@@ -20,9 +20,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
+        if let app = FirebaseApp.app() {
+            GIDSignIn.sharedInstance().clientID = app.options.clientID
+            GIDSignIn.sharedInstance().delegate = self
+            GIDSignIn.sharedInstance().uiDelegate = self
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -30,9 +32,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
         super.viewDidAppear(animated)
         
         
-        if (Auth.auth().currentUser != nil) {
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-            self.present(vc!, animated: true, completion: nil)
+        if Auth.auth().currentUser != nil, let storyboard = self.storyboard {
+            let vc = storyboard.instantiateViewController(withIdentifier: "Home")
+            self.present(vc, animated: true, completion: nil)
         }
     }
 
@@ -50,15 +52,15 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
             alertController.addAction(defaultAction)
             
             self.present(alertController, animated: true, completion: nil)
-        } else {
-            Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.PasswordTextField.text!) { (user, error) in
+        } else if let email = self.emailTextField.text, let pwd = self.PasswordTextField.text, let storyboard = self.storyboard {
+            Auth.auth().signIn(withEmail: email, password: pwd) { (user, error) in
                 
                 if error == nil {
                     //Print into the console if successfully logged in
                     print("You have successfully logged in")
                     //Go to the HomeViewController if the login is sucessful
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                    self.present(vc!, animated: true, completion: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "Home")
+                    self.present(vc, animated: true, completion: nil)
                 } else {
                     //Tells the user that there is an error and then gets firebase to tell them the error
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -85,8 +87,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
                 return
             }
             print("User loggind in with google...")
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-            self.present(vc!, animated: true, completion: nil)
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home") {
+                self.present(vc, animated: true, completion: nil)
+            }
         }
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
@@ -122,9 +125,10 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
                 }
                 print("facebook login success!.")
                 // Present the main view
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                self.present(vc!, animated: true, completion: nil)
-                
+                if let storyboard = self.storyboard {
+                    let vc = storyboard.instantiateViewController(withIdentifier: "Home")
+                    self.present(vc, animated: true, completion: nil)
+                }
             })
             
         }

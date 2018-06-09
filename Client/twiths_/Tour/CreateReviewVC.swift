@@ -48,15 +48,18 @@ class CreateReviewVC: UITableViewController,UITextViewDelegate {
         // Pass the selected object to the new view controller.
         if segue.identifier == "CreateReviewDone" {
             let db = Firestore.firestore()
-            let uid = Auth.auth().currentUser?.uid as! String
-            db.collection("reviews").addDocument(data: [
-                "creator" : uid,
-                "name" : Auth.auth().currentUser?.displayName,
-                "tour" : tour.id,
-                "stars" : StarRating.rating,
-                "comment" : textField.text,
-                "createTime" : Date()
-                ])
+            
+            if let user = Auth.auth().currentUser {
+                let uid = user.uid
+                db.collection("reviews").addDocument(data: [
+                    "creator" : uid,
+                    "name" : user.displayName,
+                    "tour" : tour.id,
+                    "stars" : StarRating.rating,
+                    "comment" : textField.text,
+                    "createTime" : Date()
+                    ])
+            }
         }
     }
 }

@@ -75,7 +75,8 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
         let dGroup = DispatchGroup()
         var utlList:[UserTourLandMark_] = []
         
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+        guard let location = locationManager.location else { return }
+        guard let locValue: CLLocationCoordinate2D = location.coordinate else { return }
         let camera = GMSCameraPosition.camera(withTarget: locValue, zoom: 8.0)
         let gsMapView = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
         
@@ -224,8 +225,11 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             let ThisLandmark = userLandmark.landmark
             print("---\(ThisLandmark.image)---\(userLandmark.image)")
             
-            cell.submitButton.titleLabel?.adjustsFontSizeToFitWidth = true;
-            cell.submitButton.titleLabel?.minimumScaleFactor = 0.5; // set whatever factor you want to set
+            if let titleLabel = cell.submitButton.titleLabel {
+                titleLabel.adjustsFontSizeToFitWidth = true;
+                titleLabel.minimumScaleFactor = 0.5; // set whatever factor you want to set
+            }
+            
             // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수
             var imgName = ""
             if userLandmark.state == 0 { imgName = ThisLandmark.image }
