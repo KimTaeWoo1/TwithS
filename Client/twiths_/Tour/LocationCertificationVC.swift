@@ -29,6 +29,26 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 카메라 실행, 사진을 찍을 수 있으면
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            var cam = UIImagePickerController()
+            cam.delegate = self
+            cam.sourceType = .camera;
+            cam.allowsEditing = false
+            self.present(cam, animated: true, completion: nil)
+        }
+        else {
+            // 찍을 수 없으면 않으면 경고 메시지 띄우고 종료
+            self.navigationController?.popViewController(animated: true)
+            
+            let alertController = UIAlertController(title: "Info", message: "카메라를 실행할 수 없습니다.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
         textField.delegate = self
         date = NSDate()
         let cal = Calendar.current
@@ -93,21 +113,15 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
     
     // '사진 업로드' 버튼 클릭 시 실행
     @IBAction func picUpload(_ sender: Any) {
-        var imgPick = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            imgPick.delegate = self
-            imgPick.sourceType = .savedPhotosAlbum
-            imgPick.allowsEditing = false
-            
-            self.present(imgPick, animated: true, completion: nil)
-        }
+        
     }
     
     // 이미지를 선택 완료한 경우
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let url = info[UIImagePickerControllerReferenceURL] as? URL, let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            picImage.image = image
-        }
+        let type = info[UIImagePickerControllerMediaType] as! NSString
+        let image = info[UIImagePickerControllerMediaType] as! UIImage
+        picImage.image = image
+        
         self.imageUploaded = true
         dismiss(animated: true)
     }
