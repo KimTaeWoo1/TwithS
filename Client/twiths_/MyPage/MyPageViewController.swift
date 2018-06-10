@@ -16,7 +16,8 @@ class MyPageViewController: UITableViewController {
         super.viewDidLoad()
         
         if let user = Auth.auth().currentUser {
-            displayNameLabel.text = user.displayName! + "님"
+            guard let name = user.displayName else { return }
+            displayNameLabel.text = name + "님"
         }
     }
 

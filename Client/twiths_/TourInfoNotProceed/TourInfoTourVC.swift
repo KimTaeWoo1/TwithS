@@ -29,17 +29,18 @@ class TourInfoTourVC: UITableViewController {
         storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
             if Error != nil {
                 // 오류가 발생함.
-            } else {
-                self.imgView.image = UIImage(data: Data!)
+            } else if let Data = Data {
+                self.imgView.image = UIImage(data: Data)
             }
         }
         
         tourName.text = ThisTour.name
         
         let date = ThisTour.createDate
-        let year = cal!.component(NSCalendar.Unit.year, from: date)
-        let month = cal!.component(NSCalendar.Unit.month, from: date)
-        let day = cal!.component(NSCalendar.Unit.day, from: date)
+        guard let cale = cal else { return }
+        let year = cale.component(NSCalendar.Unit.year, from: date)
+        let month = cale.component(NSCalendar.Unit.month, from: date)
+        let day = cale.component(NSCalendar.Unit.day, from: date)
         tourCreateDate.text = "\(year)년 \(month)월 \(day)일"
         
         tourDetail.text = ThisTour.detail

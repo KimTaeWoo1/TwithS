@@ -139,8 +139,8 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
             storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
                 if Error != nil {
                     // 오류가 발생함.
-                } else {
-                    cell.imgView.image = UIImage(data: Data!)
+                } else if let Data = Data {
+                    cell.imgView.image = UIImage(data: Data)
                 }
             }
             return cell

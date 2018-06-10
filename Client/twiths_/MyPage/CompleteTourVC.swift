@@ -35,16 +35,16 @@ class CompleteTourVC: UITableViewController {
                     self.db.collection("tours").document(document.data()["tour"] as! String).getDocument { query, err in
                         if let err = err {
                             print(err.localizedDescription)
-                        } else if let query = query, query.exists {
+                        } else if let query = query, query.exists, let data = query.data() {
                             let tour = Tour_()
                             tour.id = query.documentID
-                            tour.name = query.data()!["name"] as! String
-                            tour.detail = query.data()!["detail"] as! String
-                            tour.creator = query.data()!["creator"] as! String
-                            tour.createDate = query.data()!["createDate"] as! Date
-                            tour.updateDate = query.data()!["updateDate"] as! Date
-                            tour.timeLimit = query.data()!["timeLimit"] as! Int
-                            tour.image = query.data()!["image"] as! String
+                            tour.name = data["name"] as! String
+                            tour.detail = data["detail"] as! String
+                            tour.creator = data["creator"] as! String
+                            tour.createDate = data["createDate"] as! Date
+                            tour.updateDate = data["updateDate"] as! Date
+                            tour.timeLimit = data["timeLimit"] as! Int
+                            tour.image = data["image"] as! String
                             userTour.tour = tour
                             self.userTourList.append(userTour)
                             dGroup.leave()

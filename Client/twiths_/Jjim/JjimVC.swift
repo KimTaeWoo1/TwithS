@@ -38,7 +38,8 @@ class JjimVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let uid = Auth.auth().currentUser?.uid as! String
+        guard let currentUser = Auth.auth().currentUser else { return }
+        let uid = currentUser.uid
         let dGroup = DispatchGroup()
         
         self.db.collection("userTourRelations").whereField("state", isEqualTo: 1).whereField("user", isEqualTo: uid).getDocuments { (querySnapshot, err) in
@@ -49,15 +50,15 @@ class JjimVC: UITableViewController {
                     dGroup.enter()
                     let tour = Tour_()
                     self.db.collection("tours").document(document.data()["tour"] as! String).getDocument { (query, error) in
-                        if let query = query, query.exists {
+                        if let query = query, query.exists, let data = query.data() {
                             tour.id = query.documentID
-                            tour.name = query.data()!["name"] as! String
-                            tour.creator = query.data()!["creator"] as! String
-                            tour.image = query.data()!["image"] as! String
-                            tour.timeLimit = query.data()!["timeLimit"] as! Int
-                            tour.detail = query.data()!["detail"] as! String
-                            tour.createDate = query.data()!["createDate"] as! Date
-                            tour.updateDate = query.data()!["updateDate"] as! Date
+                            tour.name = data["name"] as! String
+                            tour.creator = data["creator"] as! String
+                            tour.image = data["image"] as! String
+                            tour.timeLimit = data["timeLimit"] as! Int
+                            tour.detail = data["detail"] as! String
+                            tour.createDate = data["createDate"] as! Date
+                            tour.updateDate = data["updateDate"] as! Date
                             self.tours.append(tour)
                             dGroup.leave()  /// 3
                         } else {
@@ -132,8 +133,8 @@ class JjimVC: UITableViewController {
         storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
             if Error != nil {
                 // 오류가 발생함.
-            } else {
-                cell.imgView.image = UIImage(data: Data!)
+            } else if let Data = Data {
+                cell.imgView.image = UIImage(data: Data)
             }
         }
         
@@ -160,11 +161,13 @@ class JjimVC: UITableViewController {
             alertController.addAction(UIAlertAction(title: "예", style: .default, handler: {
                 action in
                 
+                guard let currentUser = Auth.auth().currentUser else { return }
+                
                 // 먼저 문서의 ID를 얻은 다음,
                 let delTour = self.tours[indexPath.row]
                 var docID = ""
                 
-                self.db.collection("userTourRelations").whereField("user", isEqualTo: Auth.auth().currentUser!.uid).whereField("tour", isEqualTo: delTour.id).getDocuments { (querySnapshot, err) in
+                self.db.collection("userTourRelations").whereField("user", isEqualTo: currentUser.uid).whereField("tour", isEqualTo: delTour.id).getDocuments { (querySnapshot, err) in
                     if let err = err {
                         print("Error getting documents: \(err)")
                     } else if let documents = querySnapshot?.documents {
@@ -215,7 +218,8 @@ class JjimVC: UITableViewController {
         // 투어에 대한 랜드마크 정보 보기
         if segue.identifier == "ShowLandmark" {
             let dest = segue.destination as! TourInfoMainVC
-            dest.ThisTour =  tours[self.tableView.indexPathForSelectedRow!.row]
+            guard let selectIndexPath = self.tableView.indexPathForSelectedRow else { return }
+            dest.ThisTour = tours[selectIndexPath.row]
             
             // 랜드마크 데이터베이스에서 tour의 값이 ThisTour의 ID와 일치하는 것만 랜드마크 리스트에 추가
             let ref = db.collection("landmarks").whereField("tour", isEqualTo: dest.ThisTour.id).getDocuments() { (querySnapshot, err) in

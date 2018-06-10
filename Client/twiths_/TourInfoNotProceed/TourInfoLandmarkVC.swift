@@ -31,8 +31,8 @@ class TourInfoLandmarkVC: UITableViewController {
         storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
             if Error != nil {
                 // 오류가 발생함.
-            } else {
-                self.imgView.image = UIImage(data: Data!)
+            } else if let Data = Data {
+                self.imgView.image = UIImage(data: Data)
             }
         }
         
