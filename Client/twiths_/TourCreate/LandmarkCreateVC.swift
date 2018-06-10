@@ -19,7 +19,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     var imageUploaded = false
     var locationSet = false
     @IBOutlet var imgView1: UIImageView! // 랜드마크 사진 올리기 이미지뷰
-    var imgURL:URL! = nil // 업로드할 이미지의 URL
+    var imgURL:URL = URL(fileURLWithPath: "") // 업로드할 이미지의 URL
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +98,8 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
                     markerList.append((marker.position.latitude, marker.position.longitude))
                 }
                 landmark.location = markerList
-                CheckLocationSelectedLabel?.text = "설정 완료"
+                guard let locSelected = CheckLocationSelectedLabel else { return }
+                locSelected.text = "설정 완료"
                 locationSet = true
             }
         }

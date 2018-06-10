@@ -162,9 +162,9 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
     }
     @IBAction func LandmarkCreateToTourCreateSegue(sender:UIStoryboardSegue){
         if sender.source is LandmarkCreateVC {
-            if let senderVC = sender.source as? LandmarkCreateVC {
+            if let senderVC = sender.source as? LandmarkCreateVC, let image = senderVC.imgView1.image {
                 landmarks.append(senderVC.landmark)
-                images.append(senderVC.imgView1.image!)
+                images.append(image)
             }
             tableView.reloadData()
         }
@@ -176,8 +176,8 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
             
-            let info1 = (cell1.tourNameField.text != "")
-            let info2 = (cell2.detailTextField.text != "")
+            let info1 = (cell1.tourNameField.text != "" && cell1.tourNameField.text != "투어 제목을 입력해주세요.")
+            let info2 = (cell2.detailTextField.text != "" && cell2.detailTextField.text != "투어에 대한 설명을 입력해주세요.")
             let info3 = (landmarks.count >= 3)
             
             let infoFinish = info1 && info2 && info3 && imageUploaded
@@ -203,6 +203,8 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
         
         if segue.identifier == "createDone" {
             
+            print("000")
+            
             // 투어 생성
             let db = Firestore.firestore()
             let imageName = "T\(Date().timeIntervalSince1970).jpg" // 이미지 이름을 지정
@@ -213,19 +215,22 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             
             let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
+            guard let tourNameText = cell1.tourNameField.text else { return }
+            guard let tourDetailText = cell2.detailTextField.text else { return }
             
             tour.creator = userID!
-            tour.name = (cell1.tourNameField?.text)!
-            tour.detail = (cell2.detailTextField?.text)!
+            tour.name = tourNameText
+            tour.detail = tourDetailText
             tour.image = imageName
             
             // 투어 이미지 올리기
             let storRef = Storage.storage().reference()
-            let data = UIImagePNGRepresentation(imageCell.imgView.image!)
+            guard let img = imageCell.imgView.image else { return }
+            guard let data = UIImagePNGRepresentation(img) else { return }
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             let ImgRef = storRef.child(imageName)
-            _ = ImgRef.putData(data!, metadata:metadata, completion: { (metadata, error) in
+            _ = ImgRef.putData(data, metadata:metadata, completion: { (metadata, error) in
                 if let metadata = metadata {
                     print("Success")
                 } else {
@@ -233,6 +238,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 }
             })
             
+            print("111")
             tourRef = db.collection("tours").addDocument(data: [
                 "name" : tour.name,
                 "creator" : tour.creator,
@@ -244,14 +250,17 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             ]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
-                } else {
-                    print("Document added with ID: \(tourRef!.documentID)")
+                } else if let tRef = tourRef {
+                    print("Document added with ID: \(tRef.documentID)")
                 }
             }
+            
             for i in 0..<landmarks.count {
                 let landmark = landmarks[i]
                 let newLandmark = Landmark_()
-                newLandmark.tour.id = (tourRef?.documentID)!
+                guard let tRef = tourRef else { return }
+                
+                newLandmark.tour.id = tRef.documentID
                 newLandmark.name = landmark.name
                 newLandmark.image = landmark.image
                 newLandmark.detail = landmark.detail
@@ -259,11 +268,11 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 
                 // 랜드마크 이미지 올리기
                 let storRef = Storage.storage().reference()
-                let data = UIImagePNGRepresentation(images[i])
+                guard let data = UIImagePNGRepresentation(images[i]) else { return }
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
                 let ImgRef = storRef.child(landmark.image)
-                _ = ImgRef.putData(data!, metadata:metadata, completion: { (metadata, error) in
+                _ = ImgRef.putData(data, metadata:metadata, completion: { (metadata, error) in
                     if let metadata = metadata {
                         print("Success")
                     } else {

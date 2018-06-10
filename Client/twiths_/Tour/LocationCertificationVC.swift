@@ -50,15 +50,16 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
         }
         
         textField.delegate = self
-        date = NSDate()
-        let cal = Calendar.current
-        let comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date as Date)
-        year = comps.year!
-        month = comps.month!
-        day = comps.day!
-        hour = comps.hour!
-        minute = comps.minute!
-        second = comps.second!
+        let nsdate = NSDate()
+        let date = nsdate as Date
+        let cal = NSCalendar.init(calendarIdentifier: NSCalendar.Identifier.gregorian)
+        guard let cale = cal else { return }
+        let year = cale.component(NSCalendar.Unit.year, from: date)
+        let month = cale.component(NSCalendar.Unit.month, from: date)
+        let day = cale.component(NSCalendar.Unit.day, from: date)
+        let hour = cale.component(NSCalendar.Unit.hour, from: date)
+        let minute = cale.component(NSCalendar.Unit.minute, from: date)
+        let second = cale.component(NSCalendar.Unit.second, from: date)
         
         makeBorderToTextField(textField)
         textField.text = "장소에 방문한 소감을 입력해주세요."
@@ -140,11 +141,12 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
             // 완료한 랜드마크에 대한 이미지 올리기
             let imageName = "C\(Date().timeIntervalSince1970).jpg" // 이미지 이름을 지정
             let storRef = Storage.storage().reference()
-            let data = UIImagePNGRepresentation(picImage.image!)
+            guard let img = picImage.image else { return }
+            guard let data = UIImagePNGRepresentation(img) else { return }
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             let ImgRef = storRef.child(imageName)
-            _ = ImgRef.putData(data!, metadata:metadata, completion: { (metadata, error) in
+            _ = ImgRef.putData(data, metadata:metadata, completion: { (metadata, error) in
                 if let metadata = metadata {
                     print("Success")
                 } else {
@@ -154,7 +156,7 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
             
             utlRef.updateData([
                 "state" : 1,
-                "comment" : textField?.text,
+                "comment" : textField.text,
                 "image" : imageName,
                 "successTime" : date
             ]){ err in

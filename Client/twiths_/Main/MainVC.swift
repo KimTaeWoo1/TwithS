@@ -123,8 +123,8 @@ class MainVC: UITableViewController {
         storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
             if let Error = Error {
                 print(Error.localizedDescription)
-            } else {
-                cell.tourImageView.image = UIImage(data: Data!)
+            } else if let Data = Data {
+                cell.tourImageView.image = UIImage(data: Data)
             }
         }
         return cell

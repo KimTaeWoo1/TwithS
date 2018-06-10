@@ -242,8 +242,8 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             storRef.getData(maxSize: 64 * 1024 * 1024) { Data, Error in
                 if Error != nil {
                     // 오류가 발생함.
-                } else {
-                    cell.LandmarkImage.image = UIImage(data: Data!)
+                } else if let Data = Data {
+                    cell.LandmarkImage.image = UIImage(data: Data)
                 }
             }
             
@@ -290,7 +290,8 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
     func didPressButton(_ tag: Int) {
         let landmark = userTourLandmarks[tag].landmark
         
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+        guard let location = locationManager.location else { return }
+        let locValue: CLLocationCoordinate2D = location.coordinate
         
         let rect = GMSMutablePath()
         for marker in landmark.location {
@@ -360,8 +361,9 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
                     
                 })
                 
+                guard let nvC = self.navigationController else { return }
                 let noAction = UIAlertAction(title: "아니요", style: .default, handler: { (alert: UIAlertAction!) in
-                    self.navigationController?.popToRootViewController(animated: true)
+                    nvC.popToRootViewController(animated: true)
                 })
                 alertController.addAction(okayAction)
                 alertController.addAction(noAction)
@@ -394,6 +396,7 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
         
         if segue.identifier == "locationCertificationSegue" {
             if let nextVC = segue.destination as? LocationCertificationVC {
+                let senderBtn = sender as? UIButton
                 if let tag = (sender as? UIButton)?.tag {
                     nextVC.utl = userTourLandmarks[tag]
                 }

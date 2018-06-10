@@ -25,9 +25,10 @@ class TourInfoVC: UITableViewController {
         tourName.text = ThisTour.name
         
         let date = ThisTour.createDate
-        let year = cal!.component(NSCalendar.Unit.year, from: date)
-        let month = cal!.component(NSCalendar.Unit.month, from: date)
-        let day = cal!.component(NSCalendar.Unit.day, from: date)
+        guard let cale = cal else { return }
+        let year = cale.component(NSCalendar.Unit.year, from: date)
+        let month = cale.component(NSCalendar.Unit.month, from: date)
+        let day = cale.component(NSCalendar.Unit.day, from: date)
         tourCreateDate.text = "\(year)년 \(month)월 \(day)일"
         
         tourDetail.text = ThisTour.detail
