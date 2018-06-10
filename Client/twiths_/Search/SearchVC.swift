@@ -64,7 +64,8 @@ class SearchVC: UITableViewController, UISearchResultsUpdating {
             filteredTours = tours
         } else {
             // Filter the results
-            filteredTours = tours.filter { $0.name.lowercased().contains(searchController.searchBar.text!.lowercased()) }
+            guard let text = searchController.searchBar.text else { return }
+            filteredTours = tours.filter { $0.name.lowercased().contains(text.lowercased()) }
         }
         
         self.tableView.reloadData()

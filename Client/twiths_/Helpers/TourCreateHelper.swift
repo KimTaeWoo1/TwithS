@@ -24,11 +24,12 @@ func getProceedTime(_ userTourRelation:UserTourRelation_) -> String {
     let now = NSDate()
     let DHM: Set<Calendar.Component> = [.day, .hour, .minute]
     let proceedTime = NSCalendar.current.dateComponents(DHM, from: userTourRelation.startTime, to: now as Date);
-    let day = "\(proceedTime.day!)"
-    let hour = "\(proceedTime.hour!)"
-    let minute = "\(proceedTime.minute!)"
     
-    let timeLeft = (proceedTime.day!) * 1440 + (proceedTime.hour!) * 60 + (proceedTime.minute!)
+    guard let Day = proceedTime.day else { return "" }
+    guard let Hour = proceedTime.hour else { return "" }
+    guard let Minute = proceedTime.minute else { return "" }
+    
+    let timeLeft = Day * 1440 + Hour * 60 + Minute
     
     let dayLeft = "\(timeLeft / 1440)"
     let hourLeft = "\((timeLeft % 1440) / 60)"

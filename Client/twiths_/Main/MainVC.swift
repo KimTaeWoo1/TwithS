@@ -152,8 +152,9 @@ class MainVC: UITableViewController {
                 // 먼저 UserTourRelation 문서의 ID를 얻은 다음,
                 let delTour = self.proceedTours[indexPath.row]
                 var UTRdocID = ""
+                guard let currentUser = Auth.auth().currentUser else { return }
                 
-                self.db.collection("userTourRelations").whereField("user", isEqualTo: Auth.auth().currentUser!.uid).whereField("tour", isEqualTo: delTour.tour.id).getDocuments { (querySnapshot, err) in
+                self.db.collection("userTourRelations").whereField("user", isEqualTo: currentUser.uid).whereField("tour", isEqualTo: delTour.tour.id).getDocuments { (querySnapshot, err) in
                     if let err = err {
                         print("Error getting documents: \(err)")
                     } else if let documents = querySnapshot?.documents {
@@ -166,8 +167,9 @@ class MainVC: UITableViewController {
                             // 2. UserTourLandmark의 데이터 삭제
                             // 먼저 UserTourLandmark 문서의 ID를 얻은 다음,
                             var UTLdocID = ""
+                            guard let currentUser = Auth.auth().currentUser else { return }
                             
-                            self.db.collection("userTourLandmarks").whereField("user", isEqualTo: Auth.auth().currentUser!.uid).whereField("userTourRelation", isEqualTo: UTRdocID).getDocuments { (querySnapshot, err) in
+                            self.db.collection("userTourLandmarks").whereField("user", isEqualTo: currentUser.uid).whereField("userTourRelation", isEqualTo: UTRdocID).getDocuments { (querySnapshot, err) in
                                 if let err = err {
                                     print("Error getting documents: \(err)")
                                 } else if let documents = querySnapshot?.documents {
@@ -199,8 +201,9 @@ class MainVC: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tour_detail" {
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
             let dest = segue.destination as! LandmarkListVC
-            dest.userTourRelation = proceedTours[self.tableView.indexPathForSelectedRow!.row]
+            dest.userTourRelation = proceedTours[indexPath.row]
         }
     }
     

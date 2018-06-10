@@ -196,10 +196,11 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
             
             // 랜드마크 정보 보기
         else if segue.identifier == "TIShowLandmarkInfo" {
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
             let dest = segue.destination as! UINavigationController
             let destTarget = dest.topViewController as! TourInfoLandmarkVC
             destTarget.TourName = ThisTour.name
-            destTarget.ThisLandmark = landmarkList[self.tableView.indexPathForSelectedRow!.row]
+            destTarget.ThisLandmark = landmarkList[indexPath.row]
         }
     }
     

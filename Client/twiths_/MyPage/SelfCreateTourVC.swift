@@ -66,7 +66,8 @@ class SelfCreateTourVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelfCreateTourCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = tours[indexPath.row].name
+        guard let textLabel = cell.textLabel else { return cell }
+        textLabel.text = tours[indexPath.row].name
 
         return cell
     }
@@ -77,7 +78,8 @@ class SelfCreateTourVC: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "TourInfoSegue2" {
             let dest = segue.destination as! TourInfoMainVC
-            dest.ThisTour = tours[self.tableView.indexPathForSelectedRow!.row]
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+            dest.ThisTour = tours[indexPath.row]
             
             // 랜드마크 데이터베이스에서 tour의 값이 ThisTour의 ID와 일치하는 것만 랜드마크 리스트에 추가
             let ref = db.collection("landmarks").whereField("tour", isEqualTo: dest.ThisTour.id).getDocuments() { (querySnapshot, err) in

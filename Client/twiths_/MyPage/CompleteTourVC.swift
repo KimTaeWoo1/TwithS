@@ -18,6 +18,7 @@ class CompleteTourVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let dGroup = DispatchGroup()
+        guard let currentUser = Auth.auth().currentUser else { return }
         
         db.collection("userTourRelations").whereField("user", isEqualTo: self.uid).whereField("state", isEqualTo: 3).getDocuments { (querySnapshot, err) in
             if let err = err {
@@ -30,7 +31,7 @@ class CompleteTourVC: UITableViewController {
                     userTour.state = document.data()["state"] as! Int
                     userTour.startTime = document.data()["startTime"] as! Date
                     userTour.endTime = document.data()["endTime"] as! Date
-                    userTour.user = self.uid!
+                    userTour.user = currentUser.uid
                     
                     self.db.collection("tours").document(document.data()["tour"] as! String).getDocument { query, err in
                         if let err = err {
@@ -82,7 +83,8 @@ class CompleteTourVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CompleteTourCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = userTourList[indexPath.row].tour.name
+        guard let textLabel = cell.textLabel else { return cell }
+        textLabel.text = userTourList[indexPath.row].tour.name
 
         return cell
     }
@@ -94,8 +96,9 @@ class CompleteTourVC: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "TourInfoSegue1" {
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
             let dest = segue.destination as! TourInfoMainVC
-            dest.ThisTour = userTourList[self.tableView.indexPathForSelectedRow!.row].tour
+            dest.ThisTour = userTourList[indexPath.row].tour
             
             // 랜드마크 데이터베이스에서 tour의 값이 ThisTour의 ID와 일치하는 것만 랜드마크 리스트에 추가
             let ref = db.collection("landmarks").whereField("tour", isEqualTo: dest.ThisTour.id).getDocuments() { (querySnapshot, err) in

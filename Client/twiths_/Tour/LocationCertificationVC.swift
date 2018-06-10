@@ -40,7 +40,8 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
         }
         else {
             // 찍을 수 없으면 않으면 경고 메시지 띄우고 종료
-            self.navigationController?.popViewController(animated: true)
+            guard let nvController = self.navigationController else { return }
+            nvController.popViewController(animated: true)
             
             let alertController = UIAlertController(title: "Info", message: "카메라를 실행할 수 없습니다.", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)

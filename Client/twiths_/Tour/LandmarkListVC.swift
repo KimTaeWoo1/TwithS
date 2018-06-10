@@ -298,13 +298,15 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             rect.add(CLLocationCoordinate2D(latitude: marker.0, longitude: marker.1))
         }
         let polygon = GMSPolygon(path: rect)
-        if GMSGeometryContainsLocation(locValue, polygon.path!, true) {
+        guard let path = polygon.path else { return }
+        if GMSGeometryContainsLocation(locValue, path, true) {
         }
         else {
             
             print("\(locValue.latitude)/\(locValue.longitude)") // test
             
-            self.navigationController?.popViewController(animated: true)
+            guard let navController = self.navigationController else { return }
+            navController.popViewController(animated: true)
             let alertController = UIAlertController(title: "Info", message: "아직 위치에 도달하지 않으셨군요!!\n좀 더 가까이 가서 인증해보세요!!", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
             
@@ -353,7 +355,8 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
                 let alertController = UIAlertController(title: "Info", message: "축하합니다!!!\n투어를 \(getProceedTime(userTourRelation)) 만에 완료하셨습니다.\n이 투어에 대한 리뷰를 작성하시겠습니까? ", preferredStyle: .alert)
                 
                 let okayAction = UIAlertAction(title: "예", style: .cancel, handler:{ (alert: UIAlertAction!) in
-                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "CreateReviewRoot") as! UINavigationController
+                    guard let storyboard = self.storyboard else { return }
+                    let controller = storyboard.instantiateViewController(withIdentifier: "CreateReviewRoot") as! UINavigationController
                     let topController = controller.topViewController as! CreateReviewVC
                     topController.tour = self.userTourRelation.tour
                     
@@ -390,8 +393,9 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             let dest = segue.destination as! UINavigationController
             let destTarget = dest.topViewController as! LandmarkInfoVC
             
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
             destTarget.tourName = self.userTourRelation.tour.name
-            destTarget.ThisLandmark = self.userTourLandmarks[(self.tableView.indexPathForSelectedRow?.row)!].landmark
+            destTarget.ThisLandmark = self.userTourLandmarks[indexPath.row].landmark
         }
         
         if segue.identifier == "locationCertificationSegue" {

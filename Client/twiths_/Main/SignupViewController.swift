@@ -36,7 +36,9 @@ class SignupViewController: UIViewController {
             present(alertController, animated: true, completion: nil)
             
         } else {
-            Auth.auth().createUser(withEmail: emailTextField.text!, password: PasswordTextField.text!) { (user, error) in
+            guard let emailText = emailTextField.text else { return }
+            guard let pwdText = PasswordTextField.text else { return }
+            Auth.auth().createUser(withEmail: emailText, password: pwdText) { (user, error) in
                 
                 if error == nil {
                     print("You have successfully signed up")
@@ -60,7 +62,8 @@ class SignupViewController: UIViewController {
                     }
                     
                 } else {
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    guard let error = error else { return }
+                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                     
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     alertController.addAction(defaultAction)

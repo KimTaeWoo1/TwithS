@@ -210,7 +210,9 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             let imageName = "T\(Date().timeIntervalSince1970).jpg" // 이미지 이름을 지정
             
             var tourRef: DocumentReference? = nil
-            let userID = Auth.auth().currentUser?.uid
+            
+            guard let currentUser = Auth.auth().currentUser else { return }
+            let userID = currentUser.uid
             let tour = Tour_()
             
             let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
@@ -218,7 +220,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             guard let tourNameText = cell1.tourNameField.text else { return }
             guard let tourDetailText = cell2.detailTextField.text else { return }
             
-            tour.creator = userID!
+            tour.creator = userID
             tour.name = tourNameText
             tour.detail = tourDetailText
             tour.image = imageName

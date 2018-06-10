@@ -41,8 +41,8 @@ class TourInfoVC: UITableViewController {
         storRef.getData(maxSize: 64 * 1024 * 1024) { data, error in
             if error != nil {
                 // 오류가 발생함.
-            } else {
-                self.imgView.image = UIImage(data: data!)
+            } else if let data = data {
+                self.imgView.image = UIImage(data: data)
             }
         }
     }

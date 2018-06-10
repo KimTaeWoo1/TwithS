@@ -25,7 +25,8 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
         super.viewDidLoad()
         landmarkDetailField.delegate = self
         makeBorderToTextField(landmarkDetailField)
-        CheckLocationSelectedLabel?.text = ""
+        guard let locSelected = CheckLocationSelectedLabel else { return }
+        locSelected.text = ""
         landmarkNameFIeld.placeholder = "장소 제목을 입력해주세요."
         landmarkDetailField.text = "장소에 대한 설명을 입력해주세요."
         landmarkDetailField.textColor = UIColor.lightGray
