@@ -32,9 +32,9 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
         
         // 카메라 실행, 사진을 찍을 수 있으면
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            var cam = UIImagePickerController()
+            let cam = UIImagePickerController()
             cam.delegate = self
-            cam.sourceType = .camera;
+            cam.sourceType = .camera
             cam.allowsEditing = false
             self.present(cam, animated: true, completion: nil)
         }
@@ -121,7 +121,7 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
     // 이미지를 선택 완료한 경우
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let type = info[UIImagePickerControllerMediaType] as! NSString
-        let image = info[UIImagePickerControllerMediaType] as! UIImage
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         picImage.image = image
         
         self.imageUploaded = true
