@@ -18,6 +18,7 @@ class CreateReviewVC: UITableViewController,UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        textField.delegate = self
         makeBorderToTextField(textField)
         StarRating.settings.fillMode = .half
         textField.text = "투어에 대한 리뷰를 입력해주세요."
