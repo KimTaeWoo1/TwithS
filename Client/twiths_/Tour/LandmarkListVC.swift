@@ -59,7 +59,6 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
     }
     
     let db = Firestore.firestore()
-    let uid = Auth.auth().currentUser?.uid
     let locationManager = CLLocationManager()
     var userTourLandmarks:[UserTourLandMark_] = []
     var Reviews:[Review_] = []

@@ -13,14 +13,13 @@ class CompleteTourVC: UITableViewController {
     
     var userTourList:[UserTourRelation_] = []
     let db = Firestore.firestore()
-    let uid = Auth.auth().currentUser?.uid
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let dGroup = DispatchGroup()
         guard let currentUser = Auth.auth().currentUser else { return }
         
-        db.collection("userTourRelations").whereField("user", isEqualTo: self.uid).whereField("state", isEqualTo: 3).getDocuments { (querySnapshot, err) in
+        db.collection("userTourRelations").whereField("user", isEqualTo: currentUser.uid).whereField("state", isEqualTo: 3).getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if let documents = querySnapshot?.documents {
