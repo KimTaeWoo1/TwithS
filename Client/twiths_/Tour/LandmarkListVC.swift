@@ -399,7 +399,6 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
         
         if segue.identifier == "locationCertificationSegue" {
             if let nextVC = segue.destination as? LocationCertificationVC {
-                let senderBtn = sender as? UIButton
                 if let tag = (sender as? UIButton)?.tag {
                     nextVC.utl = userTourLandmarks[tag]
                 }
