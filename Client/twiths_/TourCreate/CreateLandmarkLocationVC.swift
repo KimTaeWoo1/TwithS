@@ -99,14 +99,16 @@ extension CreateLandmarkLocationVC: GMSMapViewDelegate {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         // 꼭짓점이 4개 미만인 경우 오류 출력
-        if counterMarker < 4 {
-            let alertController = UIAlertController(title: "Error", message: "꼭짓점을 4개 찍어 주세요.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
-            
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
-            
-            return false
+        if identifier == "CreateMapDone" {
+            if counterMarker < 4 {
+                let alertController = UIAlertController(title: "Error", message: "꼭짓점을 4개 찍어 주세요.", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+                return false
+            }
         }
         
         return true
