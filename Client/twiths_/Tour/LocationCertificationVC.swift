@@ -108,6 +108,7 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
                 
                 return false
             }
+         
         }
         return true
     }
@@ -167,6 +168,8 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
                     print("Document successfully updated")
                 }
             }
+            let dest = segue.destination as! LandmarkListVC
+            dest.tableView.reloadData()
         }
     }
 

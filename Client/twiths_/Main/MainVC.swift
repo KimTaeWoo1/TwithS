@@ -21,7 +21,6 @@ class MainVC: UITableViewController {
     var proceedTours:[UserTourRelation_] = []
     
     let db = Firestore.firestore()
-    let uid = Auth.auth().currentUser?.uid
     @IBOutlet var editButton: UIBarButtonItem!
     
     // 편집 버튼을 클릭하면 진행 중인 투어를 삭제(테이블뷰와 데이터베이스 모두에서)
@@ -38,12 +37,13 @@ class MainVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let dGroup = DispatchGroup()
+        guard let currentUser = Auth.auth().currentUser else { return }
         
         var tours:[UserTourRelation_] = []
-        db.collection("userTourRelations").whereField("user", isEqualTo: self.uid).whereField("state", isEqualTo: 2).addSnapshotListener { (querySnapshot, err) in
+        db.collection("userTourRelations").whereField("user", isEqualTo: currentUser.uid).whereField("state", isEqualTo: 2).addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
-            } else if let documents = querySnapshot?.documents, let uid = self.uid {
+            } else if let documents = querySnapshot?.documents {
                 tours = []
                 for document in documents {
                     dGroup.enter()
@@ -51,7 +51,7 @@ class MainVC: UITableViewController {
                     utr.id = document.documentID
                     utr.state = document.data()["state"] as! Int
                     utr.startTime = document.data()["startTime"] as! Date
-                    utr.user = uid
+                    utr.user = currentUser.uid
                     
                     self.db.collection("tours").document(document.data()["tour"] as! String).addSnapshotListener { query, err in
                         if let err = err {
@@ -75,7 +75,7 @@ class MainVC: UITableViewController {
                     }
                 }
             } 
-            dGroup.notify(queue: .main) {   //// 4
+            dGroup.notify(queue: .main) {
                 self.proceedTours = tours
                 self.tableView.reloadData()
             }

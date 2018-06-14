@@ -12,13 +12,13 @@ import Firebase
 class SelfCreateTourVC: UITableViewController {
     var tours:[Tour_] = []
     let db = Firestore.firestore()
-    let uid = Auth.auth().currentUser?.uid as! String
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let dGroup = DispatchGroup()
+        guard let currentUser = Auth.auth().currentUser else { return }
         
-        self.db.collection("tours").whereField("creator", isEqualTo: self.uid).getDocuments { querySnapshot, err in
+        self.db.collection("tours").whereField("creator", isEqualTo: currentUser.uid).getDocuments { querySnapshot, err in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if let documents = querySnapshot?.documents {
@@ -27,7 +27,7 @@ class SelfCreateTourVC: UITableViewController {
                     let tour = Tour_()
                     tour.id = document.documentID
                     tour.name = document.data()["name"] as! String
-                    tour.creator = self.uid
+                    tour.creator = currentUser.uid
                     tour.timeLimit = document.data()["timeLimit"] as! Int
                     tour.detail = document.data()["detail"] as! String
                     tour.createDate = document.data()["createDate"] as! Date

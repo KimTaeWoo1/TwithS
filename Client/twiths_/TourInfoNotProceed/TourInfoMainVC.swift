@@ -33,7 +33,6 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var mapView: GMSMapView!
     
     let db = Firestore.firestore()
-    let uid = Auth.auth().currentUser?.uid as! String
     var ThisTour = Tour_()
     var landmarkList:[Landmark_] = []
     var Reviews:[Review_] = []
@@ -84,6 +83,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 let marker = GMSMarker()
                 marker.position = CLLocationCoordinate2D(latitude: location.0, longitude: location.1)
                 marker.map = gsMapView
+                marker.title = landmark.name
                 rect.add(marker.position)
             }
             let polygon = GMSPolygon(path: rect)
@@ -205,8 +205,10 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func JjimButtonClicked(_ sender: Any) {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
         var ref = db.collection("userTourRelations").whereField("tour", isEqualTo: self.ThisTour.id)
-            .whereField("user", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
+            .whereField("user", isEqualTo: currentUser.uid).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -220,7 +222,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
                         print(self.ThisTour.id)
                         let cUtr = UserTourRelation_()
                         cUtr.tour.id = self.ThisTour.id
-                        cUtr.user = self.uid
+                        cUtr.user = currentUser.uid
                         cUtr.state = 1
                         self.db.collection("userTourRelations").addDocument(data: [
                             "tour" : cUtr.tour.id,
@@ -239,8 +241,10 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func proceedButtonClicked(_ sender: Any) {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
         var ref = db.collection("userTourRelations").whereField("tour", isEqualTo: self.ThisTour.id)
-            .whereField("user", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
+            .whereField("user", isEqualTo: currentUser.uid).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -268,7 +272,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
                     } else {
                         let cUtr = UserTourRelation_()
                         cUtr.tour.id = self.ThisTour.id
-                        cUtr.user = self.uid
+                        cUtr.user = currentUser.uid
                         cUtr.state = 2
                         cUtr.startTime = Date()
                         let cUtrRef = self.db.collection("userTourRelations").addDocument(data: [
@@ -289,6 +293,8 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     func makeUserTourLandmark(_ utrID:String) {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
         var landmarkRef = self.db.collection("landmarks").whereField("tour", isEqualTo: self.ThisTour.id).getDocuments() { (snapshot, err) in
             if let err = err {
                 print(err.localizedDescription)
@@ -298,7 +304,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
                         //UserTourLandmark 추가
                         let utl = UserTourLandMark_()
                         utl.userTourRelation.id = utrID
-                        utl.user = self.uid
+                        utl.user = currentUser.uid
                         utl.landmark.id = document.documentID
                         
                         let utlRef = self.db.collection("userTourLandmarks").addDocument(data: [

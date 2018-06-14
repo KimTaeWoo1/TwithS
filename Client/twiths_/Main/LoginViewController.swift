@@ -82,6 +82,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
         }
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
         Auth.auth().signIn(with: credential){ (user, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -102,6 +103,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
     
     @IBAction func FacebookLoginButtonClicked(_ sender: Any) {
         let fbLoginManager = FBSDKLoginManager()
+        
+
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             if let error = error {
                 print("Failed to login: \(error.localizedDescription)")
@@ -111,7 +114,14 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
                 print("Failed to get access token")
                 return
             }
-            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+            
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            Auth.auth().signIn(with: credential, completion: {(user, error) in
+                if error != nil {
+                    print("error #1\(error?.localizedDescription)!")
+                    return
+                }
+            })
             
             // Perform login by calling Firebase APIs
             Auth.auth().signIn(with: credential, completion: { (user, error) in
@@ -135,14 +145,4 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
