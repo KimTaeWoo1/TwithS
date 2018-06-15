@@ -113,12 +113,6 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
         return true
     }
     
-    
-    // '사진 업로드' 버튼 클릭 시 실행
-    @IBAction func picUpload(_ sender: Any) {
-        
-    }
-    
     // 이미지를 선택 완료한 경우
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let type = info[UIImagePickerControllerMediaType] as! NSString
