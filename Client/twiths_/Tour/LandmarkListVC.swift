@@ -220,6 +220,8 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             // 이미지 뷰를 원형으로
             cell.LandmarkImage.layer.cornerRadius = cell.LandmarkImage.frame.size.width / 2
             cell.LandmarkImage.layer.masksToBounds = true
+            print("***\(cell.LandmarkImage.frame.size.width)***")
+            
             let userLandmark = self.userTourLandmarks[indexPath.row]
             let ThisLandmark = userLandmark.landmark
             print("---\(ThisLandmark.image)---\(userLandmark.image)")
