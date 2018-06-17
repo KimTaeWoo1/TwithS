@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wAr-r5-UCX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wAr-r5-UCX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -44,6 +44,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="EFv-gy-nUn" secondAttribute="bottom" id="h4u-VS-g6x"/>
+                                                <constraint firstItem="EFv-gy-nUn" firstAttribute="top" secondItem="n6F-CI-z70" secondAttribute="top" id="qmA-ia-1qK"/>
+                                            </constraints>
                                         </stackView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next-arrow-icon" translatesAutoresizingMaskIntoConstraints="NO" id="d4G-5n-X3C">
                                             <rect key="frame" x="333" y="64" width="16" height="32"/>
