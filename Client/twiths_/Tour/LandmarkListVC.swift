@@ -282,6 +282,7 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             cell.starRating.rating = ThisReview.stars
             cell.nameLabel.text = ThisReview.name
             cell.reviewSubtitle.text = ThisReview.comment
+            cell.starRating.settings.updateOnTouch = false
             
             
             return cell

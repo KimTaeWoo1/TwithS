@@ -160,6 +160,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.StarRating.rating = ThisReview.stars
             cell.reviewTitle.text = ThisReview.name
             cell.reviewSubtitle.text = ThisReview.comment
+            cell.StarRating.settings.updateOnTouch = false
             
             return cell
         }
