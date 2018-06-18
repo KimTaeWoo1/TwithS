@@ -110,7 +110,7 @@ extension CreateLandmarkLocationVC: GMSMapViewDelegate {
                 return false
             }
         }
-        
+            
         return true
     }
     

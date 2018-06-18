@@ -78,9 +78,12 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourDetailCell
                 makeBorderToTextField(cell.detailTextField)
-                cell.detailTextField.text = "투어에 대한 설명을 입력해주세요."
-                cell.detailTextField.textColor = UIColor.lightGray
-                cell.detailTextField.delegate = self
+                
+                if cell.detailTextField.text.isEmpty {
+                    cell.detailTextField.text = "투어에 대한 설명을 입력해주세요."
+                    cell.detailTextField.textColor = UIColor.lightGray
+                    cell.detailTextField.delegate = self
+                }
                 
                 return cell
             case 2:
