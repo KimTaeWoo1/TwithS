@@ -239,6 +239,7 @@ class JjimVC: UITableViewController {
                         landmark.location.append((document.data()["lati3"] as! Double, document.data()["longi3"] as! Double))
                         landmark.location.append((document.data()["lati4"] as! Double, document.data()["longi4"] as! Double))
                         dest.landmarkList.append(landmark)
+                        dest.tableView.reloadData()
                     }
                 }
             }
