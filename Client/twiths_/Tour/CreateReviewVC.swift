@@ -21,7 +21,7 @@ class CreateReviewVC: UITableViewController,UITextViewDelegate {
         textField.delegate = self
         makeBorderToTextField(textField)
         StarRating.settings.fillMode = .half
-        textField.text = "투어에 대한 리뷰를 입력해주세요."
+        textField.text = "투어에 대한 리뷰를 입력해주세요.".localized
         textField.textColor = UIColor.lightGray
     }
 
@@ -39,7 +39,7 @@ class CreateReviewVC: UITableViewController,UITextViewDelegate {
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "투어에 대한 리뷰를 입력해주세요."
+            textView.text = "투어에 대한 리뷰를 입력해주세요.".localized
             textView.textColor = UIColor.lightGray
         }
     }

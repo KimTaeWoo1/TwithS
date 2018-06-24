@@ -18,7 +18,7 @@ class MyPageViewController: UITableViewController {
         
         if let user = Auth.auth().currentUser {
             guard let name = user.displayName else { return }
-            displayNameLabel.text = name + "님"
+            displayNameLabel.text = name + "님".localized
         }
     }
 

@@ -29,10 +29,10 @@ class JjimVC: UITableViewController {
     @IBAction func JjimTourEdit(_ sender: Any) {
         if self.tableView.isEditing == false {
             self.tableView.setEditing(true, animated: true)
-            editButton.title = "완료"
+            editButton.title = "완료".localized
         } else {
             self.tableView.setEditing(false, animated: true)
-            editButton.title = "편집"
+            editButton.title = "편집".localized
         }
     }
     
@@ -84,6 +84,7 @@ class JjimVC: UITableViewController {
         
         cell.JjimIcon.image = UIImage(named: "Jjim-icon")
         cell.JjimCount.text = "찜한 투어 개수: \(self.tours.count)개"
+        cell.JjimCount.text = String(format: NSLocalizedString("Current DIBS : %d", comment: ""), self.tours.count)
         
         return cell
     }
@@ -155,10 +156,10 @@ class JjimVC: UITableViewController {
         if editingStyle == .delete {
             
             // 투어 삭제 확인 창 띄우기
-            let alertController = UIAlertController(title: "Confirm", message: "이 투어를 정말로 삭제하시겠습니까?", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Confirm", message: "이 투어를 정말 삭제하시겠습니까?".localized, preferredStyle: .alert)
             
             // 투어 삭제 확인 창에서 '예'를 클릭하면
-            alertController.addAction(UIAlertAction(title: "예", style: .default, handler: {
+            alertController.addAction(UIAlertAction(title: "예".localized, style: .default, handler: {
                 action in
                 
                 guard let currentUser = Auth.auth().currentUser else { return }
@@ -186,7 +187,7 @@ class JjimVC: UITableViewController {
             }))
             
             // '아니오'를 클릭하면
-            alertController.addAction(UIAlertAction(title: "아니오", style: .default, handler: nil))
+            alertController.addAction(UIAlertAction(title: "아니오".localized, style: .default, handler: nil))
             
             self.present(alertController, animated: true, completion: nil)
         }

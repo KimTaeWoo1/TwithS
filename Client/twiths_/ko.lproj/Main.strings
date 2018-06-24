@@ -1,0 +1,60 @@
+
+/* Class = "UIButton"; normalTitle = "로그인"; ObjectID = "1s9-fv-DxW"; */
+"1s9-fv-DxW.normalTitle" = "로그인";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "620-gc-ue4"; */
+"620-gc-ue4.text" = "Label";
+
+/* Class = "UILabel"; text = "비밀번호"; ObjectID = "8Zx-4q-qAC"; */
+"8Zx-4q-qAC.text" = "비밀번호";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "9zZ-44-4Ql"; */
+"9zZ-44-4Ql.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "Bxp-FD-ASA"; */
+"Bxp-FD-ASA.normalTitle" = "취소";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "Eb1-f9-fbR"; */
+"Eb1-f9-fbR.title" = "Item";
+
+/* Class = "UILabel"; text = "회원가입"; ObjectID = "GpT-L2-Pg7"; */
+"GpT-L2-Pg7.text" = "회원가입";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "Z8A-AT-dde"; */
+"Z8A-AT-dde.title" = "Item";
+
+/* Class = "UIBarButtonItem"; title = "편집"; ObjectID = "cHa-eo-2Js"; */
+"cHa-eo-2Js.title" = "편집";
+
+/* Class = "UINavigationItem"; title = "진행중인 투어"; ObjectID = "g2y-K8-Org"; */
+"g2y-K8-Org.title" = "진행중인 투어";
+
+/* Class = "UIButton"; normalTitle = "회원가입"; ObjectID = "luw-8Z-f5a"; */
+"luw-8Z-f5a.normalTitle" = "회원가입";
+
+/* Class = "UILabel"; text = "이메일"; ObjectID = "mOe-sB-fX2"; */
+"mOe-sB-fX2.text" = "이메일";
+
+/* Class = "UILabel"; text = "비밀번호"; ObjectID = "mdU-sG-pjP"; */
+"mdU-sG-pjP.text" = "비밀번호";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "nHW-et-hEx"; */
+"nHW-et-hEx.text" = "Label";
+
+/* Class = "UILabel"; text = "이메일"; ObjectID = "sL5-vP-kDm"; */
+"sL5-vP-kDm.text" = "이메일";
+
+/* Class = "UIButton"; normalTitle = "facebook 로그인"; ObjectID = "t2i-Fj-lVU"; */
+"t2i-Fj-lVU.normalTitle" = "facebook 로그인";
+
+/* Class = "UILabel"; text = "이름"; ObjectID = "t6c-JQ-PIS"; */
+"t6c-JQ-PIS.text" = "이름";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "v9R-XR-7Ax"; */
+"v9R-XR-7Ax.title" = "Back";
+
+/* Class = "UIButton"; normalTitle = "등록"; ObjectID = "xMd-zK-dsl"; */
+"xMd-zK-dsl.normalTitle" = "등록";
+
+/* Class = "UITabBarItem"; title = "홈"; ObjectID = "z7C-XC-iov"; */
+"z7C-XC-iov.title" = "홈";

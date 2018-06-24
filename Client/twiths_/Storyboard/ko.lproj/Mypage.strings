@@ -1,0 +1,75 @@
+
+/* Class = "UINavigationItem"; title = "내정보"; ObjectID = "5We-50-Z90"; */
+"5We-50-Z90.title" = "내정보";
+
+/* Class = "UINavigationItem"; title = "공지사항"; ObjectID = "6x6-gv-vtD"; */
+"6x6-gv-vtD.title" = "공지사항";
+
+/* Class = "UINavigationItem"; title = "어플 정보"; ObjectID = "Acm-B4-oD4"; */
+"Acm-B4-oD4.title" = "어플 정보";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "C1A-6L-dvq"; */
+"C1A-6L-dvq.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "진행한 투어"; ObjectID = "Gbh-oV-7i2"; */
+"Gbh-oV-7i2.normalTitle" = "진행한 투어";
+
+/* Class = "UITabBarItem"; title = "내정보"; ObjectID = "Gda-Rk-pmb"; */
+"Gda-Rk-pmb.title" = "내정보";
+
+/* Class = "UILabel"; text = "반갑습니다~"; ObjectID = "Goz-hb-Mj7"; */
+"Goz-hb-Mj7.text" = "반갑습니다~";
+
+/* Class = "UINavigationItem"; title = "Root View Controller"; ObjectID = "HGE-dX-bF1"; */
+"HGE-dX-bF1.title" = "Root View Controller";
+
+/* Class = "UILabel"; text = "https://github.com/ProjectInTheClass/TwithS"; ObjectID = "R2m-Va-y2g"; */
+"R2m-Va-y2g.text" = "https://github.com/ProjectInTheClass/TwithS";
+
+/* Class = "UIButton"; normalTitle = "어플 정보"; ObjectID = "UW6-v5-rdo"; */
+"UW6-v5-rdo.normalTitle" = "어플 정보";
+
+/* Class = "UILabel"; text = "개발자"; ObjectID = "ZNb-7o-KzX"; */
+"ZNb-7o-KzX.text" = "개발자";
+
+/* Class = "UINavigationItem"; title = "내가 만든 투어"; ObjectID = "ZT1-aj-VAJ"; */
+"ZT1-aj-VAJ.title" = "내가 만든 투어";
+
+/* Class = "UIBarButtonItem"; title = "내정보"; ObjectID = "ZuT-i8-ImH"; */
+"ZuT-i8-ImH.title" = "내정보";
+
+/* Class = "UILabel"; text = "github 주소"; ObjectID = "abj-hA-jgp"; */
+"abj-hA-jgp.text" = "github 주소";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dmu-Z8-Onu"; */
+"dmu-Z8-Onu.text" = "Label";
+
+/* Class = "UILabel"; text = "2018년 5월 10일 ~ 6월 18일"; ObjectID = "h2r-N5-Y8e"; */
+"h2r-N5-Y8e.text" = "2018년 5월 10일 ~ 6월 18일";
+
+/* Class = "UIButton"; normalTitle = "나의 투어"; ObjectID = "hxo-t3-VX2"; */
+"hxo-t3-VX2.normalTitle" = "나의 투어";
+
+/* Class = "UIBarButtonItem"; title = "내정보"; ObjectID = "iSg-fA-Ur2"; */
+"iSg-fA-Ur2.title" = "내정보";
+
+/* Class = "UIBarButtonItem"; title = "내정보"; ObjectID = "mKk-tM-V1M"; */
+"mKk-tM-V1M.title" = "내정보";
+
+/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "p64-Aw-wvs"; */
+"p64-Aw-wvs.normalTitle" = "Logout";
+
+/* Class = "UILabel"; text = "개발 기간"; ObjectID = "poM-At-feH"; */
+"poM-At-feH.text" = "개발 기간";
+
+/* Class = "UINavigationItem"; title = "진행한 투어"; ObjectID = "pp7-Fm-paU"; */
+"pp7-Fm-paU.title" = "진행한 투어";
+
+/* Class = "UILabel"; text = "최연석, 김홍식"; ObjectID = "qDh-Zi-fD0"; */
+"qDh-Zi-fD0.text" = "최연석, 김홍식";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "qaR-mq-2hf"; */
+"qaR-mq-2hf.text" = "Title";
+
+/* Class = "UILabel"; text = "공지사항"; ObjectID = "snc-a9-OkR"; */
+"snc-a9-OkR.text" = "공지사항";

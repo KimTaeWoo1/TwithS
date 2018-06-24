@@ -137,7 +137,7 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             dGroup.notify(queue: .main) {   //// 4
                 self.userTourLandmarks = utlList
                 
-                self.timeLeft.text = getProceedTime(self.userTourRelation) + " 째 진행중!"
+                self.timeLeft.text = getProceedTime(self.userTourRelation) + " 째 진행중!".localized
                 let count = self.userTourLandmarks.count
                 var reached = 0
                 for utl in self.userTourLandmarks {
@@ -256,7 +256,7 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             } else {
                 cell.LandmarkTitle.text = userLandmark.landmark.name
                 cell.LandmarkDescription.text = userLandmark.comment
-                cell.submitButton.setTitle("성공", for: UIControlState.normal)
+                cell.submitButton.setTitle("성공".localized, for: UIControlState.normal)
                 cell.submitButton.isEnabled = false
                 cell.submitButton.alpha = 1.0;
                 cell.submitButton.setTitleColor(UIColor.green, for: .disabled)
@@ -309,8 +309,8 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
             
             guard let navController = self.navigationController else { return }
             navController.popViewController(animated: true)
-            let alertController = UIAlertController(title: "Info", message: "아직 위치에 도달하지 않으셨군요!!\n좀 더 가까이 가서 인증해보세요!!", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            let alertController = UIAlertController(title: "Info", message: "아직 위치에 도달하지 않으셨군요!!\n좀 더 가까이 가서 인증해보세요!!".localized, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "확인".localized, style: .cancel, handler: nil)
             
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
@@ -354,9 +354,11 @@ class LandmarkListVC: UIViewController, UITableViewDataSource, YourCellDelegate,
                         print("Document successfully updated")
                     }
                 }
-                let alertController = UIAlertController(title: "Info", message: "축하합니다!!!\n투어를 \(getProceedTime(userTourRelation)) 만에 완료하셨습니다.\n이 투어에 대한 리뷰를 작성하시겠습니까? ", preferredStyle: .alert)
+                var str = "축하합니다!!!\n투어를 \(getProceedTime(userTourRelation)) 만에 완료하셨습니다.\n이 투어에 대한 리뷰를 작성하시겠습니까? "
+                str = String(format: NSLocalizedString("Congratulation!!!\n You Complete this tour in %d. Do you write a review about this tour?", comment: ""), getProceedTime(userTourRelation))
+                let alertController = UIAlertController(title: "Info", message: str, preferredStyle: .alert)
                 
-                let okayAction = UIAlertAction(title: "예", style: .cancel, handler:{ (alert: UIAlertAction!) in
+                let okayAction = UIAlertAction(title: "예".localized, style: .cancel, handler:{ (alert: UIAlertAction!) in
                     guard let storyboard = self.storyboard else { return }
                     let controller = storyboard.instantiateViewController(withIdentifier: "CreateReviewRoot") as! UINavigationController
                     let topController = controller.topViewController as! CreateReviewVC

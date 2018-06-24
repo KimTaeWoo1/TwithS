@@ -1,0 +1,30 @@
+
+/* Class = "UIButton"; normalTitle = "위치 지정하기"; ObjectID = "15s-kE-4CP"; */
+"15s-kE-4CP.normalTitle" = "Setting Location";
+
+/* Class = "UILabel"; text = "설정된 장소 0개"; ObjectID = "BXf-2D-OFg"; */
+"BXf-2D-OFg.text" = "Current : 0";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ItF-cc-Xdc"; */
+"ItF-cc-Xdc.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "사진 올리기"; ObjectID = "ONw-99-DsT"; */
+"ONw-99-DsT.normalTitle" = "Upload Photo";
+
+/* Class = "UINavigationItem"; title = "투어 생성하기"; ObjectID = "bHE-7N-Iwq"; */
+"bHE-7N-Iwq.title" = "Create Tour";
+
+/* Class = "UIButton"; normalTitle = "장소 추가"; ObjectID = "kGc-VL-5tc"; */
+"kGc-VL-5tc.normalTitle" = "Add Location";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "knO-TB-bhQ"; */
+"knO-TB-bhQ.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ov0-go-JB3"; */
+"ov0-go-JB3.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "사진 올리기"; ObjectID = "v9C-t0-SOB"; */
+"v9C-t0-SOB.normalTitle" = "Upload Photo";
+
+/* Class = "UINavigationItem"; title = "장소 추가"; ObjectID = "vRc-xL-UDx"; */
+"vRc-xL-UDx.title" = "Add Location";

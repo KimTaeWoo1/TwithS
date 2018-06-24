@@ -42,6 +42,7 @@ class TourInfoTourVC: UITableViewController {
         let month = cale.component(NSCalendar.Unit.month, from: date)
         let day = cale.component(NSCalendar.Unit.day, from: date)
         tourCreateDate.text = "\(year)년 \(month)월 \(day)일"
+        tourCreateDate.text = String(format: NSLocalizedString(" %@ %d, %d", comment: ""),makeMonth(month), day, year)
         
         tourDetail.text = ThisTour.detail
     }

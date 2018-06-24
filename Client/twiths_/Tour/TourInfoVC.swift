@@ -30,7 +30,7 @@ class TourInfoVC: UITableViewController {
         let month = cale.component(NSCalendar.Unit.month, from: date)
         let day = cale.component(NSCalendar.Unit.day, from: date)
         tourCreateDate.text = "\(year)년 \(month)월 \(day)일"
-        
+        tourCreateDate.text = String(format: NSLocalizedString("%d. %d. %d", comment: ""), year, month, day)
         tourDetail.text = ThisTour.detail
         
         // 셀에 이미지를 불러오기 위한 이미지 이름, 저장소 변수

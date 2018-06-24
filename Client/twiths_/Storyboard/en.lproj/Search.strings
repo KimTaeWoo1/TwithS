@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "3Pb-zc-did"; */
+"3Pb-zc-did.text" = "Title";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "iVW-92-Wby"; */
+"iVW-92-Wby.text" = "Subtitle";
+
+/* Class = "UINavigationItem"; title = "투어 찾기"; ObjectID = "qcY-Lj-vKj"; */
+"qcY-Lj-vKj.title" = "Search Tour";
+
+/* Class = "UITabBarItem"; title = "검색"; ObjectID = "rnz-eb-ceG"; */
+"rnz-eb-ceG.title" = "Search";

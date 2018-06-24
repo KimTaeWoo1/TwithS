@@ -1,0 +1,96 @@
+
+/* Class = "UIBarButtonItem"; title = "완료"; ObjectID = "0S6-ra-2uK"; */
+"0S6-ra-2uK.title" = "Done";
+
+/* Class = "UILabel"; text = "투어에 대한 설명"; ObjectID = "1vN-lJ-BWc"; */
+"1vN-lJ-BWc.text" = "Tour Discription";
+
+/* Class = "UIBarButtonItem"; title = "About"; ObjectID = "1y9-QJ-cua"; */
+"1y9-QJ-cua.title" = "About";
+
+/* Class = "UILabel"; text = " 남은 시간: 0시간 0분"; ObjectID = "2SY-2r-ODP"; */
+"2SY-2r-ODP.text" = " Left: 0시간 0분";
+
+/* Class = "UIButton"; normalTitle = "제출"; ObjectID = "6ZH-TJ-ez7"; */
+"6ZH-TJ-ez7.normalTitle" = "Submit";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Bpe-ly-ahv"; */
+"Bpe-ly-ahv.text" = "Label";
+
+/* Class = "UILabel"; text = "투어 이름"; ObjectID = "Cie-98-I2g"; */
+"Cie-98-I2g.text" = "Tour Name";
+
+/* Class = "UILabel"; text = "장소에 대한 설명"; ObjectID = "CkV-5l-FND"; */
+"CkV-5l-FND.text" = "Landmark Discription";
+
+/* Class = "UIBarButtonItem"; title = "취소"; ObjectID = "FZM-rw-FmF"; */
+"FZM-rw-FmF.title" = "Cancel";
+
+/* Class = "UIBarButtonItem"; title = "완료"; ObjectID = "H5b-TK-v6S"; */
+"H5b-TK-v6S.title" = "Done";
+
+/* Class = "UILabel"; text = "인증 시간"; ObjectID = "KG3-RN-Ilv"; */
+"KG3-RN-Ilv.text" = "Submit Time";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "MVe-Uc-tmX"; */
+"MVe-Uc-tmX.text" = "Detail";
+
+/* Class = "UILabel"; text = "만든 날짜"; ObjectID = "UFn-Jz-Nfj"; */
+"UFn-Jz-Nfj.text" = "Created At";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Y8S-a6-tL6"; */
+"Y8S-a6-tL6.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Ykn-tz-bvH"; */
+"Ykn-tz-bvH.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "alg-7F-A3H"; */
+"alg-7F-A3H.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "리뷰 작성"; ObjectID = "c2r-YD-lvl"; */
+"c2r-YD-lvl.title" = "Write a Review";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "di7-S4-Xsr"; */
+"di7-S4-Xsr.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "장소 정보"; ObjectID = "eVQ-ox-NZp"; */
+"eVQ-ox-NZp.title" = "Location Discription";
+
+/* Class = "UILabel"; text = "0/0 (0%)"; ObjectID = "hRf-qD-nyp"; */
+"hRf-qD-nyp.text" = "0/0 (0%)";
+
+/* Class = "UINavigationItem"; title = "인증하기"; ObjectID = "kCh-qk-iES"; */
+"kCh-qk-iES.title" = "Submit";
+
+/* Class = "UISegmentedControl"; pD5-RV-HmB.segmentTitles[0] = "코스"; ObjectID = "pD5-RV-HmB"; */
+"pD5-RV-HmB.segmentTitles[0]" = "Course";
+
+/* Class = "UISegmentedControl"; pD5-RV-HmB.segmentTitles[1] = "지도"; ObjectID = "pD5-RV-HmB"; */
+"pD5-RV-HmB.segmentTitles[1]" = "Map";
+
+/* Class = "UISegmentedControl"; pD5-RV-HmB.segmentTitles[2] = "리뷰"; ObjectID = "pD5-RV-HmB"; */
+"pD5-RV-HmB.segmentTitles[2]" = "Review";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pZN-Te-ABy"; */
+"pZN-Te-ABy.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "투어 정보"; ObjectID = "qLj-ob-42B"; */
+"qLj-ob-42B.title" = "Tour Discription";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qkY-ac-z46"; */
+"qkY-ac-z46.text" = "Label";
+
+/* Class = "UILabel"; text = "투어 이름"; ObjectID = "s5q-kk-Fbj"; */
+"s5q-kk-Fbj.text" = "Tour Name";
+
+/* Class = "UILabel"; text = "장소 이름"; ObjectID = "sG7-WK-4aD"; */
+"sG7-WK-4aD.text" = "Location Name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "tFe-Lg-t8y"; */
+"tFe-Lg-t8y.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zFs-3m-uFl"; */
+"zFs-3m-uFl.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zRy-y9-nlP"; */
+"zRy-y9-nlP.text" = "Label";

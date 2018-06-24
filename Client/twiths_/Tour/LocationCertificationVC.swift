@@ -43,8 +43,8 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
             guard let nvController = self.navigationController else { return }
             nvController.popViewController(animated: true)
             
-            let alertController = UIAlertController(title: "Info", message: "카메라를 실행할 수 없습니다.", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            let alertController = UIAlertController(title: "Info", message: "카메라를 실행할 수 없습니다.".localized, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "확인".localized, style: .cancel, handler: nil)
             
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
@@ -63,11 +63,12 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
         let second = cale.component(NSCalendar.Unit.second, from: date)
         
         makeBorderToTextField(textField)
-        textField.text = "장소에 방문한 소감을 입력해주세요."
+        textField.text = "장소에 방문한 소감을 입력해주세요.".localized
         textField.textColor = UIColor.lightGray
 
         
         CertificationTimeLabel.text = "\(year)년 \(month)월 \(day)일 \(hour)시 \(minute)분 \(second)초"
+        CertificationTimeLabel.text = String(format: NSLocalizedString("%d. %d. %d. %d:%d:%d", comment: ""), year, month, day, hour, minute, second)
 
     }
 
@@ -85,7 +86,7 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "장소에 방문한 소감을 입력해주세요."
+            textView.text = "장소에 방문한 소감을 입력해주세요.".localized
             textView.textColor = UIColor.lightGray
         }
     }
@@ -100,8 +101,8 @@ class LocationCertificationVC: UITableViewController, UINavigationControllerDele
             let infoFinish = info1 && info2 && imageUploaded
             
             if infoFinish == false {
-                let alertController = UIAlertController(title: "Error", message: "사진을 포함하여 모든 정보를 입력해 주세요.", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+                let alertController = UIAlertController(title: "Error", message: "사진을 포함하여 모든 정보를 입력해 주세요.".localized, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "확인".localized, style: .cancel, handler: nil)
                 
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)

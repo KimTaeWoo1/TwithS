@@ -27,10 +27,10 @@ class MainVC: UITableViewController {
     @IBAction func ProceedTourEdit(_ sender: Any) {
         if self.tableView.isEditing == false {
             self.tableView.setEditing(true, animated: true)
-            editButton.title = "완료"
+            editButton.title = "완료".localized
         } else {
             self.tableView.setEditing(false, animated: true)
-            editButton.title = "편집"
+            editButton.title = "편집".localized
         }
     }
     
@@ -108,7 +108,7 @@ class MainVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentTourCell", for: indexPath) as! CurrentProceedTourCell
         
         cell.nameLabel.text = proceedTours[indexPath.row].tour.name
-        cell.proceedTimeLabel.text = getProceedTime(proceedTours[indexPath.row]) + " 째 진행중!"
+        cell.proceedTimeLabel.text = getProceedTime(proceedTours[indexPath.row]) + " 째 진행중!".localized
         
         // 이미지 뷰를 원형으로
         cell.tourImageView.layer.cornerRadius = cell.tourImageView.frame.size.width / 2
@@ -142,10 +142,10 @@ class MainVC: UITableViewController {
             // Delete the row from the data source
             
             // 투어 삭제 확인 창 띄우기
-            let alertController = UIAlertController(title: "Confirm", message: "이 투어를 정말로 삭제하시겠습니까?", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Confirm", message: "이 투어를 정말로 삭제하시겠습니까?".localized, preferredStyle: .alert)
             
             // 투어 삭제 확인 창에서 '예'를 클릭하면
-            alertController.addAction(UIAlertAction(title: "예", style: .default, handler: {
+            alertController.addAction(UIAlertAction(title: "예".localized, style: .default, handler: {
                 action in
                 
                 // 1. UserTourRelation의 데이터 삭제
@@ -191,7 +191,7 @@ class MainVC: UITableViewController {
             }))
             
             // '아니오'를 클릭하면
-            alertController.addAction(UIAlertAction(title: "아니오", style: .default, handler: nil))
+            alertController.addAction(UIAlertAction(title: "아니오".localized, style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }
      }

@@ -1,0 +1,75 @@
+
+/* Class = "UIBarButtonItem"; title = "About"; ObjectID = "3hr-sm-tbD"; */
+"3hr-sm-tbD.title" = "About";
+
+/* Class = "UIButton"; normalTitle = "진행하기"; ObjectID = "5jk-jT-Wbx"; */
+"5jk-jT-Wbx.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "투어 정보"; ObjectID = "5rF-PL-RY7"; */
+"5rF-PL-RY7.text" = "Tour Discription";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "6Bg-fq-Qel"; */
+"6Bg-fq-Qel.title" = "Title";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "9xL-J1-iT5"; */
+"9xL-J1-iT5.text" = "Detail";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "A7t-rk-Obe"; */
+"A7t-rk-Obe.text" = "Label";
+
+/* Class = "UILabel"; text = "Review label 1"; ObjectID = "EJU-Wz-QUp"; */
+"EJU-Wz-QUp.text" = "Review label 1";
+
+/* Class = "UINavigationItem"; title = "투어 정보"; ObjectID = "JG5-qf-2N3"; */
+"JG5-qf-2N3.title" = "Tour Discription";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "JyD-kp-Jes"; */
+"JyD-kp-Jes.text" = "Detail";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "MzA-JH-dpo"; */
+"MzA-JH-dpo.text" = "Label";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "SUR-sg-NIt"; */
+"SUR-sg-NIt.text" = "Detail";
+
+/* Class = "UILabel"; text = "만든 날짜"; ObjectID = "W8U-Sz-Ozl"; */
+"W8U-Sz-Ozl.text" = "Create At";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "WC4-DA-MGk"; */
+"WC4-DA-MGk.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "랜드마크 정보"; ObjectID = "bct-qr-2cF"; */
+"bct-qr-2cF.title" = "Location Info";
+
+/* Class = "UILabel"; text = "랜드마크 설명"; ObjectID = "cu9-HX-bVS"; */
+"cu9-HX-bVS.text" = "Location Discription";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "eKZ-rR-0Ed"; */
+"eKZ-rR-0Ed.text" = "Detail";
+
+/* Class = "UILabel"; text = "Review label 2"; ObjectID = "frC-HO-utk"; */
+"frC-HO-utk.text" = "Review label 2";
+
+/* Class = "UISegmentedControl"; gfx-Ay-gmO.segmentTitles[0] = "코스"; ObjectID = "gfx-Ay-gmO"; */
+"gfx-Ay-gmO.segmentTitles[0]" = "Course";
+
+/* Class = "UISegmentedControl"; gfx-Ay-gmO.segmentTitles[1] = "지도"; ObjectID = "gfx-Ay-gmO"; */
+"gfx-Ay-gmO.segmentTitles[1]" = "Map";
+
+/* Class = "UISegmentedControl"; gfx-Ay-gmO.segmentTitles[2] = "리뷰"; ObjectID = "gfx-Ay-gmO"; */
+"gfx-Ay-gmO.segmentTitles[2]" = "Review";
+
+/* Class = "UILabel"; text = "투어 이름"; ObjectID = "mOH-IC-MMF"; */
+"mOH-IC-MMF.text" = "Tour Name";
+
+/* Class = "UIButton"; normalTitle = "찜"; ObjectID = "pgJ-kT-QgO"; */
+"pgJ-kT-QgO.normalTitle" = "DIBS";
+
+/* Class = "UILabel"; text = "랜드마크 이름"; ObjectID = "q1n-OC-nYJ"; */
+"q1n-OC-nYJ.text" = "Location Name";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "z14-0p-06U"; */
+"z14-0p-06U.text" = "Detail";
+
+/* Class = "UILabel"; text = "투어 이름"; ObjectID = "z6W-BW-MbI"; */
+"z6W-BW-MbI.text" = "Tour Name";

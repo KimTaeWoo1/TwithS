@@ -213,7 +213,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
                     print("Error getting documents: \(err)")
                 } else {
                     if let documents = querySnapshot?.documents, documents.count != 0 {
-                        let alertController = UIAlertController(title: "Error", message: "이미 진행하셨거나, 찜한 투어입니다.", preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Error", message: "이미 진행하셨거나, 찜한 투어입니다.".localized, preferredStyle: .alert)
                         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                         
                         alertController.addAction(defaultAction)
@@ -262,7 +262,7 @@ class TourInfoMainVC: UIViewController, UITableViewDataSource, UITableViewDelega
                                 self.present(vc, animated: true, completion: nil)
                                 
                             } else {
-                                let alertController = UIAlertController(title: "Error", message: "진행 중이거나 진행 완료한 투어입니다.", preferredStyle: .alert)
+                                let alertController = UIAlertController(title: "Error", message: "진행 중이거나 진행 완료한 투어입니다.".localized, preferredStyle: .alert)
                                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                                 
                                 alertController.addAction(defaultAction)

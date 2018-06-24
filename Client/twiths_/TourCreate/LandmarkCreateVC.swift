@@ -27,8 +27,8 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
         makeBorderToTextField(landmarkDetailField)
         guard let locSelected = CheckLocationSelectedLabel else { return }
         locSelected.text = ""
-        landmarkNameFIeld.placeholder = "장소 제목을 입력해주세요."
-        landmarkDetailField.text = "장소에 대한 설명을 입력해주세요."
+        landmarkNameFIeld.placeholder = "장소 제목을 입력해주세요.".localized
+        landmarkDetailField.text = "장소에 대한 설명을 입력해주세요.".localized
         landmarkDetailField.textColor = UIColor.lightGray
     }
     
@@ -40,7 +40,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "장소에 대한 설명을 입력해주세요."
+            textView.text = "장소에 대한 설명을 입력해주세요.".localized
             textView.textColor = UIColor.lightGray
         }
     }
@@ -78,7 +78,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
             let infoFinish = info1 && info2 && imageUploaded && locationSet
         
             if infoFinish == false {
-                let alertController = UIAlertController(title: "Error", message: "사진과 위치 설정을 포함하여, 장소에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Error", message: "사진과 위치 설정을 포함하여, 장소에 대한 모든 정보를 입력해 주세요.".localized, preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
             
                 alertController.addAction(defaultAction)
@@ -100,7 +100,7 @@ class LandmarkCreateVC: UITableViewController, UINavigationControllerDelegate, U
                 }
                 landmark.location = markerList
                 guard let locSelected = CheckLocationSelectedLabel else { return }
-                locSelected.text = "설정 완료"
+                locSelected.text = "설정 완료".localized
                 locationSet = true
             }
         }

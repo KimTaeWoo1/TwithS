@@ -1,0 +1,18 @@
+
+/* Class = "UIBarButtonItem"; title = "편집"; ObjectID = "4N1-gU-Mym"; */
+"4N1-gU-Mym.title" = "편집";
+
+/* Class = "UINavigationItem"; title = "내가 찜한 투어"; ObjectID = "MPx-Ci-bW0"; */
+"MPx-Ci-bW0.title" = "내가 찜한 투어";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dKD-DS-xQV"; */
+"dKD-DS-xQV.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ec3-UO-wvZ"; */
+"ec3-UO-wvZ.text" = "Label";
+
+/* Class = "UILabel"; text = "찜한 투어 개수: 0"; ObjectID = "hOh-dd-aaL"; */
+"hOh-dd-aaL.text" = "찜한 투어 개수: 0";
+
+/* Class = "UITabBarItem"; title = "찜"; ObjectID = "zr1-5f-M3S"; */
+"zr1-5f-M3S.title" = "찜";

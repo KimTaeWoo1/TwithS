@@ -73,14 +73,14 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             switch indexPath.row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourNameCell
-                cell.tourNameField.placeholder = "투어 제목을 입력해주세요."
+                cell.tourNameField.placeholder = "투어 제목을 입력해주세요.".localized
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! TourDetailCell
                 makeBorderToTextField(cell.detailTextField)
                 
                 if cell.detailTextField.text.isEmpty {
-                    cell.detailTextField.text = "투어에 대한 설명을 입력해주세요."
+                    cell.detailTextField.text = "투어에 대한 설명을 입력해주세요.".localized
                     cell.detailTextField.textColor = UIColor.lightGray
                     cell.detailTextField.delegate = self
                 }
@@ -95,6 +95,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier[indexPath.row], for: indexPath) as! static5
                 
                 cell.landmarkCount.text = "설정된 장소 \(landmarks.count)개"
+                cell.landmarkCount.text = String(format: NSLocalizedString("Current Location : %d", comment: ""), landmarks.count)
                 
                 return cell
             }
@@ -119,7 +120,7 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "투어에 대한 설명을 입력해주세요."
+            textView.text = "투어에 대한 설명을 입력해주세요.".localized
             textView.textColor = UIColor.lightGray
         }
     }
@@ -179,14 +180,14 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
             let cell1 = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TourNameCell
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! TourDetailCell
             
-            let info1 = (cell1.tourNameField.text != "" && cell1.tourNameField.text != "투어 제목을 입력해주세요.")
-            let info2 = (cell2.detailTextField.text != "" && cell2.detailTextField.text != "투어에 대한 설명을 입력해주세요.")
+            let info1 = (cell1.tourNameField.text != "" && cell1.tourNameField.text != "투어 제목을 입력해주세요.".localized)
+            let info2 = (cell2.detailTextField.text != "" && cell2.detailTextField.text != "투어에 대한 설명을 입력해주세요.".localized)
             let info3 = (landmarks.count >= 3)
             
             let infoFinish = info1 && info2 && info3 && imageUploaded
             
             if infoFinish == false {
-                let alertController = UIAlertController(title: "Error", message: "장소를 3개 이상 설정하고, 투어에 대한 모든 정보를 입력해 주세요.", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Error", message: "장소를 3개 이상 설정하고, 투어에 대한 모든 정보를 입력해 주세요.".localized, preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "확인", style: .cancel, handler: nil)
                 
                 alertController.addAction(defaultAction)
@@ -203,8 +204,6 @@ class TourCreateVC: UITableViewController, UITextFieldDelegate, UITextViewDelega
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "createDone" {
-            
-            print("000")
             
             // 투어 생성
             let db = Firestore.firestore()

@@ -1,0 +1,46 @@
+/* 
+  Localizable.strings
+  twiths_
+
+  Created by yeon suk choi on 2018. 6. 23..
+  Copyright © 2018년 yeon suk choi. All rights reserved.
+*/
+
+
+
+"완료" = "Done";
+"편집" = "Edit";
+" 째 진행중!" = " Passed!";
+
+"이 투어를 정말 삭제하시겠습니까?" = "Do you delete this tour?";
+"예" = "Yes";
+"아니오" = "No";
+"카메라를 실행할 수 없습니다." = "Cannot execute the Camera.";
+"확인" = "OK";
+"장소에 방문한 소감을 입력해주세요." = "Please write your impressions.";
+"사진을 포함하여 모든 정보를 입력해 주세요." = "Please write all of Data.";
+"확인" = "Done";
+
+"투어에 대한 리뷰를 입력해주세요." = "Please write the review about tour.";
+"성공" = "Success";
+"아직 위치에 도달하지 않으셨군요!!\n좀 더 가까이 가서 인증해보세요!!" = "You didn't reach the location. \nGo to a little closer and submit again!!";
+
+"투어 제목을 입력해주세요." = "Write the tour name.";
+"투어에 대한 설명을 입력해주세요." = "Write the tour description";
+"장소를 3개 이상 설정하고, 투어에 대한 모든 정보를 입력해 주세요." = "Set more than 3 locations, and put all of data";
+"장소 제목을 입력해주세요." = "Write the location name.";
+"장소에 대한 설명을 입력해주세요." = "Write the location description";
+"사진과 위치 설정을 포함하여, 장소에 대한 모든 정보를 입력해 주세요." = "Put all of data, include photo and location";
+"설정 완료";
+
+"원하는 위치의 네개의 꼭지점을 찾아 길게 눌러주세요." = "Please that four corners wherever you want.";
+"길게 누르면 없어집니다." = "Long press to disappear";
+"꼭짓점을 4개 찍어 주세요." = "Please take four corners.";
+
+"이미 진행하셨거나, 찜한 투어입니다." = "You alreasy proceed or Dibs this tour.";
+"진행 중이거나 진행 완료한 투어입니다." = "This tour is in progress or has been completed.";
+"님" = "";
+
+"일 " = "d ";
+"시간 " = "h ";
+"분" = "min";

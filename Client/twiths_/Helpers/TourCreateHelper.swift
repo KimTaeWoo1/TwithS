@@ -19,7 +19,36 @@ func makeLimitToMinite(day:Int, hour:Int, min:Int) -> Int {
     return day * 1440 + hour * 60 + min
 }
 
-
+func makeMonth(_ i:Int) -> String{
+    switch(i) {
+    case 1:
+        return "January"
+    case 2:
+        return "February"
+    case 3:
+        return "March"
+    case 4:
+        return "April"
+    case 5:
+        return "May"
+    case 6:
+        return "June"
+    case 7:
+        return "July"
+    case 8:
+        return "August"
+    case 9:
+        return "September"
+    case 10:
+        return "October"
+    case 11:
+        return "November"
+    case 12:
+        return "December"
+    default:
+        return ""
+    }
+}
 func getProceedTime(_ userTourRelation:UserTourRelation_) -> String {
     let now = NSDate()
     let DHM: Set<Calendar.Component> = [.day, .hour, .minute]
@@ -37,11 +66,11 @@ func getProceedTime(_ userTourRelation:UserTourRelation_) -> String {
 
     if timeLeft >= 0 {
         if timeLeft >= 1440 {
-            return dayLeft + "일 " + hourLeft + "시간 " + minuteLeft + "분"
+            return dayLeft + "일 ".localized + hourLeft + "시간 ".localized + minuteLeft + "분".localized
         } else if timeLeft >= 60 {
-            return hourLeft + "시간 " + minuteLeft + "분"
+            return hourLeft + "시간 ".localized + minuteLeft + "분".localized
         } else{
-            return minuteLeft + "분"
+            return minuteLeft + "분".localized
         }
     }
     return ""
